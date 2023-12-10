@@ -23,7 +23,7 @@ in {
       packages = attrValues {
         inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
         inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
-        inherit (pkgs) helm-ls typescript taplo vscode;
+        inherit (pkgs) vscode;
       };
     };
 

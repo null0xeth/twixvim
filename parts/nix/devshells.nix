@@ -50,6 +50,10 @@
           manix
           gcc
           gnumake
+          helm-ls
+          typescript
+          taplo
+          vscode
           ;
       };
     };
