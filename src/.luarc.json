@@ -1,0 +1,17 @@
+{
+  "workspace.library": [
+    "/home/null0x/.local/share/nvim/lazy/neodev.nvim/types/nightly",
+    "/nix/store/4s4kh4r1lgbdvr01ry2qppv9sgacyfv0-neovim-unwrapped-d2983dc/share/nvim/runtime/lua",
+    "/home/null0x/.local/share/nvim/lazy/nui.nvim/lua",
+    "/home/null0x/.local/share/nvim/lazy/nvim-cmp/lua",
+    "/home/null0x/.local/share/nvim/lazy/plenary.nvim/lua",
+    "/home/null0x/.local/share/nvim/lazy/neotest/lua",
+    "/home/null0x/.local/share/nvim/lazy/nvim-dap/lua",
+    "/home/null0x/.local/share/nvim/lazy/nvim-notify/lua",
+    "/home/null0x/.local/share/nvim/lazy/nvim-lspconfig/lua",
+    "/home/null0x/.local/share/nvim/lazy/nvim-dap-ui/lua",
+    "/etc/nixos/home/programs/cli/coding/editors/neovim/config/lua",
+    "${3rd}/luv/library"
+  ],
+  "diagnostics.globals": ["vim", "describe", "it", "assert", "MiniFiles"]
+}
