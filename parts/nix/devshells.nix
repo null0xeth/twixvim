@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    inputs.devenv.flakeModule
+    inputs.devshell.flakeModule
   ];
 
   perSystem = {
@@ -19,12 +19,11 @@
       config.allowUnfree = true;
     };
 
-    devenv.shells.default = {
-      devenv.flakesIntegration = true;
-
-      enterShell = ''
-        name="$(pwd)"
-      '';
+    devshells.default = {
+      devshell = {
+        name = "Neovim Shell";
+        #motd = "Testing this shit nihhh";
+      };
 
       packages = lib.attrValues {
         #inherit (config.packages) default;
