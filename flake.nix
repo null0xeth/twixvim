@@ -14,8 +14,6 @@
 
   outputs = inputs @ {
     flake-parts,
-    #devenv,
-    #nixpkgs,
     systems,
     ...
   }:
