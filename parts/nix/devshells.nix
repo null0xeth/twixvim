@@ -22,7 +22,6 @@
     devshells.default = {
       devshell = {
         name = "Neovim Shell";
-        #motd = "Testing this shit nihhh";
       };
 
       packages = lib.attrValues {
