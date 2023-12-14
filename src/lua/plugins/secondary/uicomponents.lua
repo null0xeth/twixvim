@@ -3,15 +3,14 @@ local spec = {
     "luukvbaal/statuscol.nvim",
     branch = "0.10",
     event = "KindaLazy",
-    opts = function()
+    config = function()
       -- config = function()
       local builtin = require("statuscol.builtin")
-      return {
+      require("statuscol").setup({
         --   require("statuscol").setup({
         -- configuration goes here, for example:
         bt_ignore = {
           "terminal",
-          "nofile",
         },
         ft_ignore = {
           "neo-tree",
@@ -30,21 +29,30 @@ local spec = {
             click = "v:lua.ScFa",
           },
           {
-            sign = { name = { ".*" }, maxwidth = 1, colwidth = 2, auto = true },
+            sign = {
+              name = {
+                "Dap",
+                "Diagnostic",
+              },
+              maxwidth = 1,
+              colwidth = 2,
+              auto = false,
+            },
             click = "v:lua.ScSa",
           },
-          {
-            sign = { name = { "Diagnostic.*" }, maxwidth = 1, colwidth = 2, auto = true },
-            click = "v:lua.ScSa",
-          },
-          { sign = { name = { "Dap.*" }, maxwidth = 1, colwidth = 2, auto = true, wrap = true } },
+
+          -- {
+          --   sign = { name = { "Diagnostic.*" }, maxwidth = 1, colwidth = 2, auto = true },
+          --   click = "v:lua.ScSa",
+          -- },
+          -- { sign = { name = { "Dap.*" }, maxwidth = 1, colwidth = 2, auto = true, wrap = true } },
           {
             text = { builtin.lnumfunc, " " },
             click = "v:lua.ScLa",
           },
         },
         --})
-      }
+      })
     end,
   },
   {
