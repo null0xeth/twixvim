@@ -33,7 +33,7 @@ in {
         };
       };
     }
-    (mkIf (!cfg.dev) {
+    (mkIf (cfg.dev == false) {
       xdg.configFile = {
         "nvim" = {
           source = ../../src;
