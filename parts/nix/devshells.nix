@@ -31,7 +31,8 @@
         inherit (pkgs.nodePackages) jsonlint;
         inherit
           (pkgs)
-          clang-tools_16
+          #clang-tools_16
+
           cmake
           lua-language-server
           marksman
