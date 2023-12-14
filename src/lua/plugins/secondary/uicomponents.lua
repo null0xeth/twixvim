@@ -31,7 +31,7 @@ local spec = {
             click = "v:lua.ScFa",
           },
           {
-            sign = { name = { "Diagnostic" }, maxwidth = 1, colwidth = 2, auto = true, wrap = true },
+            sign = { namespace = { "Diagnostic.*" }, maxwidth = 1, colwidth = 2, auto = true, wrap = true },
             click = "v:lua.ScSa",
           },
           { sign = { name = { "Dap.*" }, maxwidth = 1, colwidth = 2, auto = true, wrap = true } },
