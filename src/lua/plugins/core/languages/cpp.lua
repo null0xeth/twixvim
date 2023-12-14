@@ -10,6 +10,7 @@ return {
   },
   {
     "stevearc/conform.nvim",
+    enabled = false,
     opts = function(_, opts)
       opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft, {
         cpp = { "clang_format" },
@@ -19,6 +20,7 @@ return {
   },
   {
     "mfussenegger/nvim-lint",
+    enabled = false,
     opts = function(_, opts)
       opts.linters_by_ft["cpp"] = { "clang-tidy" }
       opts.linters_by_ft["c"] = { "clang-tidy" }
@@ -42,7 +44,12 @@ return {
           server = {
             root_dir = function(...)
               -- using a root .clang-format or .clang-tidy file messes up projects, so remove them
-              return require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt", "configure.ac", ".git")(...)
+              return require("lspconfig.util").root_pattern(
+                "compile_commands.json",
+                "compile_flags.txt",
+                "configure.ac",
+                ".git"
+              )(...)
             end,
             capabilities = {
               offsetEncoding = { "utf-16" },
@@ -91,10 +98,10 @@ return {
       },
       setup = {
         clangd = function(_, opts)
-          require("clangd_extensions").setup {
+          require("clangd_extensions").setup({
             server = opts.server,
             extensions = opts.extensions,
-          }
+          })
           return true
         end,
       },
@@ -117,7 +124,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
-      table.insert(opts.sorting.comparators, 1, require "clangd_extensions.cmp_scores")
+      table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
     end,
   },
   {
@@ -128,7 +135,7 @@ return {
     opts = {
       adapters = {
         function()
-          require "neotest-gtest"
+          require("neotest-gtest")
         end,
       },
     },
