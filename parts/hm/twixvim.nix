@@ -15,16 +15,10 @@ in {
         default = true;
         description = "Enable Twixvim IDE";
       };
-      dev = mkOption {
-        type = types.bool;
-        default = false;
-        description = "use local src";
-      };
-    };
+          };
   };
 
-  config = mkIf cfg.enable (mkMerge [
-    {
+  config = mkIf cfg.enable {
       home = {
         packages = attrValues {
           inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
@@ -32,14 +26,11 @@ in {
           inherit (pkgs) vscode;
         };
       };
-    }
-    (mkIf (cfg.dev == false) {
       xdg.configFile = {
         "nvim" = {
           source = ../../src;
           recursive = true;
         };
       };
-    })
-  ]);
+    };
 }
