@@ -17,7 +17,7 @@ in {
       };
       dev = mkOption {
         type = types.bool;
-        default = true;
+        default = false;
         description = "use local src";
       };
     };
