@@ -53,9 +53,9 @@ local spec = {
   -- },
   {
     "neovim/nvim-lspconfig",
-    event = { "KindaLazy" },
+    event = "KindaLazy",
     dependencies = {
-      --{ "folke/neoconf.nvim" },
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
       { "folke/neodev.nvim" },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },

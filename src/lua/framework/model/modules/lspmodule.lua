@@ -89,10 +89,10 @@ local function init_lsp_config() --= memoize(function()
   local signLen = #lspSigns
   for i = 1, signLen do
     local sign = lspSigns[i]
-    sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+    sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
   end
 
-  diagnostic.config(vim.deepcopy(lspConfig.diagnostic))
+  vim.diagnostic.config(vim.deepcopy(lspConfig.diagnostic))
 end
 
 ---@package
