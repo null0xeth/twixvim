@@ -18,7 +18,7 @@ local spec = {
   {
     "folke/neodev.nvim",
     --event = "KindaLazy",
-    enabled = true,
+    enabled = false,
     config = function()
       require("neodev").setup({
         library = {
