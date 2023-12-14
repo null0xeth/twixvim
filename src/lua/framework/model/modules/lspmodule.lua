@@ -92,7 +92,7 @@ local function init_lsp_config() --= memoize(function()
     sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
   end
 
-  diagnostic.config(lspConfig.diagnostic)
+  diagnostic.config(vim.deepcopy(lspConfig.diagnostic))
 end
 
 ---@package
