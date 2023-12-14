@@ -8,24 +8,22 @@ return {
       })
     end,
   },
-  {
-    "stevearc/conform.nvim",
-    enabled = false,
-    opts = function(_, opts)
-      opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft, {
-        cpp = { "clang_format" },
-        c = { "clang_format" },
-      })
-    end,
-  },
-  {
-    "mfussenegger/nvim-lint",
-    enabled = false,
-    opts = function(_, opts)
-      opts.linters_by_ft["cpp"] = { "clang-tidy" }
-      opts.linters_by_ft["c"] = { "clang-tidy" }
-    end,
-  },
+  -- {
+  --   "stevearc/conform.nvim",
+  --   opts = function(_, opts)
+  --     opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft, {
+  --       cpp = { "clang_format" },
+  --       c = { "clang_format" },
+  --     })
+  --   end,
+  -- },
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   opts = function(_, opts)
+  --     opts.linters_by_ft["cpp"] = { "clang-tidy" }
+  --     opts.linters_by_ft["c"] = { "clang-tidy" }
+  --   end,
+  -- },
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)
@@ -37,7 +35,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "p00f/clangd_extensions.nvim" },
+    --dependencies = { "p00f/clangd_extensions.nvim" },
     opts = {
       servers = {
         clangd = {
@@ -98,6 +96,9 @@ return {
       },
       setup = {
         clangd = function(_, opts)
+           local lspcontroller = require("framework.controller.lspcontroller"):new()
+          lspcontroller:setup_lsp_servers(_, opts)
+
           require("clangd_extensions").setup({
             server = opts.server,
             extensions = opts.extensions,
@@ -121,13 +122,7 @@ return {
       },
     },
   },
-  {
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
-    end,
-  },
-  {
+    {
     "nvim-neotest/neotest",
     dependencies = {
       { "alfaix/neotest-gtest", opts = {} },
