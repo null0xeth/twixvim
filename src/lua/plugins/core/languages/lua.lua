@@ -36,6 +36,7 @@ local spec = {
         lua_ls = { --function()
           --return {
           --cmd = { "/etc/profiles/per-user/null0x/bin/lua-language-server" },
+          single_file_support = true,
           settings = {
             Lua = {
               -- runtime = {
@@ -58,6 +59,11 @@ local spec = {
               --     "${3rd}/luv/library",
               --   },
               -- },
+              misc = {
+                parameters = {
+                  -- "--log-level=trace",
+                },
+              },
               completion = {
                 workspaceWord = true,
                 callSnippet = "Replace",
@@ -67,17 +73,10 @@ local spec = {
                 displayContext = false,
               },
               diagnostics = {
-                enable = true,
-                globals = { "vim" }, -- is new
                 virtual_text = { prefix = "icons" },
                 disable = {
-                  "need-check-nil",
-                  "duplicate-set-field",
                   "incomplete-signature-doc",
                   "trailing-space",
-                  "no-unknown",
-                  "param-type-mismatch",
-                  "undefined-field",
                 },
                 groupSeverity = {
                   strong = "Warning",
@@ -104,7 +103,12 @@ local spec = {
                 expandAlias = false,
               },
               hint = {
-                enable = false, -- enable = false
+                enable = true,
+                setType = false,
+                paramType = true,
+                paramName = "Disable",
+                semicolon = "Disable",
+                arrayIndex = "Disable",
               },
               format = {
                 enable = false,
