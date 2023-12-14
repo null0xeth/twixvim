@@ -25,16 +25,12 @@ in {
           inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
           inherit (pkgs) vscode;
         };
-	file."/home/null0x/.config/nvim" = {
-	  source = ../../src;
-	  recursive = true;
-	};
+	      };
+      xdg.configFile = {
+        "nvim" = {
+          source = ../../src;
+          recursive = true;
+        };
       };
-      #xdg.configFile = {
-        #"nvim" = {
-          #source = ../../src;
-          #recursive = true;
-        #};
-      #};
     };
 }
