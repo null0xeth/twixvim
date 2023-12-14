@@ -60,10 +60,10 @@ local function init_lsp_config() --= memoize(function()
   local cachecontroller = get_obj("framework.controller.cachecontroller", "cachecontroller")
   local iconCache = cachecontroller:query("icons")
   local lspSigns = {
-    { name = "DiagnosticSignError", text = iconCache.diagnostics.BoldError },
-    { name = "DiagnosticSignWarn", text = iconCache.diagnostics.BoldWarning },
-    { name = "DiagnosticSignHint", text = iconCache.diagnostics.BoldQuestion },
-    { name = "DiagnosticSignInfo", text = iconCache.diagnostics.BoldInformation },
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
   }
 
   local lspConfig = {
@@ -71,7 +71,7 @@ local function init_lsp_config() --= memoize(function()
     diagnostic = {
       --virtual_text = { severity = { min = diagnostic.severity.ERROR } },
       virtual_text = false,
-      signs = true,
+      signs = { active = lspSigns },
       underline = false,
       update_in_insert = false,
       severity_sort = true,
