@@ -7,7 +7,7 @@ local settings = {
     rosepine = false,
   },
   languages = {
-    cpp = false,
+    cpp = true,
     css = true,
     dotfiles = true,
     helm = false,
