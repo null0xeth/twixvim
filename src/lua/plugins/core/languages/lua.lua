@@ -36,7 +36,7 @@ local spec = {
         lua_ls = { --function()
           --return {
           --cmd = { "/etc/profiles/per-user/null0x/bin/lua-language-server" },
-          single_file_support = true,
+          --single_file_support = true,
           settings = {
             Lua = {
               -- runtime = {
