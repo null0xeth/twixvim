@@ -71,7 +71,7 @@ local function init_lsp_config() --= memoize(function()
     diagnostic = {
       --virtual_text = { severity = { min = diagnostic.severity.ERROR } },
       virtual_text = false,
-      signs = { active = lspSigns },
+      signs = true,
       underline = false,
       update_in_insert = false,
       severity_sort = true,
