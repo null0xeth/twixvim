@@ -67,6 +67,7 @@ local spec = {
                 displayContext = false,
               },
               diagnostics = {
+                enable = true,
                 globals = { "vim" }, -- is new
                 virtual_text = { prefix = "icons" },
                 disable = {
