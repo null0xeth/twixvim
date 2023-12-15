@@ -37,6 +37,7 @@ local spec = {
           --return {
           --cmd = { "/etc/profiles/per-user/null0x/bin/lua-language-server" },
           --single_file_support = true,
+          cmd = { "lua-language-server" },
           settings = {
             Lua = {
               -- runtime = {
