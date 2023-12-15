@@ -137,6 +137,18 @@ end
 ---@param opts table
 ---@param customAttach? function
 function LspController:setup_lsp_servers(_, opts, customAttach)
+  local register_capability = vim.lsp.handlers["client/registerCapability"]
+
+  vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
+    local ret = register_capability(err, res, ctx)
+    local client_id = ctx.client_id
+    ---@type lsp.Client
+    local client = vim.lsp.get_client_by_id(client_id)
+    local buffer = vim.api.nvim_get_current_buf()
+    --on_attach(client, buffer)
+    return ret
+  end
+
   self:custom_on_attach(customAttach)
   self:init_lsp_servers(opts)
 end
