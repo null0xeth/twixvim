@@ -112,10 +112,10 @@ local function init_lsp_config() --= memoize(function()
   --vim.diagnostic.config(lsp.diagnostic)
 
   local signs = {
-    { Error = "" },
-    { Warn = "" },
-    { Hint = "" },
-    { Info = "" },
+    Error = "",
+    Warn = "",
+    Hint = "",
+    Info = "",
   }
 
   for type, icon in pairs(signs) do
