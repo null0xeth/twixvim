@@ -65,10 +65,29 @@ local function init_lsp_config() --= memoize(function()
   --   { name = "DiagnosticSignHint", text = "" },
   --   { name = "DiagnosticSignInfo", text = "" },
   -- }
+  local lspSigns = {
+    Error = "",
+    Warn = "",
+    Hint = "",
+    Info = "",
+  }
+
+  for name, icon in pairs(lspSigns) do
+    name = "DiagnosticSign" .. name
+    vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+  end
 
   local lspConfig = {
     --float = { focusable = true, style = "minimal", border = "rounded" },
     diagnostic = {
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.INFO] = "",
+          [vim.diagnostic.severity.HINT] = "",
+        },
+      },
       virtual_text = { severity = { min = diagnostic.severity.ERROR } },
       --virtual_text = false,
       underline = false,
