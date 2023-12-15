@@ -1,8 +1,7 @@
 local spec = {
   {
     "luukvbaal/statuscol.nvim",
-    enabled = false,
-    event = "VeryLazy",
+    event = "KindaLazy",
     config = function()
       -- config = function()
       local builtin = require("statuscol.builtin")
