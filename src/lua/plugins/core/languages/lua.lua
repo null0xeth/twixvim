@@ -75,8 +75,13 @@ local spec = {
                 globals = { "vim" },
                 virtual_text = { prefix = "icons" },
                 disable = {
+                  "need-check-nil",
+                  "duplicate-set-field",
                   "incomplete-signature-doc",
                   "trailing-space",
+                  "no-unknown",
+                  "param-type-mismatch",
+                  "undefined-field",
                 },
                 groupSeverity = {
                   strong = "Warning",
