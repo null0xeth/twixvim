@@ -29,6 +29,7 @@ local spec = {
             condition = { builtin.notempty },
             click = "v:lua.ScFa",
           },
+          { sign = { name = { "Dap.*" }, maxwidth = 1, colwidth = 2, auto = true } },
           {
             sign = {
               -- name = {
@@ -39,11 +40,10 @@ local spec = {
               namespace = { ".*" },
               maxwidth = 1,
               colwidth = 2,
-              auto = false,
+              auto = true,
             },
             click = "v:lua.ScSa",
           },
-          { sign = { name = { "Dap.*" }, maxwidth = 1, colwidth = 2, auto = true } },
           -- {
           --   sign = {
           --     name = { "Diagnostic" },
