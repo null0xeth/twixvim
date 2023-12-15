@@ -31,9 +31,10 @@ local spec = {
           {
             sign = {
               name = {
-                "Dap",
-                "Diagnostic",
+                ".*",
+                --"Diagnostic",
               },
+              namespace = { ".*" },
               maxwidth = 1,
               colwidth = 2,
               auto = false,
