@@ -28,19 +28,19 @@ local spec = {
             condition = { builtin.notempty },
             click = "v:lua.ScFa",
           },
-          -- {
-          --   sign = {
-          --     name = {
-          --       ".*",
-          --       --"Diagnostic",
-          --     },
-          --     namespace = { ".*" },
-          --     maxwidth = 1,
-          --     colwidth = 2,
-          --     auto = false,
-          --   },
-          --   click = "v:lua.ScSa",
-          -- },
+          {
+            sign = {
+              name = {
+                ".*",
+                --"Diagnostic",
+              },
+              namespace = { ".*" },
+              maxwidth = 1,
+              colwidth = 2,
+              auto = false,
+            },
+            click = "v:lua.ScSa",
+          },
           { sign = { name = { "Dap.*" }, maxwidth = 1, colwidth = 2, auto = true } },
           -- {
           --   sign = {
@@ -51,10 +51,10 @@ local spec = {
           --   },
           --   click = "v:lua.ScSa",
           -- },
-          {
-            sign = { name = { ".*" }, maxwidth = 1, colwidth = 2, auto = true },
-            click = "v:lua.ScSa",
-          },
+          -- {
+          --   sign = { name = { ".*" }, maxwidth = 1, colwidth = 2, auto = true },
+          --   click = "v:lua.ScSa",
+          -- },
           {
             text = { builtin.lnumfunc, " " },
             click = "v:lua.ScLa",

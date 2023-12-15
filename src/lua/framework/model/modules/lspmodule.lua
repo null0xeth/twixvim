@@ -59,6 +59,26 @@ local diagnostic, sign_define = vim.diagnostic, vim.fn.sign_define
 local function init_lsp_config() --= memoize(function()
   local cachecontroller = get_obj("framework.controller.cachecontroller", "cachecontroller")
   local iconCache = cachecontroller:query("icons")
+
+  local lsp = {
+    float = {
+      focusable = true,
+      style = "minimal",
+      border = "rounded",
+    },
+    diagnostic = {
+      -- virtual_text = true,
+      virtual_text = { spacing = 4, prefix = "●" },
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
+      float = {
+        focusable = true,
+        style = "minimal",
+        border = "rounded",
+      },
+    },
+  }
   local signs = {
     { name = "DiagnosticSignError", text = "" },
     { name = "DiagnosticSignWarn", text = "" },
@@ -66,45 +86,55 @@ local function init_lsp_config() --= memoize(function()
     { name = "DiagnosticSignInfo", text = "" },
   }
 
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+  end
+
+  -- Diagnostic configuration
+  vim.diagnostic.config(lsp.diagnostic)
+
+  -- Hover configuration
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, lsp.float)
+
+  -- Signature help configuration
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, lsp.float)
   -- for _, sign in ipairs(signs) do
   --   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   -- end
 
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  end
+  -- for _, sign in ipairs(signs) do
+  --   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  -- end
 
-  local config = {
-    virtual_text = false,
-    -- enables lsp_lines but we want to start disabled
-    virtual_lines = false,
-    -- show signs
-    signs = {
-      text = {
-        [vim.diagnostic.severity.ERROR] = "",
-        [vim.diagnostic.severity.WARN] = "",
-        [vim.diagnostic.severity.INFO] = "",
-        [vim.diagnostic.severity.HINT] = "",
-      },
-    },
+  -- local config = {
+  --   virtual_text = false,
+  --   -- enables lsp_lines but we want to start disabled
+  --   virtual_lines = false,
+  --   -- show signs
+  --   signs = {
+  --     text = {
+  --       [vim.diagnostic.severity.ERROR] = "",
+  --       [vim.diagnostic.severity.WARN] = "",
+  --       [vim.diagnostic.severity.INFO] = "",
+  --       [vim.diagnostic.severity.HINT] = "",
+  --     },
+  --   },
 
-    update_in_insert = false,
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = true,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
-    },
-  }
+  --   update_in_insert = false,
+  --   underline = true,
+  --   severity_sort = true,
+  --   float = {
+  --     focusable = true,
+  --     style = "minimal",
+  --     border = "rounded",
+  --     source = "always",
+  --     header = "",
+  --     prefix = "",
+  --   },
+  -- }
 
-  vim.diagnostic.config(config)
+  -- vim.diagnostic.config(config)
 
-  local ebola = vim.diagnostic.get_namespaces()
-  print(vim.inspect(ebola))
   -- local lspSigns = {
   --   { name = "DiagnosticSignError", text = "" },
   --   { name = "DiagnosticSignWarn", text = "" },
