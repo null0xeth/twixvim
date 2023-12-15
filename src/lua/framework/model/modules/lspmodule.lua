@@ -71,16 +71,16 @@ local function init_lsp_config() --= memoize(function()
   end
 
   local config = {
-    virtual_text = true,
+    virtual_text = false,
     -- enables lsp_lines but we want to start disabled
     virtual_lines = false,
     -- show signs
     signs = {
       active = signs,
     },
-    update_in_insert = true,
+    update_in_insert = false,
     underline = true,
-    severity_sort = true,
+    severity_sort = false,
     float = {
       focus = false,
       focusable = false,
