@@ -155,17 +155,17 @@ function LspController:setup_lsp_servers(_, opts, customAttach)
   --   { name = "DiagnosticSignInfo", text = "" },
   -- }
 
-  local lspSigns = {
-    Error = "",
-    Warn = "",
-    Hint = "",
-    Info = "",
-  }
+  -- local lspSigns = {
+  --   Error = "",
+  --   Warn = "",
+  --   Hint = "",
+  --   Info = "",
+  -- }
 
-  for name, icon in pairs(lspSigns) do
-    name = "DiagnosticSign" .. name
-    vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-  end
+  -- for name, icon in pairs(lspSigns) do
+  --   name = "DiagnosticSign" .. name
+  --   vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+  -- end
 
   -- local signLen = #lspSigns
   -- for i = 1, signLen do
@@ -174,22 +174,22 @@ function LspController:setup_lsp_servers(_, opts, customAttach)
   --   vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
   -- end
 
-  -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  --   --signs = true,
-  --   -- Enable underline, use default values
-  --   underline = true,
-  --   -- Enable virtual text, override spacing to 4
-  --   virtual_text = {
-  --     spacing = 4,
-  --   },
-  --   -- Use a function to dynamically turn signs off
-  --   -- and on, using buffer local variables
-  --   signs = function(namespace, bufnr)
-  --     return vim.b[bufnr].show_signs == true
-  --   end,
-  --   -- Disable a feature
-  --   update_in_insert = false,
-  -- })
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    --signs = true,
+    -- Enable underline, use default values
+    underline = true,
+    -- Enable virtual text, override spacing to 4
+    virtual_text = {
+      spacing = 4,
+    },
+    -- Use a function to dynamically turn signs off
+    -- and on, using buffer local variables
+    signs = function(namespace, bufnr)
+      return vim.b[bufnr].show_signs == true
+    end,
+    -- Disable a feature
+    update_in_insert = false,
+  })
 
   self:custom_on_attach(customAttach)
   self:init_lsp_servers(opts)
