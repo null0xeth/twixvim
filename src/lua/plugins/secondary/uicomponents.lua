@@ -52,7 +52,7 @@ local spec = {
           --   click = "v:lua.ScSa",
           -- },
           {
-            sign = { name = { "Diagnostic" }, maxwidth = 1, colwidth = 2, auto = true },
+            sign = { namespace = { "Diagnostic" }, maxwidth = 1, colwidth = 2, auto = true },
             click = "v:lua.ScSa",
           },
           {

@@ -75,6 +75,15 @@ local function init_lsp_config() --= memoize(function()
     -- enables lsp_lines but we want to start disabled
     virtual_lines = false,
     -- show signs
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = "",
+        [vim.diagnostic.severity.WARN] = "",
+        [vim.diagnostic.severity.INFO] = "",
+        [vim.diagnostic.severity.HINT] = "",
+      },
+    },
+
     update_in_insert = false,
     underline = true,
     severity_sort = true,
