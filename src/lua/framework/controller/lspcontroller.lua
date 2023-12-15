@@ -149,6 +149,10 @@ function LspController:setup_lsp_servers(_, opts, customAttach)
     return ret
   end
 
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    signs = true,
+  })
+
   self:custom_on_attach(customAttach)
   self:init_lsp_servers(opts)
 end
