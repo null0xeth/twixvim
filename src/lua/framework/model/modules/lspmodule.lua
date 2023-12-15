@@ -94,10 +94,10 @@ local function init_lsp_config() --= memoize(function()
   vim.diagnostic.config(lsp.diagnostic)
 
   -- Hover configuration
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, lsp.float)
+  --vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, lsp.float)
 
   -- Signature help configuration
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, lsp.float)
+  --vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, lsp.float)
   -- for _, sign in ipairs(signs) do
   --   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   -- end

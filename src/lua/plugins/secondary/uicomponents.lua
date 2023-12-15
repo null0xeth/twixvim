@@ -5,6 +5,7 @@ local spec = {
     config = function()
       -- config = function()
       local builtin = require("statuscol.builtin")
+      local wantedsigns = { "DiagnosticSignWarn", "DiagnosticSignInfo", "DiagnosticSignError", "DiagnosticSignHint" }
       require("statuscol").setup({
         --   require("statuscol").setup({
         -- configuration goes here, for example:
@@ -30,11 +31,12 @@ local spec = {
           },
           {
             sign = {
-              name = {
-                ".*",
-                --"Diagnostic",
-              },
-              namespace = { ".*" },
+              -- name = {
+              --   ".*",
+              --   --"Diagnostic",
+              -- },
+              name = wantedsigns,
+              --namespace = { ".*" },
               maxwidth = 1,
               colwidth = 2,
               auto = false,
