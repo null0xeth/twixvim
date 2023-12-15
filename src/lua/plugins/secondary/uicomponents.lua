@@ -1,7 +1,7 @@
 local spec = {
   {
     "luukvbaal/statuscol.nvim",
-    event = "KindaLazy",
+    event = "VeryLazy",
     config = function()
       -- config = function()
       local builtin = require("statuscol.builtin")
@@ -20,7 +20,7 @@ local spec = {
           "markdown",
           "dashboard",
         },
-        setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
+        --setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
         relculright = true, -- whether to right-align the cursor line number with 'relativenumber' set
         segments = {
           {
