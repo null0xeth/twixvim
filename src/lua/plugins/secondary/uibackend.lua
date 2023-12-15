@@ -498,7 +498,7 @@ local spec = {
           --winhighlight = "WinBar:EdgyWinBar,Normal:EdgyNormal",
           winhighlight = "WinBar:EdgyWinBar,NeoTreeStatusLineNC:EdgyWinBar,WinBarNC:EdgyWinBar,Normal:EdgyNormal",
           spell = false,
-          signcolumn = "no",
+          signcolumn = "yes",
         },
         keys = {
           -- increase width
