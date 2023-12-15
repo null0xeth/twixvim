@@ -1,10 +1,9 @@
 local spec = {
   {
     "luukvbaal/statuscol.nvim",
-    event = "VeryLazy",
+    event = "LspAttach",
     config = function()
       -- config = function()
-      vim.lsp.handlers["textDocument/diagnostic"] = vim.lsp.diagnostic.on_diagnostic
       local builtin = require("statuscol.builtin")
       local wantedsigns = { "DiagnosticSignWarn", "DiagnosticSignInfo", "DiagnosticSignError", "DiagnosticSignHint" }
       require("statuscol").setup({
@@ -33,7 +32,7 @@ local spec = {
           { sign = { name = { "Dap.*" }, maxwidth = 1, colwidth = 2, auto = true } },
           {
             sign = {
-              name = { "Diagnostic" },
+              name = { "DiagnosticSignInfo", "DiagnosticSignHint", "DiagnosticSignWarn", "DiagnosticSignError" },
               --text = { ".*" },
               maxwidth = 1,
               colwidth = 2,
