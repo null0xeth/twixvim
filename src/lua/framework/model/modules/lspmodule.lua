@@ -70,6 +70,10 @@ local function init_lsp_config() --= memoize(function()
   --   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
   -- end
 
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  end
+
   local config = {
     virtual_text = false,
     -- enables lsp_lines but we want to start disabled
@@ -98,10 +102,9 @@ local function init_lsp_config() --= memoize(function()
   }
 
   vim.diagnostic.config(config)
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  end
 
+  local ebola = vim.diagnostic.get_namespaces()
+  print(vim.inspect(ebola))
   -- local lspSigns = {
   --   { name = "DiagnosticSignError", text = "" },
   --   { name = "DiagnosticSignWarn", text = "" },
