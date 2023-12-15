@@ -66,24 +66,20 @@ local function init_lsp_config() --= memoize(function()
     { name = "DiagnosticSignInfo", text = "" },
   }
 
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  end
+  -- for _, sign in ipairs(signs) do
+  --   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  -- end
 
   local config = {
     virtual_text = false,
     -- enables lsp_lines but we want to start disabled
     virtual_lines = false,
     -- show signs
-    signs = {
-      text = signs,
-    },
     update_in_insert = false,
     underline = true,
-    severity_sort = false,
+    severity_sort = true,
     float = {
-      focus = false,
-      focusable = false,
+      focusable = true,
       style = "minimal",
       border = "rounded",
       source = "always",
@@ -93,6 +89,10 @@ local function init_lsp_config() --= memoize(function()
   }
 
   vim.diagnostic.config(config)
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  end
+
   -- local lspSigns = {
   --   { name = "DiagnosticSignError", text = "" },
   --   { name = "DiagnosticSignWarn", text = "" },

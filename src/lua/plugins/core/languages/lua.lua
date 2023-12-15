@@ -60,6 +60,10 @@ local spec = {
               --     "${3rd}/luv/library",
               --   },
               -- },
+              workspace = {
+                checkThirdParty = false,
+                library = vim.api.nvim_get_runtime_file("", true),
+              },
               misc = {
                 parameters = {
                   -- "--log-level=trace",
@@ -74,6 +78,7 @@ local spec = {
                 displayContext = false,
               },
               diagnostics = {
+                globals = { "vim" },
                 virtual_text = { prefix = "icons" },
                 disable = {
                   "incomplete-signature-doc",
@@ -125,15 +130,15 @@ local spec = {
               },
             },
           },
-          handlers = {
-            -- always go to the first definition
-            ["textDocument/definition"] = function(err, result, ...)
-              if vim.tbl_islist(result) or type(result) == "table" then
-                result = result[1]
-              end
-              vim.lsp.handlers["textDocument/definition"](err, result, ...)
-            end,
-          },
+          -- handlers = {
+          --   -- always go to the first definition
+          --   ["textDocument/definition"] = function(err, result, ...)
+          --     if vim.tbl_islist(result) or type(result) == "table" then
+          --       result = result[1]
+          --     end
+          --     vim.lsp.handlers["textDocument/definition"](err, result, ...)
+          --   end,
+          -- },
         },
         --end,
       },
