@@ -72,11 +72,6 @@ local function init_lsp_config() --= memoize(function()
     Info = "",
   }
 
-  for name, icon in pairs(lspSigns) do
-    name = "DiagnosticSign" .. name
-    vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-  end
-
   local lspConfig = {
     --float = { focusable = true, style = "minimal", border = "rounded" },
     diagnostic = {
@@ -110,6 +105,11 @@ local function init_lsp_config() --= memoize(function()
   --   print("module", vim.inspect(sign))
   --   sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
   -- end
+  for name, icon in pairs(lspSigns) do
+    name = "DiagnosticSign" .. name
+    print("yeet", name, icon)
+    vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+  end
 
   vim.diagnostic.config(vim.deepcopy(lspConfig.diagnostic))
 end
