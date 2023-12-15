@@ -159,7 +159,7 @@ function LspController:setup_lsp_servers(_, opts, customAttach)
   for i = 1, signLen do
     local sign = lspSigns[i]
     print(vim.inspect(sign))
-    sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
+    vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
   end
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
