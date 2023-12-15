@@ -288,7 +288,7 @@ local spec = {
             enable = false, -- Display colorcolumn in the foccused window only
             list = "+1", -- Set the comma-saperated list for the colorcolumn
           },
-          signcolumn = true, -- Display signcolumn in the focussed window only
+          --signcolumn = true, -- Display signcolumn in the focussed window only
           winhighlight = true, -- Auto highlighting for focussed/unfocussed windows
         },
       })
@@ -499,7 +499,7 @@ local spec = {
           --winhighlight = "WinBar:EdgyWinBar,Normal:EdgyNormal",
           winhighlight = "WinBar:EdgyWinBar,NeoTreeStatusLineNC:EdgyWinBar,WinBarNC:EdgyWinBar,Normal:EdgyNormal",
           spell = false,
-          signcolumn = "auto:3",
+          --signcolumn = "auto:3",
         },
         keys = {
           -- increase width
