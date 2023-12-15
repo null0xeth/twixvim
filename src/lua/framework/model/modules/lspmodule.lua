@@ -83,8 +83,8 @@ local function init_lsp_config() --= memoize(function()
     virtual_text = false,
     update_in_insert = false,
     float = {
-      focusable = vim.g.popup_opts.focusable,
-      border = vim.g.popup_opts.border,
+      focusable = false,
+      border = "rounded",
       format = function(diagnostic)
         local str = string.format("[%s] %s", diagnostic.source, diagnostic.message)
         if diagnostic.code then
