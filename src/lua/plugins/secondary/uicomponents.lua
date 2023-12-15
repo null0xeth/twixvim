@@ -1,6 +1,7 @@
 local spec = {
   {
     "luukvbaal/statuscol.nvim",
+    enabled = false,
     event = "VeryLazy",
     config = function()
       -- config = function()
