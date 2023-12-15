@@ -37,7 +37,7 @@ local spec = {
               --   --"Diagnostic",
               -- },
               -- name = wantedsigns,
-              namespace = { ".*" },
+              namespace = { "Diagnostic" },
               maxwidth = 1,
               colwidth = 2,
               auto = true,
