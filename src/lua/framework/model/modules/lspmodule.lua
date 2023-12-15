@@ -79,21 +79,57 @@ local function init_lsp_config() --= memoize(function()
   end
 
   vim.diagnostic.config({
-    signs = { priority = 11 },
-    virtual_text = false,
-    update_in_insert = false,
+    virtual_lines = false,
+    virtual_text = {
+      source = "always",
+      prefix = "■",
+    },
+    -- virtual_text = false,
     float = {
-      focusable = false,
+      source = "always",
       border = "rounded",
       format = function(diagnostic)
-        local str = string.format("[%s] %s", diagnostic.source, diagnostic.message)
-        if diagnostic.code then
-          str = str .. " (" .. diagnostic.code .. ")"
+        if diagnostic.source == "" then
+          return diagnostic.message
         end
-        return str
+        if diagnostic.source == "eslint" then
+          return string.format(
+            "%s [%s]",
+            diagnostic.message,
+            -- shows the name of the rule
+            diagnostic.user_data.lsp.code
+          )
+        end
+        return string.format("%s [%s]", diagnostic.message, diagnostic.source)
       end,
+      suffix = function()
+        return ""
+      end,
+      severity_sort = true,
+      close_events = { "CursorMoved", "InsertEnter" },
     },
+    signs = true,
+    underline = false,
+    update_in_insert = false,
+    severity_sort = true,
   })
+
+  -- vim.diagnostic.config({
+  --   signs = { priority = 11 },
+  --   virtual_text = false,
+  --   update_in_insert = false,
+  --   float = {
+  --     focusable = false,
+  --     border = "rounded",
+  --     format = function(diagnostic)
+  --       local str = string.format("[%s] %s", diagnostic.source, diagnostic.message)
+  --       if diagnostic.code then
+  --         str = str .. " (" .. diagnostic.code .. ")"
+  --       end
+  --       return str
+  --     end,
+  --   },
+  -- })
   -- local lspSigns = {
   --   { name = "DiagnosticSignError", text = "" },
   --   { name = "DiagnosticSignWarn", text = "" },

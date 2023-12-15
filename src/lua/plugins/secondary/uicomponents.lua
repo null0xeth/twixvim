@@ -12,6 +12,7 @@ local spec = {
         bt_ignore = {
           "terminal",
           "nofile",
+          "prompt",
         },
         ft_ignore = {
           "neo-tree",
@@ -20,26 +21,37 @@ local spec = {
           "aerial",
           "markdown",
           "dashboard",
+          "vim",
+          "noice",
+          "lazy",
         },
-        setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
+        --setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
         relculright = true, -- whether to right-align the cursor line number with 'relativenumber' set
         segments = {
           {
             text = { builtin.foldfunc, " " },
-            condition = { builtin.notempty },
             click = "v:lua.ScFa",
+            auto = false,
           },
-          { sign = { name = { "Dap.*" }, maxwidth = 1, colwidth = 2, auto = true } },
           {
             sign = {
-              name = { "DiagnosticSignInfo", "DiagnosticSignHint", "DiagnosticSignWarn", "DiagnosticSignError" },
-              --text = { ".*" },
+              name = { ".*" },
               maxwidth = 1,
               colwidth = 2,
-              auto = true,
             },
+            auto = true,
             click = "v:lua.ScSa",
           },
+          -- {
+          --   sign = {
+          --     name = { "DiagnosticSignInfo", "DiagnosticSignHint", "DiagnosticSignWarn", "DiagnosticSignError" },
+          --     --text = { ".*" },
+          --     maxwidth = 1,
+          --     colwidth = 2,
+          --     auto = true,
+          --   },
+          --   click = "v:lua.ScSa",
+          -- },
           -- {
           --   sign = {
           --     name = { "Diagnostic" },
@@ -56,6 +68,22 @@ local spec = {
           {
             text = { builtin.lnumfunc, " " },
             click = "v:lua.ScLa",
+            condition = { true, builtin.not_empty },
+          },
+          {
+            sign = {
+              namespace = { "gitsign.*" },
+              maxwidth = 1,
+              colwidth = 1,
+              auto = false,
+            },
+            click = "v:lua.ScSa",
+          },
+          -- Segment: Add padding
+          {
+            text = { " " },
+            hl = "Normal",
+            condition = { true, builtin.not_empty },
           },
         },
         --})
@@ -67,7 +95,7 @@ local spec = {
     dependencies = {
       "luukvbaal/statuscol.nvim",
     },
-    enabled = false,
+    enabled = true,
     event = { "BufReadPre", "BufNewFile" },
     opts = function()
       local signs = require("template.icons_tpl").git.signs
