@@ -89,6 +89,7 @@ local function init_lsp_config() --= memoize(function()
   local signLen = #lspSigns
   for i = 1, signLen do
     local sign = lspSigns[i]
+    print(vim.inspect(sign))
     sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
   end
 

@@ -139,18 +139,44 @@ end
 function LspController:setup_lsp_servers(_, opts, customAttach)
   local register_capability = vim.lsp.handlers["client/registerCapability"]
 
-  vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
-    local ret = register_capability(err, res, ctx)
-    local client_id = ctx.client_id
-    ---@type lsp.Client
-    local client = vim.lsp.get_client_by_id(client_id)
-    local buffer = vim.api.nvim_get_current_buf()
-    --on_attach(client, buffer)
-    return ret
+  -- vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
+  --   local ret = register_capability(err, res, ctx)
+  --   local client_id = ctx.client_id
+  --   ---@type lsp.Client
+  --   local client = vim.lsp.get_client_by_id(client_id)
+  --   local buffer = vim.api.nvim_get_current_buf()
+  --   --on_attach(client, buffer)
+  --   return ret
+  -- end
+  local lspSigns = {
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
+  }
+
+  local signLen = #lspSigns
+  for i = 1, signLen do
+    local sign = lspSigns[i]
+    print(vim.inspect(sign))
+    sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
   end
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    signs = true,
+    --signs = true,
+    -- Enable underline, use default values
+    underline = true,
+    -- Enable virtual text, override spacing to 4
+    virtual_text = {
+      spacing = 4,
+    },
+    -- Use a function to dynamically turn signs off
+    -- and on, using buffer local variables
+    signs = function(namespace, bufnr)
+      return vim.b[bufnr].show_signs == true
+    end,
+    -- Disable a feature
+    update_in_insert = false,
   })
 
   self:custom_on_attach(customAttach)
