@@ -111,7 +111,7 @@ local function init_lsp_config() --= memoize(function()
     vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
   end
 
-  vim.diagnostic.config(vim.deepcopy(lspConfig.diagnostic))
+  vim.diagnostic.config(lspConfig.diagnostic)
 end
 
 ---@package
