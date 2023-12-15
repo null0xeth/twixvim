@@ -21,7 +21,7 @@ local spec = {
           "markdown",
           "dashboard",
         },
-        --setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
+        setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
         relculright = true, -- whether to right-align the cursor line number with 'relativenumber' set
         segments = {
           {
@@ -33,6 +33,7 @@ local spec = {
           {
             sign = {
               name = { "Diagnostic" },
+              text = { ".*" },
               maxwidth = 1,
               colwidth = 2,
               auto = true,
