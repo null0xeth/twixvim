@@ -4,6 +4,7 @@ local spec = {
     event = "VeryLazy",
     config = function()
       -- config = function()
+      vim.lsp.handlers["textDocument/diagnostic"] = vim.lsp.diagnostic.on_diagnostic
       local builtin = require("statuscol.builtin")
       local wantedsigns = { "DiagnosticSignWarn", "DiagnosticSignInfo", "DiagnosticSignError", "DiagnosticSignHint" }
       require("statuscol").setup({
@@ -33,7 +34,7 @@ local spec = {
           {
             sign = {
               name = { "Diagnostic" },
-              text = { ".*" },
+              --text = { ".*" },
               maxwidth = 1,
               colwidth = 2,
               auto = true,

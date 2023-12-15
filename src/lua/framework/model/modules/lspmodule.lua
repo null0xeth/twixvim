@@ -60,28 +60,72 @@ local function init_lsp_config() --= memoize(function()
   local cachecontroller = get_obj("framework.controller.cachecontroller", "cachecontroller")
   local iconCache = cachecontroller:query("icons")
 
-  ---General diagnostics settings
+  local nvim_lsp = require("lspconfig")
+  local lsp_status = require("lsp-status")
+
+  local severity_levels = {
+    vim.diagnostic.severity.ERROR,
+    vim.diagnostic.severity.WARN,
+    vim.diagnostic.severity.INFO,
+    vim.diagnostic.severity.HINT,
+  }
+
+  local function get_highest_error_severity()
+    for _, level in ipairs(severity_levels) do
+      local diags = vim.diagnostic.get(0, { severity = { min = level } })
+      if #diags > 0 then
+        return level, diags
+      end
+    end
+  end
+
   vim.diagnostic.config({
-    severity_sort = true,
-    underline = true,
+    signs = { priority = 11 },
+    virtual_text = false,
     update_in_insert = false,
-    signs = true,
     float = {
-      scope = "line",
-      border = "single",
-      source = "always",
-      focusable = false,
-      close_events = {
-        "BufLeave",
-        "CursorMoved",
-        "InsertEnter",
-        "FocusLost",
-      },
-    },
-    virtual_text = {
-      source = "always",
+      focusable = vim.g.popup_opts.focusable,
+      border = vim.g.popup_opts.border,
+      format = function(diagnostic)
+        local str = string.format("[%s] %s", diagnostic.source, diagnostic.message)
+        if diagnostic.code then
+          str = str .. " (" .. diagnostic.code .. ")"
+        end
+        return str
+      end,
     },
   })
+  -- local lspSigns = {
+  --   { name = "DiagnosticSignError", text = "" },
+  --   { name = "DiagnosticSignWarn", text = "" },
+  --   { name = "DiagnosticSignHint", text = "" },
+  --   { name = "DiagnosticSignInfo", text = "" },
+  -- }
+
+  -- ---General diagnostics settings
+  -- vim.diagnostic.config({
+  --   severity_sort = true,
+  --   underline = true,
+  --   update_in_insert = false,
+  --   signs = {
+  --     active = lspSigns,
+  --   },
+  --   float = {
+  --     scope = "line",
+  --     border = "single",
+  --     source = "always",
+  --     focusable = false,
+  --     close_events = {
+  --       "BufLeave",
+  --       "CursorMoved",
+  --       "InsertEnter",
+  --       "FocusLost",
+  --     },
+  --   },
+  --   virtual_text = {
+  --     source = "always",
+  --   },
+  -- })
 
   --local lsp = {
   -- float = {

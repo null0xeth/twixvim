@@ -93,6 +93,8 @@ function LspController:custom_on_attach(customOnAttach)
       navic.attach(client, bufnr)
     end
 
+    client.server_capabilities.semanticTokensProvider = nil
+
     local keymapcontroller = get_obj("framework.controller.keymapcontroller", "keymapcontroller")
     keymapcontroller:lsp_on_attach(client, bufnr)
     self:lint_on_save()
