@@ -148,19 +148,31 @@ function LspController:setup_lsp_servers(_, opts, customAttach)
   --   --on_attach(client, buffer)
   --   return ret
   -- end
+  -- local lspSigns = {
+  --   { name = "DiagnosticSignError", text = "" },
+  --   { name = "DiagnosticSignWarn", text = "" },
+  --   { name = "DiagnosticSignHint", text = "" },
+  --   { name = "DiagnosticSignInfo", text = "" },
+  -- }
+
   local lspSigns = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    Error = "",
+    Warn = "",
+    Hint = "",
+    Info = "",
   }
 
-  local signLen = #lspSigns
-  for i = 1, signLen do
-    local sign = lspSigns[i]
-    print(vim.inspect(sign))
-    vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
+  for name, icon in pairs(lspSigns) do
+    name = "DiagnosticSign" .. name
+    vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
   end
+
+  -- local signLen = #lspSigns
+  -- for i = 1, signLen do
+  --   local sign = lspSigns[i]
+  --   print("controller", vim.inspect(sign))
+  --   vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
+  -- end
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     --signs = true,

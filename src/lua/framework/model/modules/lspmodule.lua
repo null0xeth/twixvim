@@ -59,19 +59,18 @@ local diagnostic, sign_define = vim.diagnostic, vim.fn.sign_define
 local function init_lsp_config() --= memoize(function()
   local cachecontroller = get_obj("framework.controller.cachecontroller", "cachecontroller")
   local iconCache = cachecontroller:query("icons")
-  local lspSigns = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
-  }
+  -- local lspSigns = {
+  --   { name = "DiagnosticSignError", text = "" },
+  --   { name = "DiagnosticSignWarn", text = "" },
+  --   { name = "DiagnosticSignHint", text = "" },
+  --   { name = "DiagnosticSignInfo", text = "" },
+  -- }
 
   local lspConfig = {
     --float = { focusable = true, style = "minimal", border = "rounded" },
     diagnostic = {
-      --virtual_text = { severity = { min = diagnostic.severity.ERROR } },
-      virtual_text = false,
-      signs = { active = lspSigns },
+      virtual_text = { severity = { min = diagnostic.severity.ERROR } },
+      --virtual_text = false,
       underline = false,
       update_in_insert = false,
       severity_sort = true,
@@ -86,12 +85,12 @@ local function init_lsp_config() --= memoize(function()
     },
   }
 
-  local signLen = #lspSigns
-  for i = 1, signLen do
-    local sign = lspSigns[i]
-    print(vim.inspect(sign))
-    sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
-  end
+  -- local signLen = #lspSigns
+  -- for i = 1, signLen do
+  --   local sign = lspSigns[i]
+  --   print("module", vim.inspect(sign))
+  --   sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
+  -- end
 
   vim.diagnostic.config(vim.deepcopy(lspConfig.diagnostic))
 end
