@@ -193,6 +193,7 @@ function LspController:setup_lsp_servers(_, opts, customAttach)
 
   self:custom_on_attach(customAttach)
   self:init_lsp_servers(opts)
+  print(vim.inspect(vim.api.nvim_get_namespaces()))
 end
 
 function LspController:setup_glance()
