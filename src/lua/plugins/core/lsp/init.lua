@@ -18,7 +18,6 @@ local spec = {
   {
     "folke/neodev.nvim",
     --event = "KindaLazy",
-    enabled = true,
     config = function()
       require("neodev").setup({
         library = {
@@ -55,7 +54,7 @@ local spec = {
     "neovim/nvim-lspconfig",
     event = "KindaLazy",
     dependencies = {
-      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
+      --{ "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
       { "folke/neodev.nvim" },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
