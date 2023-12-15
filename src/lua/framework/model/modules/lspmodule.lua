@@ -61,7 +61,6 @@ local function init_lsp_config() --= memoize(function()
   local iconCache = cachecontroller:query("icons")
 
   local nvim_lsp = require("lspconfig")
-  local lsp_status = require("lsp-status")
 
   local severity_levels = {
     vim.diagnostic.severity.ERROR,
