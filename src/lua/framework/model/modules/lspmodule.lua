@@ -61,11 +61,11 @@ local function init_lsp_config() --= memoize(function()
   local iconCache = cachecontroller:query("icons")
 
   local lsp = {
-    float = {
-      focusable = true,
-      style = "minimal",
-      border = "rounded",
-    },
+    -- float = {
+    --   focusable = true,
+    --   style = "minimal",
+    --   border = "rounded",
+    -- },
     diagnostic = {
       -- virtual_text = true,
       virtual_text = { spacing = 4, prefix = "●" },
@@ -76,6 +76,14 @@ local function init_lsp_config() --= memoize(function()
         focusable = true,
         style = "minimal",
         border = "rounded",
+      },
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.INFO] = "",
+          [vim.diagnostic.severity.HINT] = "",
+        },
       },
     },
   }

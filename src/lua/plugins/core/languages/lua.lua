@@ -37,7 +37,6 @@ local spec = {
           --return {
           --cmd = { "/etc/profiles/per-user/null0x/bin/lua-language-server" },
           --single_file_support = true,
-          cmd = { "lua-language-server" },
           settings = {
             Lua = {
               -- runtime = {
@@ -60,15 +59,10 @@ local spec = {
               --     "${3rd}/luv/library",
               --   },
               -- },
-              workspace = {
-                checkThirdParty = false,
-                library = vim.api.nvim_get_runtime_file("", true),
-              },
-              misc = {
-                parameters = {
-                  -- "--log-level=trace",
-                },
-              },
+              -- workspace = {
+              --   checkThirdParty = false,
+              --   library = vim.api.nvim_get_runtime_file("", true),
+              -- },
               completion = {
                 workspaceWord = true,
                 callSnippet = "Replace",
