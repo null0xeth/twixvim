@@ -27,11 +27,11 @@ in {
         };
 	      };
       #xdg.configFile = {
-        home.file.".config/nvim" = {
-          enable = true;
-	  source = ../../src;
-          recursive = true;
-        };
+        #home.file.".config/nvim" = {
+         # enable = true;
+	  #source = ../../src;
+          #recursive = true;
+        #};
 
     };
 }
