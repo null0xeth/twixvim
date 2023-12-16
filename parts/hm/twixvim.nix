@@ -32,6 +32,6 @@ in {
 	  source = ../../src;
           recursive = true;
         };
-      };
+
     };
 }
