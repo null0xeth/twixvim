@@ -23,12 +23,13 @@ in {
         packages = attrValues {
           inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
           inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
-          inherit (pkgs) vscode;
+          inherit (pkgs) vscode lolcat;
         };
 	      };
-      xdg.configFile = {
-        "nvim" = {
-          source = ../../src;
+      --xdg.configFile = {
+        home.file.".config/nvim" = {
+          enable = true;
+	  source = ../../src;
           recursive = true;
         };
       };
