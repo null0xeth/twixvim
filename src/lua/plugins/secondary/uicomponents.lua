@@ -25,7 +25,7 @@ local spec = {
           "noice",
           "lazy",
         },
-        --setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
+        setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
         relculright = true, -- whether to right-align the cursor line number with 'relativenumber' set
         segments = {
           {
@@ -35,7 +35,7 @@ local spec = {
           },
           {
             sign = {
-              name = { ".*" },
+              name = { "Diagnostic" },
               maxwidth = 1,
               colwidth = 2,
             },
@@ -66,6 +66,14 @@ local spec = {
           --   click = "v:lua.ScSa",
           -- },
           {
+            sign = {
+              name = { "Dap.*" },
+              maxwidth = 1,
+              colwidth = 2,
+            },
+            auto = true,
+          },
+          {
             text = { builtin.lnumfunc, " " },
             click = "v:lua.ScLa",
             condition = { true, builtin.not_empty },
@@ -80,11 +88,11 @@ local spec = {
             click = "v:lua.ScSa",
           },
           -- Segment: Add padding
-          {
-            text = { " " },
-            hl = "Normal",
-            condition = { true, builtin.not_empty },
-          },
+          -- {
+          --   text = { " " },
+          --   hl = "Normal",
+          --   condition = { true, builtin.not_empty },
+          -- },
         },
         --})
       })
