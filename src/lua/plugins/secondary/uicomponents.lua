@@ -8,21 +8,21 @@ local spec = {
       require("statuscol").setup({
         --   require("statuscol").setup({
         -- configuration goes here, for example:
-        -- bt_ignore = {
-        --   "terminal",
-        --   "nofile",
-        -- },
-        -- ft_ignore = {
-        --   "neo-tree",
-        --   "toggleterm",
-        --   "help",
-        --   "aerial",
-        --   "markdown",
-        --   "dashboard",
-        --   "vim",
-        --   "noice",
-        --   "lazy",
-        -- },
+        bt_ignore = {
+          "terminal",
+          "nofile",
+        },
+        ft_ignore = {
+          "neo-tree",
+          "toggleterm",
+          "help",
+          "aerial",
+          "markdown",
+          "dashboard",
+          "vim",
+          "noice",
+          "lazy",
+        },
         setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
         relculright = true, -- whether to right-align the cursor line number with 'relativenumber' set
         segments = {
@@ -33,10 +33,10 @@ local spec = {
           },
           {
             sign = {
-              name = { "Diagnostic.*" },
+              name = { ".*" },
               maxwidth = 1,
               colwidth = 2,
-              --auto = true,
+              auto = true,
             },
             click = "v:lua.ScSa",
           },
