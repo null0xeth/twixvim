@@ -26,7 +26,7 @@ in {
           inherit (pkgs) vscode lolcat;
         };
 	      };
-      --xdg.configFile = {
+      #xdg.configFile = {
         home.file.".config/nvim" = {
           enable = true;
 	  source = ../../src;
