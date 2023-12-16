@@ -220,7 +220,7 @@ local function init_lsp_config() --= memoize(function()
   for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     --vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    vim.fn.sign_define(hl, { text = icon, texthl = "", numhl = "" })
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
     print("Diagnostic: ", type, icon, hl)
   end
   -- Diagnostic configuration
