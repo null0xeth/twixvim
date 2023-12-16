@@ -26,6 +26,7 @@ local vim_opt_options = {
     conceallevel = 2, -- hide markup shit
     emoji = false,
     list = false, -- show chars like tabs...
+    signcolumn = "auto",
     --signcolumn = "auto:2", -- signcolumn = "auto:2"
     --signcolumn = "auto:2",
     number = true,
