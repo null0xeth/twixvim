@@ -96,6 +96,7 @@ local function install_lazy()
     })
   end
   configuration.lazy_installed = true
+  return
 end
 
 local function wrap_async_function(func)
