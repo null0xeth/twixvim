@@ -56,7 +56,7 @@ end
 --> Helper function that waits for `Lazy` to be done, before opening the Dashboard
 local function defer_dashboard_rendering()
   local autocmdcontroller = get_obj("framework.controller.autocmdcontroller", "autocmdcontroller")
-  local is_lazy = vim.o.filetype == "lazy"
+  local is_lazy = vim.opt.filetype == "lazy"
 
   if is_lazy then
     local lazy = get_module("lazy", "lazy")

@@ -5,13 +5,11 @@ local spec = {
     config = function()
       -- config = function()
       local builtin = require("statuscol.builtin")
-      local wantedsigns = { "DiagnosticSignWarn", "DiagnosticSignInfo", "DiagnosticSignError", "DiagnosticSignHint" }
       require("statuscol").setup({
         --   require("statuscol").setup({
         -- configuration goes here, for example:
         bt_ignore = {
           "terminal",
-          "nofile",
           "prompt",
         },
         ft_ignore = {
@@ -35,7 +33,7 @@ local spec = {
           },
           {
             sign = {
-              name = { "Diagnostic" },
+              name = { "Diagnostic.*" },
               maxwidth = 1,
               colwidth = 2,
             },
