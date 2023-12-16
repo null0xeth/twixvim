@@ -78,6 +78,20 @@ local function init_lsp_config() --= memoize(function()
     end
   end
 
+  local signs = {
+    Error = "",
+    Warn = "",
+    Hint = "",
+    Info = "",
+  }
+
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    --vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    print("Diagnostic: ", type, icon, hl)
+  end
+
   vim.diagnostic.config({
     virtual_lines = false,
     virtual_text = {
@@ -108,14 +122,15 @@ local function init_lsp_config() --= memoize(function()
       severity_sort = true,
       close_events = { "CursorMoved", "InsertEnter" },
     },
-    signs = true,
-    -- signs = {
-    --   text = {
-    --     [vim.diagnostic.severity.ERROR] = "",
-    --     [vim.diagnostic.severity.WARN] = "",
-    --     [vim.diagnostic.severity.INFO] = "",
-    --     [vim.diagnostic.severity.HINT] = "",
-    --   },
+    --signs = true,
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = "",
+        [vim.diagnostic.severity.WARN] = "",
+        [vim.diagnostic.severity.INFO] = "",
+        [vim.diagnostic.severity.HINT] = "",
+      },
+    },
     --   numhl = {
     --     [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
     --     [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
@@ -210,19 +225,6 @@ local function init_lsp_config() --= memoize(function()
   --}
   --vim.diagnostic.config(lsp.diagnostic)
 
-  local signs = {
-    Error = "",
-    Warn = "",
-    Hint = "",
-    Info = "",
-  }
-
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    --vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    print("Diagnostic: ", type, icon, hl)
-  end
   -- Diagnostic configuration
 
   -- Hover configuration
