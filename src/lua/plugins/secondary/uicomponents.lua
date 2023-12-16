@@ -36,8 +36,8 @@ local spec = {
               name = { ".*" },
               maxwidth = 1,
               colwidth = 2,
+              auto = true,
             },
-            auto = true,
             click = "v:lua.ScSa",
           },
           -- {
@@ -76,6 +76,7 @@ local spec = {
             click = "v:lua.ScLa",
             condition = { true, builtin.not_empty },
           },
+          { text = { "%s" }, click = "v:lua.ScSa" },
           {
             sign = {
               namespace = { "gitsign.*" },

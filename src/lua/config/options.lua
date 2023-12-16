@@ -27,7 +27,7 @@ local vim_opt_options = {
     emoji = false,
     list = false, -- show chars like tabs...
     --signcolumn = "auto:2", -- signcolumn = "auto:2"
-    signcolumn = "auto:2",
+    --signcolumn = "auto:2",
     number = true,
     relativenumber = false, -- releativenumber = false
     linebreak = true,
