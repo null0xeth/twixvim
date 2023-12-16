@@ -52,7 +52,6 @@ end
 local lspmodule = {}
 
 local deepExtend = vim.tbl_deep_extend
-local diagnostic, sign_define = vim.diagnostic, vim.fn.sign_define
 
 ---@package
 ---Initializes the LSP config and assigns icons to the various LSP symbols.
@@ -68,15 +67,6 @@ local function init_lsp_config() --= memoize(function()
     vim.diagnostic.severity.INFO,
     vim.diagnostic.severity.HINT,
   }
-
-  local function get_highest_error_severity()
-    for _, level in ipairs(severity_levels) do
-      local diags = vim.diagnostic.get(0, { severity = { min = level } })
-      if #diags > 0 then
-        return level, diags
-      end
-    end
-  end
 
   local signs = {
     Error = "",
@@ -95,35 +85,35 @@ local function init_lsp_config() --= memoize(function()
     float = {
       source = "always",
       border = "rounded",
-      -- format = function(diagnostic)
-      --   if diagnostic.source == "" then
-      --     return diagnostic.message
-      --   end
-      --   if diagnostic.source == "eslint" then
-      --     return string.format(
-      --       "%s [%s]",
-      --       diagnostic.message,
-      --       -- shows the name of the rule
-      --       diagnostic.user_data.lsp.code
-      --     )
-      --   end
-      --   return string.format("%s [%s]", diagnostic.message, diagnostic.source)
-      -- end,
-      -- suffix = function()
-      --   return ""
-      -- end,
+      format = function(diagnostic)
+        if diagnostic.source == "" then
+          return diagnostic.message
+        end
+        if diagnostic.source == "eslint" then
+          return string.format(
+            "%s [%s]",
+            diagnostic.message,
+            -- shows the name of the rule
+            diagnostic.user_data.lsp.code
+          )
+        end
+        return string.format("%s [%s]", diagnostic.message, diagnostic.source)
+      end,
+      suffix = function()
+        return ""
+      end,
       severity_sort = true,
-      close_events = { "CursorMoved", "InsertEnter" },
+      --close_events = { "CursorMoved", "InsertEnter" },
     },
-    --signs = true,
-    signs = {
-      text = {
-        [vim.diagnostic.severity.ERROR] = "",
-        [vim.diagnostic.severity.WARN] = "",
-        [vim.diagnostic.severity.INFO] = "",
-        [vim.diagnostic.severity.HINT] = "",
-      },
-    },
+    signs = true,
+    -- signs = {
+    --   text = {
+    --     [vim.diagnostic.severity.ERROR] = "",
+    --     [vim.diagnostic.severity.WARN] = "",
+    --     [vim.diagnostic.severity.INFO] = "",
+    --     [vim.diagnostic.severity.HINT] = "",
+    --   },
+    -- },
     --   numhl = {
     --     [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
     --     [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",

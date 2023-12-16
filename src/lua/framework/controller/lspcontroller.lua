@@ -88,13 +88,13 @@ function LspController:custom_on_attach(customOnAttach)
       customOnAttach(client, bufnr)
     end
 
-    if client.server_capabilities.documentSymbolProvider then
-      local navic = get_module("nvim-navic", "nvim-navic")
-      navic.attach(client, bufnr)
-    end
+    -- if client.server_capabilities.documentSymbolProvider then
+    --   local navic = get_module("nvim-navic", "nvim-navic")
+    --   navic.attach(client, bufnr)
+    -- end
 
-    client.server_capabilities.semanticTokensProvider = nil
-
+    --client.server_capabilities.semanticTokensProvider = nil
+    print("Diag", vim.inspect(vim.diagnostic.get(0)))
     local keymapcontroller = get_obj("framework.controller.keymapcontroller", "keymapcontroller")
     keymapcontroller:lsp_on_attach(client, bufnr)
     self:lint_on_save()
