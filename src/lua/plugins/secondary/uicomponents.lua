@@ -33,7 +33,7 @@ local spec = {
           },
           {
             sign = {
-              name = { "Diagnostic" },
+              name = { ".*" },
               maxwidth = 1,
               colwidth = 2,
             },
@@ -63,14 +63,14 @@ local spec = {
           --   sign = { name = { ".*" }, maxwidth = 1, colwidth = 2, auto = true },
           --   click = "v:lua.ScSa",
           -- },
-          {
-            sign = {
-              name = { "Dap.*" },
-              maxwidth = 1,
-              colwidth = 2,
-            },
-            auto = true,
-          },
+          -- {
+          --   sign = {
+          --     name = { "Dap.*" },
+          --     maxwidth = 1,
+          --     colwidth = 2,
+          --   },
+          --   auto = true,
+          -- },
           {
             text = { builtin.lnumfunc, " " },
             click = "v:lua.ScLa",
