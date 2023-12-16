@@ -85,13 +85,6 @@ local function init_lsp_config() --= memoize(function()
     Info = "",
   }
 
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    --vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    print("Diagnostic: ", type, icon, hl)
-  end
-
   vim.diagnostic.config({
     virtual_lines = false,
     virtual_text = {
@@ -148,6 +141,12 @@ local function init_lsp_config() --= memoize(function()
     update_in_insert = false,
     severity_sort = true,
   })
+
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    --vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
 
   -- vim.diagnostic.config({
   --   signs = { priority = 11 },

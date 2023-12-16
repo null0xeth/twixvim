@@ -76,7 +76,7 @@ local spec = {
               types = true,
             },
             lspconfig = true,
-            pathStrict = true,
+            pathStrict = false,
           })
         end,
       },
