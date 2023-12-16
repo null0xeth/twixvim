@@ -327,7 +327,6 @@ local spec = {
   {
     --- [TODO:fix]
     "folke/edgy.nvim",
-    enabled = false,
     event = "VeryLazy",
     keys = {
       {
