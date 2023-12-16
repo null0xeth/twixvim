@@ -1,7 +1,7 @@
 local spec = {
   {
     "luukvbaal/statuscol.nvim",
-    event = "LspAttach",
+    event = "KindaLazy",
     config = function()
       -- config = function()
       local builtin = require("statuscol.builtin")
@@ -33,7 +33,7 @@ local spec = {
           },
           {
             sign = {
-              name = { "Diagnostic.*" },
+              name = { "Diagnostic" },
               maxwidth = 1,
               colwidth = 2,
             },
