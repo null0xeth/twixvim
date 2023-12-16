@@ -23,7 +23,7 @@ local spec = {
           "noice",
           "lazy",
         },
-        setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
+        --setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
         relculright = true, -- whether to right-align the cursor line number with 'relativenumber' set
         segments = {
           {
@@ -86,11 +86,11 @@ local spec = {
             click = "v:lua.ScSa",
           },
           -- Segment: Add padding
-          -- {
-          --   text = { " " },
-          --   hl = "Normal",
-          --   condition = { true, builtin.not_empty },
-          -- },
+          {
+            text = { " " },
+            hl = "Normal",
+            condition = { true, builtin.not_empty },
+          },
         },
         --})
       })
