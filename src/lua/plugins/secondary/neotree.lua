@@ -33,6 +33,7 @@ local spec = {
       { "<c-n>", "<leader>nt", desc = "Explorer NeoTree (root dir)", remap = true },
     },
     cmd = "Neotree",
+
     config = function()
       require("neo-tree").setup({
         sources = { "filesystem", "buffers", "git_status" },

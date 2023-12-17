@@ -21,7 +21,7 @@ return {
   },
   {
     "folke/trouble.nvim",
-    enabled = false,
+    enabled = true,
     cmd = { "TroubleToggle", "Trouble" },
     opts = { use_diagnostic_signs = true },
     keys = {

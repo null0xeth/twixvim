@@ -57,16 +57,6 @@ local deepExtend = vim.tbl_deep_extend
 ---Initializes the LSP config and assigns icons to the various LSP symbols.
 local function init_lsp_config() --= memoize(function()
   local cachecontroller = get_obj("framework.controller.cachecontroller", "cachecontroller")
-  local iconCache = cachecontroller:query("icons")
-
-  local nvim_lsp = require("lspconfig")
-
-  local severity_levels = {
-    vim.diagnostic.severity.ERROR,
-    vim.diagnostic.severity.WARN,
-    vim.diagnostic.severity.INFO,
-    vim.diagnostic.severity.HINT,
-  }
 
   local signs = {
     Error = "",
@@ -75,13 +65,18 @@ local function init_lsp_config() --= memoize(function()
     Info = "",
   }
 
+  for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
+
   vim.diagnostic.config({
-    virtual_lines = false,
-    virtual_text = {
-      source = "always",
-      prefix = "■",
-    },
-    -- virtual_text = false,
+    virtual_lines = true,
+    -- virtual_text = {
+    --   source = "always",
+    --   prefix = "■",
+    -- },
+    virtual_text = false,
     float = {
       source = "always",
       border = "rounded",
@@ -97,219 +92,40 @@ local function init_lsp_config() --= memoize(function()
             diagnostic.user_data.lsp.code
           )
         end
-        return string.format("%s [%s]", diagnostic.message, diagnostic.source)
+        --return string.format("%s [%s]", diagnostic.message, diagnostic.source)
+        return string.format("%s", diagnostic.message)
       end,
       suffix = function()
         return ""
       end,
       severity_sort = true,
-      --close_events = { "CursorMoved", "InsertEnter" },
+      close_events = { "CursorMoved", "InsertEnter" },
     },
-    signs = true,
-    -- signs = {
-    --   text = {
-    --     [vim.diagnostic.severity.ERROR] = "",
-    --     [vim.diagnostic.severity.WARN] = "",
-    --     [vim.diagnostic.severity.INFO] = "",
-    --     [vim.diagnostic.severity.HINT] = "",
-    --   },
-    -- },
-    --   numhl = {
-    --     [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-    --     [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-    --     [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
-    --     [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-    --   },
-    --   texthl = {
-    --     [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
-    --     [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
-    --     [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
-    --     [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
-    --   },
-    -- },
+    signs = {
+      severity = vim.diagnostic.severity.WARN,
+      text = {
+        [vim.diagnostic.severity.ERROR] = "",
+        [vim.diagnostic.severity.WARN] = "",
+        [vim.diagnostic.severity.INFO] = "",
+        [vim.diagnostic.severity.HINT] = "",
+      },
+      numhl = {
+        [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+        [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+        [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+        [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+      },
+      texthl = {
+        [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+        [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+        [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+        [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+      },
+    },
     underline = false,
     update_in_insert = false,
     severity_sort = true,
   })
-
-  for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    --vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  end
-
-  -- vim.diagnostic.config({
-  --   signs = { priority = 11 },
-  --   virtual_text = false,
-  --   update_in_insert = false,
-  --   float = {
-  --     focusable = false,
-  --     border = "rounded",
-  --     format = function(diagnostic)
-  --       local str = string.format("[%s] %s", diagnostic.source, diagnostic.message)
-  --       if diagnostic.code then
-  --         str = str .. " (" .. diagnostic.code .. ")"
-  --       end
-  --       return str
-  --     end,
-  --   },
-  -- })
-  -- local lspSigns = {
-  --   { name = "DiagnosticSignError", text = "" },
-  --   { name = "DiagnosticSignWarn", text = "" },
-  --   { name = "DiagnosticSignHint", text = "" },
-  --   { name = "DiagnosticSignInfo", text = "" },
-  -- }
-
-  -- ---General diagnostics settings
-  -- vim.diagnostic.config({
-  --   severity_sort = true,
-  --   underline = true,
-  --   update_in_insert = false,
-  --   signs = {
-  --     active = lspSigns,
-  --   },
-  --   float = {
-  --     scope = "line",
-  --     border = "single",
-  --     source = "always",
-  --     focusable = false,
-  --     close_events = {
-  --       "BufLeave",
-  --       "CursorMoved",
-  --       "InsertEnter",
-  --       "FocusLost",
-  --     },
-  --   },
-  --   virtual_text = {
-  --     source = "always",
-  --   },
-  -- })
-
-  --local lsp = {
-  -- float = {
-  --   focusable = true,
-  --   style = "minimal",
-  --   border = "rounded",
-  -- },
-  -- diagnostic = {
-  --   virtual_text = { spacing = 4, prefix = "●" },
-  --   underline = true,
-  --   update_in_insert = false,
-  --   severity_sort = true,
-  --   float = {
-  --     focusable = true,
-  --     style = "minimal",
-  --     border = "rounded",
-  --   },
-  --   signs = {
-  --     text = {
-  --       [vim.diagnostic.severity.ERROR] = "",
-  --       [vim.diagnostic.severity.WARN] = "",
-  --       [vim.diagnostic.severity.INFO] = "",
-  --       [vim.diagnostic.severity.HINT] = "",
-  --     },
-  --   },
-  -- },
-  --}
-  --vim.diagnostic.config(lsp.diagnostic)
-
-  -- Diagnostic configuration
-
-  -- Hover configuration
-  --vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, lsp.float)
-
-  -- Signature help configuration
-  --vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, lsp.float)
-  -- for _, sign in ipairs(signs) do
-  --   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  -- end
-
-  -- for _, sign in ipairs(signs) do
-  --   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  -- end
-
-  -- local config = {
-  --   virtual_text = false,
-  --   -- enables lsp_lines but we want to start disabled
-  --   virtual_lines = false,
-  --   -- show signs
-  --   signs = {
-  --     text = {
-  --       [vim.diagnostic.severity.ERROR] = "",
-  --       [vim.diagnostic.severity.WARN] = "",
-  --       [vim.diagnostic.severity.INFO] = "",
-  --       [vim.diagnostic.severity.HINT] = "",
-  --     },
-  --   },
-
-  --   update_in_insert = false,
-  --   underline = true,
-  --   severity_sort = true,
-  --   float = {
-  --     focusable = true,
-  --     style = "minimal",
-  --     border = "rounded",
-  --     source = "always",
-  --     header = "",
-  --     prefix = "",
-  --   },
-  -- }
-
-  -- vim.diagnostic.config(config)
-
-  -- local lspSigns = {
-  --   { name = "DiagnosticSignError", text = "" },
-  --   { name = "DiagnosticSignWarn", text = "" },
-  --   { name = "DiagnosticSignHint", text = "" },
-  --   { name = "DiagnosticSignInfo", text = "" },
-  -- }
-  -- local lspSigns = {
-  --   Error = "",
-  --   Warn = "",
-  --   Hint = "",
-  --   Info = "",
-  -- }
-
-  -- local lspConfig = {
-  --   --float = { focusable = true, style = "minimal", border = "rounded" },
-  --   diagnostic = {
-  --     -- signs = {
-  --     --   text = {
-  --     --     [vim.diagnostic.severity.ERROR] = "",
-  --     --     [vim.diagnostic.severity.WARN] = "",
-  --     --     [vim.diagnostic.severity.INFO] = "",
-  --     --     [vim.diagnostic.severity.HINT] = "",
-  --     --   },
-  --     -- },
-  --     virtual_text = { severity = { min = diagnostic.severity.ERROR } },
-  --     --virtual_text = false,
-  --     underline = false,
-  --     update_in_insert = false,
-  --     severity_sort = true,
-  --     float = {
-  --       focusable = true,
-  --       style = "minimal",
-  --       border = "rounded",
-  --       source = "always",
-  --       header = "",
-  --       prefix = "",
-  --     },
-  --   },
-  -- }
-
-  -- local signLen = #lspSigns
-  -- for i = 1, signLen do
-  --   local sign = lspSigns[i]
-  --   print("module", vim.inspect(sign))
-  --   sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
-  -- end
-  -- for name, icon in pairs(lspSigns) do
-  --   name = "DiagnosticSign" .. name
-  --   vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-  -- end
-
-  --vim.diagnostic.config(lspConfig.diagnostic)
 end
 
 ---@package

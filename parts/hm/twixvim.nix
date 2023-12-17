@@ -15,23 +15,31 @@ in {
         default = true;
         description = "Enable Twixvim IDE";
       };
+      settings = {
+        development = {
+          enable = mkOption {
+            type = types.bool;
+            default = false;
+            description = "Enable Twixvim IDE";
           };
+        };
+      };
+    };
   };
 
   config = mkIf cfg.enable {
-      home = {
-        packages = attrValues {
-          inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
-          inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
-          inherit (pkgs) vscode lolcat;
-        };
-	      };
-      #xdg.configFile = {
-        #home.file.".config/nvim" = {
-         # enable = true;
-	  #source = ../../src;
-          #recursive = true;
-        #};
-
+    home = {
+      packages = attrValues {
+        inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
+        inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
+        inherit (pkgs) vscode lolcat;
+      };
     };
+    #xdg.configFile = {
+    #home.file.".config/nvim" = {
+    # enable = true;
+    #source = ../../src;
+    #recursive = true;
+    #};
+  };
 }

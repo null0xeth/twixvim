@@ -33,7 +33,8 @@ local spec = {
           },
           {
             sign = {
-              name = { ".*" },
+              --name = { ".*" },
+              namespace = { "diagnostic" }, --"Diagnostic" "luacheck", "LSP", "lsp" },
               maxwidth = 1,
               colwidth = 2,
               auto = true,
@@ -50,10 +51,11 @@ local spec = {
           --   },
           --   click = "v:lua.ScSa",
           -- },
+          --{ text = { "%s" }, click = "v:lua.ScSa" },
           -- {
           --   sign = {
-          --     name = { "Diagnostic" },
-          --       maxwidth = 1,
+          --     name = { ".*" },
+          --     maxwidth = 1,
           --     colwidth = 2,
           --     auto = true,
           --   },
@@ -63,14 +65,14 @@ local spec = {
           --   sign = { name = { ".*" }, maxwidth = 1, colwidth = 2, auto = true },
           --   click = "v:lua.ScSa",
           -- },
-          -- {
-          --   sign = {
-          --     name = { "Dap.*" },
-          --     maxwidth = 1,
-          --     colwidth = 2,
-          --   },
-          --   auto = true,
-          -- },
+          {
+            sign = {
+              name = { "Dap.*" },
+              maxwidth = 1,
+              colwidth = 2,
+            },
+            auto = true,
+          },
           {
             text = { builtin.lnumfunc, " " },
             click = "v:lua.ScLa",
@@ -102,7 +104,6 @@ local spec = {
     dependencies = {
       "luukvbaal/statuscol.nvim",
     },
-    enabled = true,
     event = { "BufReadPre", "BufNewFile" },
     opts = function()
       local signs = require("template.icons_tpl").git.signs

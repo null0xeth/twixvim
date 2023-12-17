@@ -37,6 +37,7 @@
           lua-language-server
           marksman
           vscode-langservers-extracted
+          actionlint
           yaml-language-server
           alejandra
           nixpkgs-fmt

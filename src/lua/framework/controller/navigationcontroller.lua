@@ -125,7 +125,6 @@ local function create_autocmd()
     end,
   })
 end
-
 function NavigationController:setup()
   local tree = get_module("nvim-tree", "nvimtree")
   create_autocmd()
