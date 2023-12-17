@@ -7,9 +7,8 @@
 }:
 with lib; let
   cfg = config.modules.twixvim;
-  devLoc = "etc/";
-  devFolder = "nvim_dev";
-  devPath = /. + devLoc + devFolder;
+  devLoc = "etc/nvim_dev";
+  devPath = /. + devLoc;
 in {
   options = {
     modules.twixvim = {
@@ -40,7 +39,7 @@ in {
         };
       };
       home.file = mkIf cfg.settings.development.enable {
-        "${devPath}".source = ../../src;
+        "nvim_dev".source = ../../src;
       };
     }
     (mkIf cfg.settings.development.enable {
