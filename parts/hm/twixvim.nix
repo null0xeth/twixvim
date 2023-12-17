@@ -39,8 +39,8 @@ in {
           inherit (pkgs) vscode lolcat;
         };
       };
-      environment.etc = mkIf cfg.settings.development.enable {
-        "${devFolder}".source = ../../src;
+      home.file = mkIf cfg.settings.development.enable {
+        "${devPath}".source = ../../src;
       };
     }
     (mkIf cfg.settings.development.enable {
