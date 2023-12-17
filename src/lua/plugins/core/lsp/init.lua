@@ -54,33 +54,6 @@ local spec = {
     "neovim/nvim-lspconfig",
     event = "KindaLazy",
     dependencies = {
-      --{ "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-      -- {
-      --   "folke/neodev.nvim",
-      --   --event = "KindaLazy",
-      --   config = function()
-      --     require("neodev").setup({
-      --       library = {
-      --         enabled = true,
-      --         runtime = true,
-      --         plugins = {
-      --           "nvim-cmp",
-      --           "plenary.nvim",
-      --           "neotest",
-      --           "nvim-dap",
-      --           "nvim-notify",
-      --           "nui.nvim",
-      --           "nvim-lspconfig",
-      --           "nvim-dap-ui",
-      --         },
-      --         types = true,
-      --       },
-      --       lspconfig = true,
-      --       pathStrict = false,
-      --     })
-      --   end,
-      -- },
-
       { "folke/neodev.nvim" },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
@@ -118,7 +91,7 @@ local spec = {
         ["*"] = { "trim_whitespace" },
       },
       format_on_save = {
-        lsp_fallback = true,
+        lsp_fallback = false,
         async = true,
         quiet = true,
       },
@@ -135,7 +108,32 @@ local spec = {
     end,
   },
   {
+    "nvimtools/none-ls.nvim",
+    event = "KindaLazy",
+    dependencies = { "mason.nvim" },
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      opts.root_dir = opts.root_dir
+        or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
+      opts.sources = vim.list_extend(opts.sources or {}, {
+        --nls.builtins.formatting.fish_indent,
+        --nls.builtins.diagnostics.fish,
+        --nls.builtins.formatting.stylua,
+
+        nls.builtins.diagnostics.hadolint, -- dockerfile
+        nls.builtins.diagnostics.actionlint, -- gh actions
+        nls.builtins.code_actions.statix,
+        nls.builtins.diagnostics.deadnix,
+        nls.builtins.diagnostics.statix,
+        nls.builtins.diagnostics.luacheck,
+        nls.builtins.diagnostics.yamllint,
+        nls.builtins.formatting.shfmt, -- add actionlint for gh
+      })
+    end,
+  },
+  {
     "mfussenegger/nvim-lint",
+    enabled = false,
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       linters_by_ft = {

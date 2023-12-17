@@ -63,6 +63,17 @@ function LspController:new()
   return obj
 end
 
+local function enable_diagnostics_on_save()
+  local autocmdcontroller = get_obj("framework.controller.autocmdcontroller", "autocmdcontroller")
+  local augroup = autocmdcontroller:add_augroup("AutoLint", { clear = true })
+  autocmdcontroller:add_autocmd({
+    event = "BufWritePost",
+    group = augroup,
+    command_or_callback = function()
+      vim.diagnostic.enable(0)
+    end,
+  })
+end
 ---Helper function that creates an autocommand for format- and lint on save
 ---@param self LspController
 function LspController:lint_on_save(_, _)
@@ -70,10 +81,11 @@ function LspController:lint_on_save(_, _)
   local autocmdcontroller = get_obj("framework.controller.autocmdcontroller", "autocmdcontroller")
   local augroup = autocmdcontroller:add_augroup("AutoLint", { clear = true })
   autocmdcontroller:add_autocmd({
-    event = { "BufEnter", "BufWritePost", "InsertLeave" },
+    event = { "BufEnter", "BufWritePost" },
     group = augroup,
     command_or_callback = function()
       lint.try_lint()
+      vim.diagnostic.enable(0)
     end,
   })
 end
@@ -96,7 +108,7 @@ function LspController:custom_on_attach(customOnAttach)
     --client.server_capabilities.semanticTokensProvider = nil
     local keymapcontroller = get_obj("framework.controller.keymapcontroller", "keymapcontroller")
     keymapcontroller:lsp_on_attach(client, bufnr)
-    self:lint_on_save()
+    --self:lint_on_save()
   end)
 end
 

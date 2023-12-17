@@ -170,16 +170,16 @@ local cmds = {
     end,
   },
   --> Show diagnostics in float window.
-  {
-    event = "CursorHold",
-    command_or_callback = function()
-      local statecontroller = get_obj("framework.controller.statecontroller", "statecontroller")
-      local showDiagnostics = statecontroller:is_diagnostics_active()
-      if showDiagnostics then
-        schedule(diagnostic.open_float)
-      end
-    end,
-  },
+  -- {
+  --   event = "CursorHold",
+  --   command_or_callback = function()
+  --     local statecontroller = get_obj("framework.controller.statecontroller", "statecontroller")
+  --     local showDiagnostics = statecontroller:is_diagnostics_active()
+  --     if showDiagnostics then
+  --       schedule(diagnostic.open_float)
+  --     end
+  --   end,
+  -- },
   --> Show bufferline when >= 2 buffers open.
   {
     group = define_augroup("ToggleBufferline", { clear = true }),

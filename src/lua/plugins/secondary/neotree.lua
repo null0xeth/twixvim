@@ -45,7 +45,7 @@ local spec = {
         use_default_mappings = false,
 
         default_source = "filesystem", -- you can choose a specific source `last` here which indicates the last used source
-        enable_diagnostics = false,
+        enable_diagnostics = true,
         enable_git_status = true,
         enable_modified_markers = true, -- Show markers for files with unsaved changes.
         enable_opened_markers = true, -- Enable tracking of opened files. Required for `components.name.highlight_opened_files`

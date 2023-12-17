@@ -2,7 +2,7 @@
 local StateModel = {}
 StateModel.__index = StateModel
 StateModel.states = {
-  diagnostics_active = false,
+  diagnostics_active = true,
   auto_format = true,
   auto_lint = true,
 }

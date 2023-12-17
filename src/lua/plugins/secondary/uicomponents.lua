@@ -33,14 +33,26 @@ local spec = {
           },
           {
             sign = {
-              --name = { ".*" },
-              namespace = { "diagnostic" }, --"Diagnostic" "luacheck", "LSP", "lsp" },
+              -- "diagnostic" matched > "vim.lsp.lua_ls.1/diagnostic/signs"
+              namespace = { "severeboizonly" },
+              --namespace = { "diagnostic" }, --"Diagnostic" "luacheck", "LSP", "lsp" },
               maxwidth = 1,
               colwidth = 2,
               auto = true,
             },
             click = "v:lua.ScSa",
           },
+          -- {
+          --   sign = {
+          --     --name = { ".*" },
+          --     name = { "diagnostic.*" },
+          --     maxwidth = 1,
+          --     colwidth = 2,
+          --     auto = true,
+          --   },
+          --   click = "v:lua.ScSa",
+          -- },
+
           -- {
           --   sign = {
           --     name = { "DiagnosticSignInfo", "DiagnosticSignHint", "DiagnosticSignWarn", "DiagnosticSignError" },
@@ -84,7 +96,7 @@ local spec = {
               namespace = { "gitsign.*" },
               maxwidth = 1,
               colwidth = 1,
-              auto = false,
+              auto = true,
             },
             click = "v:lua.ScSa",
           },

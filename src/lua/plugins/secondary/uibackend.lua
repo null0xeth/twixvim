@@ -339,7 +339,7 @@ local spec = {
       -- stylua: ignore
       { "<leader>ues", function() require("edgy").select() end, desc = "Edgy Select Window" },
     },
-    opts = function()
+      opts = function()
       local opts = {
         bottom = {
           {
