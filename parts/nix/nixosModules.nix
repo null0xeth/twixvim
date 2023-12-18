@@ -13,8 +13,8 @@
       };
     };
     config = mkIf cfg.enable {
-      environment.etc = {
-        "${devLoc}".source = ../../src;
-      };
+      #environment.etc = {
+      #  "nvim_dev".source = ../../src;
+      #};
     };
   }
