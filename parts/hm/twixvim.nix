@@ -7,7 +7,7 @@
 }:
 with lib; let
   cfg = config.modules.twixvim;
-  devLoc = "etc/nvim_dev";
+  devLoc = "/etc/nvim_dev";
   devPath = /. + devLoc;
 in {
   options = {
