@@ -40,14 +40,7 @@ in {
       };
          }
     (mkIf cfg.settings.development.enable {
-      xdg.configFile = {
-        "nvim" = {
-          enable = true;
-          source = config.lib.file.mkOutOfStoreSymlink "/etc/nvim_dev";
-          recursive = true;
-        };
-      };
-      home.packages = attrValues {
+            home.packages = attrValues {
         inherit (pkgs) lolcat;
       };
     })
