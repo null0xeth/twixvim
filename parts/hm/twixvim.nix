@@ -43,7 +43,7 @@ in {
       xdg.configFile = {
         "nvim" = {
           enable = true;
-          source = config.lib.file.mkOutOfStoreSymlink devPath;
+          source = config.lib.file.mkOutOfStoreSymlink "/etc/nvim_dev";
           recursive = true;
         };
       };
