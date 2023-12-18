@@ -60,8 +60,26 @@ local spec = {
           require("neodev").setup({
             library = {
               enabled = true,
+              runtime = true,
+              plugins = {
+                "nvim-cmp",
+                "plenary.nvim",
+                "neotest",
+                "nvim-dap",
+                "nvim-notify",
+                "nui.nvim",
+                "nvim-lspconfig",
+                "nvim-dap-ui",
+              },
               types = true,
             },
+            lspconfig = true,
+            pathStrict = true,
+
+            -- library = {
+            --   enabled = true,
+            --   types = true,
+            -- },
           })
         end,
       },

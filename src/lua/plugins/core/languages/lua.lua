@@ -49,26 +49,26 @@ local spec = {
           --single_file_support = true,
           settings = {
             Lua = {
-              runtime = {
-                version = "LuaJIT",
-                path = {
-                  "lua/?.lua",
-                  "lua/?/init.lua",
-                },
-              },
-              intelliSense = {
-                traceLocalSet = true,
-              },
-              workspace = {
-                checkThirdParty = false,
-                library = {
-                  -- [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                  -- [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
-                  vim.fn.expand("$VIMRUNTIME"),
-                  -- "${3rd}/luassert/library",
-                  -- "${3rd}/luv/library",
-                },
-              },
+              -- runtime = {
+              --   version = "LuaJIT",
+              --   path = {
+              --     "lua/?.lua",
+              --     "lua/?/init.lua",
+              --   },
+              -- },
+              -- intelliSense = {
+              --   traceLocalSet = true,
+              -- },
+              -- workspace = {
+              --   checkThirdParty = false,
+              --   library = {
+              --     -- [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+              --     -- [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+              --     vim.fn.expand("$VIMRUNTIME"),
+              --     -- "${3rd}/luassert/library",
+              --     -- "${3rd}/luv/library",
+              --   },
+              -- },
               -- workspace = {
               --   checkThirdParty = false,
               --   library = vim.api.nvim_get_runtime_file("", true),

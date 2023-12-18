@@ -36,38 +36,6 @@ function CompletionController:new()
   return obj
 end
 
-local function fetch_kind_icons()
-  return {
-    ["Text"] = "󰉿",
-    ["Method"] = "󰆧",
-    ["Function"] = "󰊕",
-    ["Constructor"] = "",
-    ["Field"] = " ",
-    ["Variable"] = "󰀫",
-    ["Class"] = "󰠱",
-    ["Interface"] = "",
-    ["Module"] = "",
-    ["Property"] = "󰜢",
-    ["Unit"] = "󰑭",
-    ["Value"] = "󰎠",
-    ["Enum"] = "",
-    ["Ellipsis"] = "",
-    ["Keyword"] = "󰌋",
-    ["Snippet"] = "",
-    ["Color"] = "󰏘",
-    ["File"] = "󰈙",
-    ["Reference"] = "",
-    ["Folder"] = "󰉋",
-    ["EnumMember"] = "",
-    ["Constant"] = "󰏿",
-    ["Struct"] = "",
-    ["Event"] = "",
-    ["Operator"] = "󰆕",
-    ["TypeParameter"] = " ",
-    ["Misc"] = " ",
-  }
-end
-
 local function fetch_cmp_sources()
   return {
     { name = "path", priority_weight = 110 },
@@ -146,18 +114,8 @@ local function fetch_cmp_mappings()
 end
 
 local function fetch_cmp_formatting()
-  -- local kind_icons = fetch_kind_icons()
-  -- return {
-  --   fields = { "kind", "abbr", "menu" },
-  --   format = function(_, item)
-  --     item.menu = item.kind
-  --     item.kind = kind_icons[item.kind]
-  --     return item
-  --   end,
-  -- }
   local cmp = get_module("cmp", "cmp")
   return {
-    --fields = { "kind", "abbr", "menu" },
     fields = {
       cmp.ItemField.Kind,
       cmp.ItemField.Abbr,
@@ -238,8 +196,6 @@ local function fetch_cmp_sorting()
         end
       end,
 
-      --compare.recently_used,
-      --compare.locality,
       kind,
       compare.sort_text,
       compare.length,
@@ -251,7 +207,6 @@ end
 local function fetch_cmp_window()
   return {
     completion = {
-      --winhighlight = "CursorLine:PmenuSel,Search:None",
       winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:Search",
       col_offset = 0,
       side_padding = 0,
@@ -261,7 +216,6 @@ local function fetch_cmp_window()
 
     documentation = {
       border = "rounded",
-      --winhighlight = "FloatBorder:FloatBorder",
       winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:Search",
       zindex = 1001,
     },

@@ -1,5 +1,1 @@
-_: {
-  flake.homeManagerModules.default = {
-    imports = [./twixvim.nix];
-  };
-}
+_: { flake.homeManagerModules.default = { imports = [ ./twixvim.nix ]; }; }

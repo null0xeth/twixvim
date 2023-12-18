@@ -47,10 +47,10 @@ return {
           settings = {
             ["nil"] = {
               textSetting = 42,
-              -- formatting = {
-              --   --command = { "nixpkgs-fmt" },
-              --   command = { "nixfmt" },
-              -- },
+              formatting = {
+                --command = { "nixpkgs-fmt" },
+                command = { "nixfmt" },
+              },
               autoArchive = true,
             },
           },
