@@ -32,7 +32,7 @@
         inherit
           (pkgs)
           #clang-tools_16
-
+          nixfmt
           cmake
           lua-language-server
           marksman
