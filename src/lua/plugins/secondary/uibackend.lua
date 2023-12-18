@@ -1,18 +1,5 @@
 local long_opts = { silent = true, expr = true, mode = { "i", "n", "s" } }
 
-local sidebar_width
-
-local function get_sidebar_width()
-  if sidebar_width ~= nil then
-    return sidebar_width
-  end
-
-  local columns = vim.api.nvim_get_option_value("columns", { scope = "global" })
-  sidebar_width = math.floor((columns / (columns >= 160 and 3 or 2)) / 2)
-
-  return sidebar_width
-end
-
 local spec = {
   { "MunifTanjim/nui.nvim", lazy = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
@@ -34,6 +21,7 @@ local spec = {
   },
   {
     "folke/noice.nvim",
+    enabled = true,
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -193,67 +181,6 @@ local spec = {
         },
       })
     end,
-    -- opts = {
-    --   input = {
-    --     enable = true,
-    --     insert_only = false,
-    --     border = "rounded",
-    --     relative = "editor",
-    --     title_pos = "left",
-    --     --min_width = { 0.4, 72 },
-    --     mappings = { n = { ["q"] = "Close" } },
-    --     win_options = {
-    --       -- Disable line wrapping
-    --       wrap = false,
-    --       -- Indicator for when text exceeds window
-    --       list = true,
-    --       listchars = "precedes:…,extends:…",
-    --       -- Increase this for more context when text scrolls off the window
-    --       sidescrolloff = 0,
-    --     },
-    --   },
-    --   select = {
-    --     enabled = true,
-    --     backend = { "builtin", "telescope", "nui" },
-    --     trim_prompt = true,
-    --     builtin = {
-    --       mappings = { n = { ["q"] = "Close" } },
-    --       show_numbers = false,
-    --       relative = "editor",
-    --       border = "rounded",
-    --     },
-    --     telescope = {
-    --       layout_config = {
-    --         horizontal = { width = 0.7, height = 0.55 },
-    --       },
-    --     },
-    --     -- get_config = function(opts)
-    --     --   if opts.kind == "codeaction" then
-    --     --     return {
-    --     --       backend = "nui",
-    --     --       nui = {
-    --     --         relative = "cursor",
-    --     --         max_width = 40,
-    --     --       },
-    --     --     }
-    --     --   end
-    --     -- end,
-    --     -- get_config = function(opts)
-    --     --   -- code actions: show at cursor
-    --     --   if opts.kind == "codeaction" then
-    --     --     return { builtin = { relative = "cursor" } }
-    --     --   end
-
-    --     --   -- complex selectors: use telescope
-    --     --   local useTelescope = {
-    --     --     "mason.ui.language-filter",
-    --     --   }
-    --     --   if vim.tbl_contains(useTelescope, opts.kind) then
-    --     --     return { backend = "telescope" }
-    --     --   end
-    --     -- end,
-    --   },
-    -- },
   },
   {
     "nvim-focus/focus.nvim",
@@ -339,7 +266,7 @@ local spec = {
       -- stylua: ignore
       { "<leader>ues", function() require("edgy").select() end, desc = "Edgy Select Window" },
     },
-      opts = function()
+    opts = function()
       local opts = {
         bottom = {
           {
@@ -419,34 +346,7 @@ local spec = {
             open = "SymbolsOutline",
           },
           "neo-tree",
-          -- {
-          --   title = "Neo-Tree Git",
-          --   ft = "neo-tree",
-          --   filter = function(buf)
-          --     --return vim.api.nvim_buf_get_var(buf, "neo_tree_source") == "git_status"
-          --     return vim.b[buf].neo_tree_source == "git_status"
-          --   end,
-          --   size = {
-          --     width = function()
-          --       return get_sidebar_width()
-          --     end,
-          --   },
-          --   open = "Neotree position=right git_status",
-          --   pinned = true,
-          -- },
-          -- "neo-tree",
         },
-
-        -- left = {
-        --   {
-        --     title = "NvimTree",
-        --     ft = "NvimTree",
-        --     filter = function(buf)
-        --       return vim.bo[buf].filetype == "NvimTree"
-        --     end,
-        --     size = { height = 0.5 },
-        --   },
-        -- },
         right = {
           {
             title = "Outline (Aerial)",

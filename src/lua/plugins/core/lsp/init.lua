@@ -15,31 +15,31 @@
 -- end
 
 local spec = {
-  {
-    "folke/neodev.nvim",
-    --event = "KindaLazy",
-    config = function()
-      require("neodev").setup({
-        library = {
-          enabled = true,
-          runtime = true,
-          plugins = {
-            "nvim-cmp",
-            "plenary.nvim",
-            "neotest",
-            "nvim-dap",
-            "nvim-notify",
-            "nui.nvim",
-            "nvim-lspconfig",
-            "nvim-dap-ui",
-          },
-          types = true,
-        },
-        lspconfig = true,
-        pathStrict = true,
-      })
-    end,
-  },
+  -- {
+  --   "folke/neodev.nvim",
+  --   --event = "KindaLazy",
+  --   config = function()
+  --     require("neodev").setup({
+  --       library = {
+  --         enabled = true,
+  --         runtime = true,
+  --         plugins = {
+  --           "nvim-cmp",
+  --           "plenary.nvim",
+  --           "neotest",
+  --           "nvim-dap",
+  --           "nvim-notify",
+  --           "nui.nvim",
+  --           "nvim-lspconfig",
+  --           "nvim-dap-ui",
+  --         },
+  --         types = true,
+  --       },
+  --       lspconfig = true,
+  --       pathStrict = true,
+  --     })
+  --   end,
+  -- },
   -- {
   --   "antosha417/nvim-lsp-file-operations",
   --   dependencies = {
@@ -54,7 +54,17 @@ local spec = {
     "neovim/nvim-lspconfig",
     event = "KindaLazy",
     dependencies = {
-      { "folke/neodev.nvim" },
+      {
+        "folke/neodev.nvim",
+        config = function()
+          require("neodev").setup({
+            library = {
+              enabled = true,
+              types = true,
+            },
+          })
+        end,
+      },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
       { "smjonas/inc-rename.nvim" },
@@ -116,17 +126,7 @@ local spec = {
       opts.root_dir = opts.root_dir
         or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
       opts.sources = vim.list_extend(opts.sources or {}, {
-        --nls.builtins.formatting.fish_indent,
-        --nls.builtins.diagnostics.fish,
-        --nls.builtins.formatting.stylua,
-
-        --nls.builtins.diagnostics.hadolint, -- dockerfile
         nls.builtins.diagnostics.actionlint, -- gh actions
-        -- nls.builtins.code_actions.statix,
-        -- nls.builtins.diagnostics.deadnix,
-        -- nls.builtins.diagnostics.statix,
-        --nls.builtins.diagnostics.luacheck,
-        --nls.builtins.diagnostics.yamllint,
         nls.builtins.formatting.shfmt, -- add actionlint for gh
       })
     end,

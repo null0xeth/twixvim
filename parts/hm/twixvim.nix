@@ -1,14 +1,6 @@
-{
-  config,
-  inputs,
-  pkgs,
-  lib,
-  ...
-}:
-with lib; let
-  cfg = config.modules.twixvim;
-  devLoc = "/etc/nvim_dev";
-  devPath = /. + devLoc;
+{ config, inputs, pkgs, lib, ... }:
+with lib;
+let cfg = config.modules.twixvim;
 in {
   options = {
     modules.twixvim = {
@@ -38,8 +30,8 @@ in {
           inherit (pkgs) vscode;
         };
       };
-               }
-        (mkIf (!cfg.settings.development.enable) {
+    }
+    (mkIf (!cfg.settings.development.enable) {
       xdg.configFile = {
         "nvim" = {
           enable = true;

@@ -1,6 +1,8 @@
 local spec = {
   {
     "luukvbaal/statuscol.nvim",
+    enabled = true,
+    branch = "0.10",
     event = "VeryLazy",
     config = function()
       -- config = function()
@@ -33,50 +35,13 @@ local spec = {
           },
           {
             sign = {
-              -- "diagnostic" matched > "vim.lsp.lua_ls.1/diagnostic/signs"
-              namespace = { "severeboizonly" },
-              --namespace = { "diagnostic" }, --"Diagnostic" "luacheck", "LSP", "lsp" },
+              namespace = { "diagnostic/signs" }, --"diagnostic" },
               maxwidth = 1,
               colwidth = 2,
               auto = true,
             },
             click = "v:lua.ScSa",
           },
-          -- {
-          --   sign = {
-          --     --name = { ".*" },
-          --     name = { "diagnostic.*" },
-          --     maxwidth = 1,
-          --     colwidth = 2,
-          --     auto = true,
-          --   },
-          --   click = "v:lua.ScSa",
-          -- },
-
-          -- {
-          --   sign = {
-          --     name = { "DiagnosticSignInfo", "DiagnosticSignHint", "DiagnosticSignWarn", "DiagnosticSignError" },
-          --     --text = { ".*" },
-          --     maxwidth = 1,
-          --     colwidth = 2,
-          --     auto = true,
-          --   },
-          --   click = "v:lua.ScSa",
-          -- },
-          --{ text = { "%s" }, click = "v:lua.ScSa" },
-          -- {
-          --   sign = {
-          --     name = { ".*" },
-          --     maxwidth = 1,
-          --     colwidth = 2,
-          --     auto = true,
-          --   },
-          --   click = "v:lua.ScSa",
-          -- },
-          -- {
-          --   sign = { name = { ".*" }, maxwidth = 1, colwidth = 2, auto = true },
-          --   click = "v:lua.ScSa",
-          -- },
           {
             sign = {
               name = { "Dap.*" },
@@ -90,7 +55,6 @@ local spec = {
             click = "v:lua.ScLa",
             condition = { true, builtin.not_empty },
           },
-          -- works > { text = { "%s" }, click = "v:lua.ScSa" },
           {
             sign = {
               namespace = { "gitsign.*" },

@@ -84,12 +84,12 @@ function BufferLineController:generate_template()
       max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
       truncate_names = true, -- whether or not tab names should be truncated
       tab_size = 18,
-      diagnostics = "nvim_lsp",
-      diagnostics_update_in_insert = false,
-      diagnostics_indicator = function(count, level)
-        local icon = level:match("error") and " " or ""
-        return " " .. icon .. count
-      end,
+      -- diagnostics = "nvim_lsp",
+      -- diagnostics_update_in_insert = false,
+      -- diagnostics_indicator = function(count, level)
+      --   local icon = level:match("error") and " " or ""
+      --   return " " .. icon .. count
+      -- end,
       offsets = {
         {
           filetype = "NvimTree",

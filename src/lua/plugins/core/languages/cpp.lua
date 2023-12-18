@@ -96,7 +96,7 @@ return {
       },
       setup = {
         clangd = function(_, opts)
-           local lspcontroller = require("framework.controller.lspcontroller"):new()
+          local lspcontroller = require("framework.controller.lspcontroller"):new()
           lspcontroller:setup_lsp_servers(_, opts)
 
           require("clangd_extensions").setup({
@@ -110,7 +110,6 @@ return {
   },
   {
     "mfussenegger/nvim-dap",
-    --"rcarriga/nvim-dap-ui",
     opts = {
       setup = {
         codelldb = function()
@@ -122,7 +121,7 @@ return {
       },
     },
   },
-    {
+  {
     "nvim-neotest/neotest",
     dependencies = {
       { "alfaix/neotest-gtest", opts = {} },

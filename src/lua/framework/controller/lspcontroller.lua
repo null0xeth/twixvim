@@ -63,17 +63,6 @@ function LspController:new()
   return obj
 end
 
-local function enable_diagnostics_on_save()
-  local autocmdcontroller = get_obj("framework.controller.autocmdcontroller", "autocmdcontroller")
-  local augroup = autocmdcontroller:add_augroup("AutoLint", { clear = true })
-  autocmdcontroller:add_autocmd({
-    event = "BufWritePost",
-    group = augroup,
-    command_or_callback = function()
-      vim.diagnostic.enable(0)
-    end,
-  })
-end
 ---Helper function that creates an autocommand for format- and lint on save
 ---@param self LspController
 function LspController:lint_on_save(_, _)
@@ -105,10 +94,9 @@ function LspController:custom_on_attach(customOnAttach)
     --   navic.attach(client, bufnr)
     -- end
 
-    --client.server_capabilities.semanticTokensProvider = nil
+    client.server_capabilities.semanticTokensProvider = nil
     local keymapcontroller = get_obj("framework.controller.keymapcontroller", "keymapcontroller")
     keymapcontroller:lsp_on_attach(client, bufnr)
-    --self:lint_on_save()
   end)
 end
 
@@ -122,12 +110,10 @@ local function process_mason(to_ensure)
 
   local function ensure_installed()
     for i = 1, total_to_ensure do
-      --wrap_async_function(function()
       local pkg = mr.get_package(to_ensure[i])
       if not pkg:is_installed() then
         pkg:install()
       end
-      --end)
     end
   end
 
@@ -150,60 +136,6 @@ end
 ---@param opts table
 ---@param customAttach? function
 function LspController:setup_lsp_servers(_, opts, customAttach)
-  --local register_capability = vim.lsp.handlers["client/registerCapability"]
-
-  -- vim.lsp.handlers["client/registerCapability"] = function(err, res, ctx)
-  --   local ret = register_capability(err, res, ctx)
-  --   local client_id = ctx.client_id
-  --   ---@type lsp.Client
-  --   local client = vim.lsp.get_client_by_id(client_id)
-  --   local buffer = vim.api.nvim_get_current_buf()
-  --   --on_attach(client, buffer)
-  --   return ret
-  -- end
-  -- local lspSigns = {
-  --   { name = "DiagnosticSignError", text = "" },
-  --   { name = "DiagnosticSignWarn", text = "" },
-  --   { name = "DiagnosticSignHint", text = "" },
-  --   { name = "DiagnosticSignInfo", text = "" },
-  -- }
-
-  -- local lspSigns = {
-  --   Error = "",
-  --   Warn = "",
-  --   Hint = "",
-  --   Info = "",
-  -- }
-
-  -- for name, icon in pairs(lspSigns) do
-  --   name = "DiagnosticSign" .. name
-  --   vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-  -- end
-
-  -- local signLen = #lspSigns
-  -- for i = 1, signLen do
-  --   local sign = lspSigns[i]
-  --   print("controller", vim.inspect(sign))
-  --   vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name, numhl = "" })
-  -- end
-
-  -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  --   --signs = true,
-  --   -- Enable underline, use default values
-  --   underline = true,
-  --   -- Enable virtual text, override spacing to 4
-  --   virtual_text = {
-  --     spacing = 4,
-  --   },
-  --   -- Use a function to dynamically turn signs off
-  --   -- and on, using buffer local variables
-  --   signs = function(namespace, bufnr)
-  --     return vim.b[bufnr].show_signs == true
-  --   end,
-  --   -- Disable a feature
-  --   update_in_insert = false,
-  -- })
-
   self:custom_on_attach(customAttach)
   self:init_lsp_servers(opts)
 end
