@@ -120,13 +120,13 @@ local spec = {
         --nls.builtins.diagnostics.fish,
         --nls.builtins.formatting.stylua,
 
-        nls.builtins.diagnostics.hadolint, -- dockerfile
+        --nls.builtins.diagnostics.hadolint, -- dockerfile
         nls.builtins.diagnostics.actionlint, -- gh actions
-        nls.builtins.code_actions.statix,
-        nls.builtins.diagnostics.deadnix,
-        nls.builtins.diagnostics.statix,
-        nls.builtins.diagnostics.luacheck,
-        nls.builtins.diagnostics.yamllint,
+        -- nls.builtins.code_actions.statix,
+        -- nls.builtins.diagnostics.deadnix,
+        -- nls.builtins.diagnostics.statix,
+        --nls.builtins.diagnostics.luacheck,
+        --nls.builtins.diagnostics.yamllint,
         nls.builtins.formatting.shfmt, -- add actionlint for gh
       })
     end,

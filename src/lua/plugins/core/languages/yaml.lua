@@ -31,6 +31,16 @@ return {
     end,
   },
   {
+    "nvimtools/none-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      opts.sources = vim.list_extend(opts.sources or {}, {
+        nls.builtins.diagnostics.yamllint,
+      })
+    end,
+  },
+
+  {
     "someone-stole-my-name/yaml-companion.nvim",
     ft = { "yaml" },
     dependencies = {
