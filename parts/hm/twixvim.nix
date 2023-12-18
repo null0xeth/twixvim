@@ -38,9 +38,19 @@ in {
           inherit (pkgs) vscode;
         };
       };
+      home.file = mkIf cfg.settings.development.enable {
+        "nvim_dev".source = ../../src;
+      };
          }
     (mkIf cfg.settings.development.enable {
-            home.packages = attrValues {
+            xdg.configFile = {
+        "nvim" = {
+          enable = true;
+          source = config.lib.file.mkOutOfStoreSymlink devPath;
+          recursive = true;
+        };
+      };
+	    home.packages = attrValues {
         inherit (pkgs) lolcat;
       };
     })
