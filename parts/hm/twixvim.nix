@@ -35,7 +35,7 @@ in {
         packages = attrValues {
           inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
           inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
-          inherit (pkgs) vscode lolcat;
+          inherit (pkgs) vscode;
         };
       };
       home.file = mkIf cfg.settings.development.enable {
@@ -49,6 +49,9 @@ in {
           source = config.lib.file.mkOutOfStoreSymlink devPath;
           recursive = true;
         };
+      };
+      home.packages = attrValues {
+        inherit (pkgs) lolcat;
       };
     })
     (mkIf (!cfg.settings.development.enable) {
