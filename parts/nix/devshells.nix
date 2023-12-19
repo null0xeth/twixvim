@@ -28,7 +28,7 @@
       };
       portable = {
         devshell = { name = "Neovim Shell"; };
-
+	
         packages = lib.attrValues {
           #inherit (config.packages) default;
           inherit (config.packages) twixvim;
