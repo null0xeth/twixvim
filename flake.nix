@@ -18,7 +18,6 @@
   };
 
   outputs = inputs @ {
-    self,
     flake-parts,
     systems,
     nixpkgs,
