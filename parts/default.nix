@@ -1,6 +1,6 @@
 _: {
   imports = [
     ./hm/flake-module.nix
-    ./nix/nixosModules.nix
+    ./nix/flake-module.nix
   ];
 }
