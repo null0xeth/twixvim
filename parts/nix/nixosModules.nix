@@ -34,11 +34,11 @@ in {
   config = mkIf cfg.enable (mkMerge [
     {
       environment = {
-        systemPackages = attrValues {
-          inherit (inputs.neovim-flake.packages.x86_64-linux) default;
-          inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
-          inherit (pkgs) vscode;
-        };
+        systemPackages = [
+          inputs.neovim-flake.packages.x86_64-linux.default
+          pkgs.vscode-extensions.vadimcn.vscode-lldb
+          pkgs.vscode
+        ];
       };
     }
     (mkIf cfg.settings.direnv.enable {
