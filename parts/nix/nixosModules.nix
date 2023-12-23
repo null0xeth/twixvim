@@ -36,7 +36,7 @@ in {
       environment = {
         systemPackages = [
           #self.packages.twixvim
-          inputs.neovim.packages.x86_64-linux.default
+          pkgs.inputs.neovim.packages.x86_64-linux.default
           pkgs.vscode-extensions.vadimcn.vscode-lldb
           pkgs.vscode
         ];
