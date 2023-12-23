@@ -13,7 +13,7 @@ in {
     nixosModules.twixvim = {
       enable = mkOption {
         type = types.bool;
-        default = !config.homeManagerModules.twixvim;
+        default = !config.homeManagerModules.twixvim.settings.basic;
         description = "Enable Twixvim IDE";
       };
       settings = {
@@ -50,14 +50,14 @@ in {
         enable = true;
       };
     })
-    (mkIf (!cfg.settings.development.enable) {
-      xdg.configFile = {
-        "nvim" = {
-          enable = true;
-          source = ../../src;
-          recursive = true;
-        };
-      };
-    })
+    # (mkIf (!cfg.settings.development.enable) {
+    #   xdg.configFile = {
+    #     "nvim" = {
+    #       enable = true;
+    #       source = ../../src;
+    #       recursive = true;
+    #     };
+    #   };
+    # })
   ]);
 }

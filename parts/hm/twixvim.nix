@@ -16,6 +16,7 @@ in {
         description = "Enable Twixvim IDE";
       };
       settings = {
+        basic = mkEnableOption "only the bare-minimum directory management functions of HM";
         development = {
           enable = mkOption {
             type = types.bool;
@@ -28,7 +29,7 @@ in {
   };
 
   config = mkIf cfg.enable (mkMerge [
-    {
+    (mkIf (!cfg.settings.basic) {
       home = {
         packages = attrValues {
           inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
@@ -36,8 +37,8 @@ in {
           inherit (pkgs) vscode;
         };
       };
-    }
-    (mkIf (!cfg.settings.development.enable) {
+    })
+    (mkIf (!cfg.settings.development.enable && cfg.settings.basic) {
       xdg.configFile = {
         "nvim" = {
           enable = true;
