@@ -18,16 +18,13 @@
   };
 
   outputs = {
-    self,
     flake-parts,
     systems,
     nixpkgs,
-    neovim-flake,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
-        {config._module.args._inputs = self.inputs;}
         inputs.devshell.flakeModule
         ./parts
       ];
