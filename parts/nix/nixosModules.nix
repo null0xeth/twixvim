@@ -6,13 +6,14 @@
   ...
 }:
 with lib; let
-  cfg = config.homeManagerModules.twixvim;
+  cfg = config.nixosModules.twixvim;
 in {
+  imports = [./direnv.nix];
   options = {
-    homeManagerModules.twixvim = {
+    modules.twixvim = {
       enable = mkOption {
         type = types.bool;
-        default = true;
+        default = !config.homeManagerModules.twixvim;
         description = "Enable Twixvim IDE";
       };
       settings = {
@@ -23,20 +24,32 @@ in {
             description = "Work with a local copy of the source";
           };
         };
+        direnv = {
+          enable = mkOption {
+            type = types.bool;
+            default = cfg.enable;
+            description = "Enable the nix-direnv integration";
+          };
+        };
       };
     };
   };
 
   config = mkIf cfg.enable (mkMerge [
     {
-      home = {
-        packages = attrValues {
+      environment = {
+        systemPackages = attrValues {
           inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
           inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
           inherit (pkgs) vscode;
         };
       };
     }
+    (mkIf cfg.settings.direnv.enable {
+      twixModules.direnv = {
+        enable = true;
+      };
+    })
     (mkIf (!cfg.settings.development.enable) {
       xdg.configFile = {
         "nvim" = {
