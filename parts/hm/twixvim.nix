@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  neovim-flake,
   pkgs,
   lib,
   ...
@@ -36,10 +37,10 @@ in {
         #   inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
         #   inherit (pkgs) vscode;
         # };
-        packages = with pkgs; [
-          inputs.neovim-flake.packages.x86_64-linux.neovim
-          vscode-extensions.vadimcn.vscode-lldb
-          vscode
+        packages = [
+          neovim-flake.packages.x86_64-linux.neovim
+          pkgs.vscode-extensions.vadimcn.vscode-lldb
+          pkgs.vscode
         ];
       };
     })
