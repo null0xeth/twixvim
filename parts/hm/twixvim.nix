@@ -1,6 +1,12 @@
-{ config, inputs, pkgs, lib, ... }:
-with lib;
-let cfg = config.modules.twixvim;
+{
+  config,
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.twixvim;
 in {
   options = {
     modules.twixvim = {
@@ -13,7 +19,7 @@ in {
         development = {
           enable = mkOption {
             type = types.bool;
-            default = true;
+            default = false;
             description = "Work with a local copy of the source";
           };
         };
