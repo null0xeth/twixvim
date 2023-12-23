@@ -18,10 +18,10 @@
   };
 
   outputs = inputs @ {
+    self,
     flake-parts,
     systems,
     nixpkgs,
-    neovim-flake,
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -32,6 +32,7 @@
       systems = import systems;
 
       perSystem = {
+        self',
         pkgs,
         system,
         config,

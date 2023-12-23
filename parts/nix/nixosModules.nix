@@ -1,6 +1,6 @@
 {
   config,
-  neovim-flake,
+  self,
   pkgs,
   lib,
   ...
@@ -35,7 +35,7 @@ in {
     {
       environment = {
         systemPackages = attrValues {
-          inherit (neovim-flake.packages.x86_64-linux) default;
+          inherit (self.inputs.neovim-flake.packages.x86_64-linux) default;
           inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
           inherit (pkgs) vscode;
         };
