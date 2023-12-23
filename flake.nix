@@ -85,6 +85,7 @@
         };
       };
         flake = {
+          nixosModules.default = import ./parts/nix/nixosModules.nix inputs;
           homeManagerModules.default = import ./parts/hm/twixvim.nix inputs;
         };
     };

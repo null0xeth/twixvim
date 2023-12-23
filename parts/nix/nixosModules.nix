@@ -1,6 +1,5 @@
-{
+inputs: {
   config,
-  inputs,
   pkgs,
   lib,
   ...
@@ -41,7 +40,7 @@ in {
       #   };
       # };
       environment.systemPackages = with pkgs; [
-        inputs.neovim-flake.packages.${pkgs.system}.default
+        inputs.neovim-flake.packages.x86_64-linux.neovim
         vscode-extensions.vadimcn.vscode-lldb
         vscode
       ];
