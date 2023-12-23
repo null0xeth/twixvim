@@ -25,13 +25,13 @@
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
+        {_module.args = {inherit inputs;};}
         inputs.devshell.flakeModule
         ./parts
       ];
       systems = import systems;
 
       perSystem = {
-        self',
         pkgs,
         system,
         config,
