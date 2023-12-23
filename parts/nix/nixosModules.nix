@@ -33,13 +33,18 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     {
-      environment = {
-        systemPackages = attrValues {
-          inherit (inputs.neovim-flake.packages.x86_64-linux) default;
-          inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
-          inherit (pkgs) vscode;
-        };
-      };
+      # environment = {
+      #   systemPackages = attrValues {
+      #     inherit (inputs.neovim-flake.packages.x86_64-linux) default;
+      #     inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
+      #     inherit (pkgs) vscode;
+      #   };
+      # };
+      environment.systemPackages = with pkgs; [
+        inputs.neovim-flake.packages.${pkgs.system}.default
+        vscode-extensions.vadimcn.vscode-lldb
+        vscode
+      ];
     }
     (mkIf cfg.settings.direnv.enable {
       twixModules.direnv = {
