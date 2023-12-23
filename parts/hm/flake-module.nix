@@ -1,5 +1,7 @@
-{
-  flake.homeManagerModules.default = {
-    imports = [./twixvim.nix];
+{inputs, ...}: {
+  flake.homeManagerModules.default = let
+    twixvim = import ./twixvim.nix {inherit inputs;};
+  in {
+    imports = twixvim;
   };
 }
