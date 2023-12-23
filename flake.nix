@@ -17,13 +17,13 @@
     };
   };
 
-  outputs = inputs @ {
+  outputs = {
     flake-parts,
     systems,
     nixpkgs,
     neovim-flake,
     ...
-  }:
+  } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.devshell.flakeModule
