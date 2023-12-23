@@ -38,7 +38,8 @@ in {
         # };
         packages = [
           #inputs.self.neovim-flake.packages.x86_64-linux.neovim # does not work..
-          inputs.neovim-flake.packages.x86_64-linux.neovim #does not work...
+          #inputs.neovim-flake.packages.x86_64-linux.neovim #does not work...
+          config.packages.twixvim
           pkgs.vscode-extensions.vadimcn.vscode-lldb
           pkgs.vscode
         ];
