@@ -21,6 +21,7 @@
     flake-parts,
     systems,
     nixpkgs,
+    neovim-flake,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
