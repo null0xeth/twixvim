@@ -44,7 +44,7 @@ in {
         ];
       };
     })
-    (mkIf (!cfg.settings.development.enable && cfg.settings.basic) {
+    (mkIf (!cfg.settings.development.enable) {
       xdg.configFile = {
         "nvim" = {
           enable = true;
