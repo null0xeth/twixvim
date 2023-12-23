@@ -10,10 +10,7 @@
     nix2container.url = "github:nlewo/nix2container";
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
-
-    neovim-flake = {
-      url = "github:neovim/neovim?dir=contrib";
-    };
+    neovim-flake.url = "github:neovim/neovim?dir=contrib";
   };
 
   outputs = inputs @ {
@@ -43,6 +40,7 @@
         };
 
         packages.twixvim = inputs'.neovim-flake.packages.default;
+        packages.default = self.packages.twixvim;
 
         devshells = {
           default = {
