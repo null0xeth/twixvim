@@ -17,15 +17,14 @@
     };
   };
 
-  outputs = inputs @ {
+  outputs = {
     flake-parts,
     systems,
     nixpkgs,
     ...
-  }:
+  } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
-        {_module.args = {inherit inputs;};}
         inputs.devshell.flakeModule
         ./parts
       ];
