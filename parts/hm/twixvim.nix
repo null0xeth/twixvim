@@ -1,13 +1,13 @@
 {
   config,
   inputs,
-  neovim-flake,
   pkgs,
   lib,
   ...
 }:
 with lib; let
   cfg = config.homeManagerModules.twixvim;
+  inherit (inputs) neovim-flake;
 in {
   options = {
     homeManagerModules.twixvim = {
