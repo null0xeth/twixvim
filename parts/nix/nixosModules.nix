@@ -11,11 +11,7 @@ in {
   imports = [./direnv.nix];
   options = {
     nixosModules.twixvim = {
-      enable = mkOption {
-        type = types.bool;
-        default = !config.homeManagerModules.twixvim.settings.basic;
-        description = "Enable Twixvim IDE";
-      };
+      enable = mkEnableOption "zzz";
       settings = {
         development = {
           enable = mkOption {
