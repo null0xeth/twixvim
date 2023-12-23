@@ -32,7 +32,7 @@ in {
     (mkIf (!cfg.settings.basic) {
       home = {
         packages = builtins.attrValues {
-          inherit (inputs.neovim.packages.x86_64-linux) neovim;
+          inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
           inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
           inherit (pkgs) vscode;
         };

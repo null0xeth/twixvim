@@ -11,7 +11,7 @@
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
 
-    neovim = {
+    neovim-flake = {
       url = "github:neovim/neovim?dir=contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -42,7 +42,7 @@
           config.allowUnfree = true;
         };
 
-        packages.twixvim = inputs'.neovim.packages.default;
+        packages.twixvim = inputs'.neovim-flake.packages.default;
 
         devshells = {
           default = {

@@ -35,7 +35,7 @@ in {
     {
       environment = {
         systemPackages = attrValues {
-          inherit (inputs.neovim.packages) default;
+          inherit (config.packages) twixvim;
           inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
           inherit (pkgs) vscode;
         };
