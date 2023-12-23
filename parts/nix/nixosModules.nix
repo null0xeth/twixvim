@@ -35,7 +35,7 @@ in {
     {
       environment = {
         systemPackages = attrValues {
-          inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
+          inherit (inputs.neovim-flake.packages.x86_64-linux) default;
           inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
           inherit (pkgs) vscode;
         };
