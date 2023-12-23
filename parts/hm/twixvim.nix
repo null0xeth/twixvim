@@ -37,7 +37,7 @@ in {
         #   inherit (pkgs) vscode;
         # };
         packages = with pkgs; [
-          neovim-flake.packages.x86_64-linux.neovim
+          inputs.neovim-flake.packages.x86_64-linux.neovim
           vscode-extensions.vadimcn.vscode-lldb
           vscode
         ];
