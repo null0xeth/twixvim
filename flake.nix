@@ -83,6 +83,9 @@
             };
           };
         };
+        flake = {
+          homeManagerModules.default = import ./parts/hm/twixvim.nix { inputs };
+        };
       };
     };
 }
