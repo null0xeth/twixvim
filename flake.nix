@@ -26,6 +26,7 @@
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
+        {config._module.args._inputs = inputs;}
         inputs.devshell.flakeModule
         ./parts
       ];
