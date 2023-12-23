@@ -11,14 +11,13 @@
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
 
-    neovim-flake = {
+    neovim = {
       url = "github:neovim/neovim?dir=contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = inputs @ {
-    self,
     flake-parts,
     systems,
     nixpkgs,
@@ -39,7 +38,7 @@
         ...
       }: {
         _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
+          inherit system inputs;
           config.allowUnfree = true;
         };
 

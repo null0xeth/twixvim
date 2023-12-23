@@ -106,7 +106,7 @@
         "type": "github"
       }
     },
-    "neovim-flake": {
+    "neovim": {
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": [
@@ -241,7 +241,7 @@
         "devshell": "devshell",
         "flake-parts": "flake-parts",
         "mk-shell-bin": "mk-shell-bin",
-        "neovim-flake": "neovim-flake",
+        "neovim": "neovim",
         "nil": "nil",
         "nix2container": "nix2container",
         "nixpkgs": "nixpkgs_3",
