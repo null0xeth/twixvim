@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  self,
   pkgs,
   lib,
   ...
@@ -35,7 +36,8 @@ in {
     {
       environment = {
         systemPackages = [
-          inputs.neovim-flake.packages.x86_64-linux.default
+          self.packages.twixvim
+          #self.inputs.neovim-flake.packages.x86_64-linux.default
           pkgs.vscode-extensions.vadimcn.vscode-lldb
           pkgs.vscode
         ];
