@@ -1,6 +1,6 @@
 {
   config,
-  inputs,
+  neovim-flake,
   pkgs,
   lib,
   ...
@@ -35,7 +35,7 @@ in {
     {
       environment = {
         systemPackages = attrValues {
-          inherit (config.packages) twixvim;
+          inherit (neovim-flake.packages.x86_64-linux) default;
           inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
           inherit (pkgs) vscode;
         };
