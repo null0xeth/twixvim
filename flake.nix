@@ -43,7 +43,7 @@
           config.allowUnfree = true;
         };
 
-        packages.twixvim = inputs.neovim-flake.packages.default;
+        packages.twixvim = inputs'.neovim-flake.packages.default;
 
         devshells = {
           default = {
