@@ -10,7 +10,7 @@ with lib; let
 in {
   imports = [./direnv.nix];
   options = {
-    modules.twixvim = {
+    nixosModules.twixvim = {
       enable = mkOption {
         type = types.bool;
         default = !config.homeManagerModules.twixvim;
