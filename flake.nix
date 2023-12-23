@@ -28,6 +28,7 @@
       systems = import systems;
 
       perSystem = {
+        self',
         pkgs,
         system,
         config,
@@ -40,7 +41,7 @@
         };
 
         packages.twixvim = inputs'.neovim-flake.packages.default;
-        packages.default = self.packages.twixvim;
+        packages.default = self'.packages.twixvim;
 
         devshells = {
           default = {
