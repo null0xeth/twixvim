@@ -1,13 +1,13 @@
 {
+  self,
   config,
-  inputs,
   pkgs,
   lib,
   ...
 }:
 with lib; let
   cfg = config.homeManagerModules.twixvim;
-  inherit (inputs) neovim-flake;
+  inherit (self) inputs;
 in {
   options = {
     homeManagerModules.twixvim = {
@@ -38,7 +38,7 @@ in {
         #   inherit (pkgs) vscode;
         # };
         packages = [
-          neovim-flake.packages.x86_64-linux.neovim
+          inputs.neovim-flake.packages.x86_64-linux.neovim
           pkgs.vscode-extensions.vadimcn.vscode-lldb
           pkgs.vscode
         ];
