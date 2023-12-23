@@ -34,12 +34,11 @@ in {
   config = mkIf cfg.enable (mkMerge [
     {
       environment = {
-        systemPackages = [
-          #self.packages.twixvim
-          pkgs.inputs.neovim.packages.x86_64-linux.default
-          pkgs.vscode-extensions.vadimcn.vscode-lldb
-          pkgs.vscode
-        ];
+        systemPackages = attrValues {
+          inherit (inputs.neovim.packages) default;
+          inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
+          inherit (pkgs) vscode;
+        };
       };
     }
     (mkIf cfg.settings.direnv.enable {
