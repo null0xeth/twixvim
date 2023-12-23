@@ -13,17 +13,16 @@
 
     neovim-flake = {
       url = "github:neovim/neovim?dir=contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
     flake-parts,
     systems,
     nixpkgs,
     ...
-  } @ inputs:
+  }:
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.devshell.flakeModule

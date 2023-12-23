@@ -37,7 +37,8 @@ in {
         #   inherit (pkgs) vscode;
         # };
         packages = [
-          inputs.self.neovim-flake.packages.x86_64-linux.neovim
+          #inputs.self.neovim-flake.packages.x86_64-linux.neovim # does not work..
+          inputs.neovim-flake.packages.x86_64-linux.neovim #does not work...
           pkgs.vscode-extensions.vadimcn.vscode-lldb
           pkgs.vscode
         ];
