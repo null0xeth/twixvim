@@ -31,11 +31,16 @@ in {
   config = mkIf cfg.enable (mkMerge [
     (mkIf (!cfg.settings.basic) {
       home = {
-        packages = builtins.attrValues {
-          inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
-          inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
-          inherit (pkgs) vscode;
-        };
+        # packages = builtins.attrValues {
+        #   inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
+        #   inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
+        #   inherit (pkgs) vscode;
+        # };
+        packages = with pkgs; [
+          neovim-flake.packages.x86_64-linux.neovim
+          vscode-extensions.vadimcn.vscode-lldb
+          vscode
+        ];
       };
     })
     (mkIf (!cfg.settings.development.enable && cfg.settings.basic) {
