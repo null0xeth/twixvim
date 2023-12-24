@@ -45,8 +45,8 @@ in {
       };
     })
     (mkIf (!cfg.settings.development.enable) {
-      xdg.configFile = {
-        "nvim" = {
+      home.file = {
+        ".config/nvim" = {
           enable = true;
           source = ../../src;
           recursive = true;
