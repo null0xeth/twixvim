@@ -30,29 +30,6 @@
     #     #overlays = [];
     #   };
     # };
-
-    pre-commit = {
-      check.enable = true;
-      settings = {
-        settings = {
-          deadnix = {
-            edit = false;
-            quiet = true;
-            noLambdaArg = true;
-            noLambdaPatternNames = true;
-          };
-        };
-        hooks = {
-          statix = {
-            enable = true;
-          };
-          deadnix = {
-            enable = true;
-          };
-        };
-      };
-    };
-
-    formatter = inputs'.alejandra.packages.default;
+    #formatter = inputs'.alejandra.packages.default;
   };
 }
