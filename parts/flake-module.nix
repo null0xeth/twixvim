@@ -6,7 +6,7 @@
 
   perSystem = {
     config,
-    #pkgs,
+    pkgs,
     system,
     inputs',
     lib,
@@ -22,11 +22,6 @@
         hostPlatform = system;
         #overlays = [];
       };
-    };
-
-    extraModuleArgs = {
-      inherit inputs' system;
-      inputs = lib.mkForce inputs;
     };
 
     pre-commit = {
