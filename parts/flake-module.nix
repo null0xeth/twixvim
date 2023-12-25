@@ -38,7 +38,6 @@
           deadnix = {
             edit = false;
             quiet = true;
-            exclude = [../src];
             noLambdaArg = true;
             noLambdaPatternNames = true;
           };
