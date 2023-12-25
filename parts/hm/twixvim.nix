@@ -1,8 +1,8 @@
 #{localFlake}:
 #inputs: {
 {
-  inputs',
   config,
+  inputs',
   pkgs,
   lib,
   ...
