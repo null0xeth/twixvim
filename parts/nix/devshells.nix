@@ -4,8 +4,8 @@
   perSystem = {
     self',
     pkgs,
-    system,
-    config,
+    # system,
+    # config,
     inputs',
     ...
   }: {
