@@ -1,4 +1,7 @@
-{localFlake}:
+{
+  localFlake,
+  withSystem,
+}:
 #inputs: {
 {
   config,
