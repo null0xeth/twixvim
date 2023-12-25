@@ -8,7 +8,7 @@
 #   ...
 # }:
 {moduleWithSystem, ...}: {
-  flake.homeManagerModules.twixvim = moduleWithSystem (
+  flake.homeManagerModules.default = moduleWithSystem (
     perSystem @ {inputs'}: nixos @ {
       config,
       lib,
@@ -16,10 +16,10 @@
       ...
     }:
       with lib; let
-        cfg = config.homeManagerModules.twixvim;
+        cfg = config.modules.twixvim;
       in {
         options = {
-          hmModules.twixvim = {
+          modules.twixvim = {
             enable = mkOption {
               type = types.bool;
               default = true;
