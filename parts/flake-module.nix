@@ -46,9 +46,6 @@
           statix = {
             enable = true;
           };
-          luacheck = {
-            enable = true;
-          };
           deadnix = {
             enable = true;
           };
