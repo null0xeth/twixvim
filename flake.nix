@@ -22,8 +22,8 @@
       imports = [./parts];
       systems = import systems;
 
-      flake = {
-        homeManagerModules.default = import ./parts/hm/twixvim.nix inputs;
-      };
+      # flake = {
+      #   homeManagerModules.default = import ./parts/hm/twixvim.nix inputs;
+      # };
     };
 }
