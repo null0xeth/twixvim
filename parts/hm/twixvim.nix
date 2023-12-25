@@ -1,12 +1,3 @@
-# #{localFlake}:
-# #inputs: {
-# {
-#   config,
-#   inputs',
-#   pkgs,
-#   lib,
-#   ...
-# }:
 {moduleWithSystem, ...}: {
   flake.homeManagerModules.default = moduleWithSystem (
     perSystem @ {inputs'}: nixos @ {
@@ -38,11 +29,9 @@
         };
 
         config = mkIf cfg.enable (mkMerge [
-          #(mkIf (!cfg.settings.basic) {
           {
             home = {
               packages = [
-                #localFlake.inputs.neovim-flake.packages.x86_64-linux.neovim #does not work...
                 inputs'.neovim-flake.packages.default
                 pkgs.vscode-extensions.vadimcn.vscode-lldb
                 pkgs.vscode
