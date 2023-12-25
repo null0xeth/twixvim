@@ -30,15 +30,8 @@ in {
   config = mkIf cfg.enable (mkMerge [
     (mkIf (!cfg.settings.basic) {
       home = {
-        # packages = builtins.attrValues {
-        #   inherit (inputs.neovim-flake.packages.x86_64-linux) neovim;
-        #   inherit (pkgs.vscode-extensions.vadimcn) vscode-lldb;
-        #   inherit (pkgs) vscode;
-        # };
         packages = [
-          #inputs.self.neovim-flake.packages.x86_64-linux.neovim # does not work..
           inputs.neovim-flake.packages.x86_64-linux.neovim #does not work...
-          #config.packages.twixvim
           pkgs.vscode-extensions.vadimcn.vscode-lldb
           pkgs.vscode
         ];

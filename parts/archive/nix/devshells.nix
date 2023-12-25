@@ -1,8 +1,11 @@
-{inputs, ...}: {
+{
+  inputs,
+  lib,
+  ...
+}: {
   imports = [inputs.devshell.flakeModule];
 
   perSystem = {
-    self',
     pkgs,
     system,
     config,
@@ -15,18 +18,19 @@
     };
 
     packages.twixvim = inputs'.neovim-flake.packages.default;
-    packages.default = self'.packages.twixvim;
 
     devshells = {
       default = {
         devshell = {name = "Neovim Shell";};
 
-        packages = inputs.nixpkgs.lib.attrValues {
+        packages = lib.attrValues {
           inherit (inputs'.nil.packages) nil;
           inherit (pkgs.luajitPackages) jsregexp luacheck;
           inherit (pkgs.nodePackages) jsonlint;
           inherit
             (pkgs)
+            #clang-tools_16
+
             nixfmt
             cmake
             lua-language-server
