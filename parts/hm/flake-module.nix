@@ -1,14 +1,11 @@
 {
   moduleWithSystem,
+  config,
   lib,
   ...
 }: {
   flake.homeManagerModules.default = moduleWithSystem (
-    perSystem @ {
-      config,
-      inputs',
-      ...
-    }:
+    perSystem @ {inputs', ...}:
       with lib; let
         cfg = config.homeManagerModules.twixvim;
       in {
