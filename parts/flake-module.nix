@@ -36,13 +36,18 @@
       settings = {
         settings = {
           deadnix = {
-            edit = true;
+            edit = false;
+            quiet = true;
+            exclude = [../src];
             noLambdaArg = true;
             noLambdaPatternNames = true;
           };
         };
         hooks = {
           statix = {
+            enable = true;
+          };
+          luacheck = {
             enable = true;
           };
           deadnix = {
