@@ -11,6 +11,7 @@
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
     neovim-flake.url = "github:neovim/neovim?dir=contrib";
+    pre-commit-hooks-nix.url = "github:cachix/pre-commit-hooks.nix";
   };
 
   outputs = inputs @ {
@@ -19,7 +20,8 @@
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      imports = [./parts];
+      imports = [./parts/flake-module.nix];
+
       systems = import systems;
     };
 }
