@@ -28,7 +28,14 @@ in {
   };
 
   config = mkIf cfg.enable (mkMerge [
-    (mkIf (!cfg.settings.basic) {
+    #(mkIf (!cfg.settings.basic) {
+    {
+      assertions = [
+        {
+          assertion = cfg.settings.basic == null;
+          message = "`settings.basic` is deprecated. Please remove it from your config";
+        }
+      ];
       home = {
         packages = [
           inputs.neovim-flake.packages.x86_64-linux.neovim #does not work...
@@ -36,7 +43,7 @@ in {
           pkgs.vscode
         ];
       };
-    })
+    }
     (mkIf (!cfg.settings.development.enable) {
       home.file = {
         ".config/nvim" = {
