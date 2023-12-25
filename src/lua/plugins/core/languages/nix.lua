@@ -48,8 +48,7 @@ return {
             ["nil"] = {
               textSetting = 42,
               formatting = {
-                --command = { "nixpkgs-fmt" },
-                command = { "nixfmt" },
+                command = { "alejandra" },
               },
               autoArchive = true,
             },

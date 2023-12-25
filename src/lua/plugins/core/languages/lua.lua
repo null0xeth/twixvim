@@ -69,10 +69,10 @@ local spec = {
               --     -- "${3rd}/luv/library",
               --   },
               -- },
-              -- workspace = {
-              --   checkThirdParty = false,
-              --   library = vim.api.nvim_get_runtime_file("", true),
-              -- },
+              workspace = {
+                checkThirdParty = false,
+                --library = vim.api.nvim_get_runtime_file("", true),
+              },
               completion = {
                 workspaceWord = true,
                 callSnippet = "Replace",
