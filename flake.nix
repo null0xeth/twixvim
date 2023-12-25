@@ -12,6 +12,7 @@
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
     neovim-flake.url = "github:neovim/neovim?dir=contrib";
     pre-commit-hooks-nix.url = "github:cachix/pre-commit-hooks.nix";
+    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
   };
 
   outputs = inputs @ {
