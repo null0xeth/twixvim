@@ -38,6 +38,7 @@
           deadnix = {
             edit = true;
             noLambdaArg = true;
+            noLambdaPatternNames = true;
           };
         };
         hooks = {
