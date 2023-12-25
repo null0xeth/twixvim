@@ -9,10 +9,10 @@
     inputs',
     ...
   }: {
-    _module.args.pkgs = import inputs.nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
+    # _module.args.pkgs = import inputs.nixpkgs {
+    #   inherit system;
+    #   config.allowUnfree = true;
+    # };
 
     packages.twixvim = inputs'.neovim-flake.packages.default;
     packages.default = self'.packages.twixvim;
