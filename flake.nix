@@ -21,9 +21,5 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [./parts];
       systems = import systems;
-
-      # flake = {
-      #   homeManagerModules.default = import ./parts/hm/twixvim.nix inputs;
-      # };
     };
 }
