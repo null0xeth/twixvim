@@ -9,6 +9,6 @@
 in {
   flake.homeManagerModules.default = importApply ./twixvim.nix {
     localFlake = self;
-    inherit withSystem;
+    inherit inputs';
   };
 }

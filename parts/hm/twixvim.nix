@@ -1,6 +1,6 @@
 {
   localFlake,
-  withSystem,
+  inputs',
 }:
 #inputs: {
 {
@@ -47,7 +47,7 @@ in {
       ];
       home = {
         packages = [
-          localFlake.inputs.neovim-flake.packages.x86_64-linux.neovim #does not work...
+          localFlake.inputs'.neovim-flake.packages.x86_64-linux.neovim #does not work...
           pkgs.vscode-extensions.vadimcn.vscode-lldb
           pkgs.vscode
         ];
