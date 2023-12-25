@@ -15,7 +15,11 @@ in {
         description = "Enable Twixvim IDE";
       };
       settings = {
-        basic = mkEnableOption "only the bare-minimum directory management functions of HM";
+        basic = mkOption {
+          type = types.nullOr types.bool;
+          description = "only the bare-minimum directory management functions of HM";
+          default = null;
+        };
         development = {
           enable = mkOption {
             type = types.bool;
