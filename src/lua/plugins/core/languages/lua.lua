@@ -49,22 +49,22 @@ local spec = {
           --single_file_support = true,
           settings = {
             Lua = {
-              runtime = {
-                version = "LuaJIT",
-                path = {
-                  "lua/?.lua",
-                  "lua/?/init.lua",
-                },
-              },
-              workspace = {
-                library = vim.api.nvim_get_runtime_file("", true),
-                -- checkThirdParty = false,
-                -- library = {
-                --   -- [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                --   -- [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
-                --   vim.fn.expand("$VIMRUNTIME"),
-                -- },
-              },
+              -- runtime = {
+              --   version = "LuaJIT",
+              --   path = {
+              --     "lua/?.lua",
+              --     "lua/?/init.lua",
+              --   },
+              -- },
+              -- workspace = {
+              --   library = vim.api.nvim_get_runtime_file("", true),
+              -- checkThirdParty = false,
+              -- library = {
+              --   -- [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+              --   -- [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+              --   vim.fn.expand("$VIMRUNTIME"),
+              -- },
+              --},
 
               -- runtime = {
               --   version = "LuaJIT",

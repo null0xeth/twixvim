@@ -22,7 +22,7 @@ local spec = {
       require("neodev").setup({
         library = {
           enabled = true,
-          runtime = false,
+          runtime = true,
           plugins = {
             "nvim-cmp",
             "plenary.nvim",
@@ -35,7 +35,7 @@ local spec = {
           },
           types = true,
         },
-        lspconfig = false,
+        lspconfig = true,
         pathStrict = false,
       })
     end,
