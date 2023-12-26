@@ -49,6 +49,10 @@ local spec = {
           --single_file_support = true,
           settings = {
             Lua = {
+              runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = "LuaJIT",
+              },
               -- runtime = {
               --   version = "LuaJIT",
               --   path = {
@@ -70,6 +74,7 @@ local spec = {
               --   },
               -- },
               workspace = {
+                library = { vim.env.VIMRUNTIME },
                 checkThirdParty = false,
                 --library = vim.api.nvim_get_runtime_file("", true),
               },
