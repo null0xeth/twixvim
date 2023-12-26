@@ -32,7 +32,7 @@
           {
             home = {
               packages = [
-                inputs'.neovim-flake.packages.default
+                perSystem.inputs'.neovim-flake.packages.default
                 pkgs.vscode-extensions.vadimcn.vscode-lldb
                 pkgs.vscode
               ];
