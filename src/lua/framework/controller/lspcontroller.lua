@@ -136,6 +136,8 @@ end
 ---@param opts table
 ---@param customAttach? function
 function LspController:setup_lsp_servers(_, opts, customAttach)
+  local plugz = get_module("lazy-core-config", "lazy.core.config").spec.plugins["neoconf.nvim"]
+  require("neoconf").setup(require("lazy.core.plugin").values(plugz, "opts", false))
   self:custom_on_attach(customAttach)
   self:init_lsp_servers(opts)
 end

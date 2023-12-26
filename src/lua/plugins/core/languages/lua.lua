@@ -49,13 +49,13 @@ local spec = {
           --single_file_support = true,
           settings = {
             Lua = {
-              runtime = {
-                version = "LuaJIT",
-                path = {
-                  "lua/?.lua",
-                  "lua/?/init.lua",
-                },
-              },
+              -- runtime = {
+              --   version = "LuaJIT",
+              --   path = {
+              --     "lua/?.lua",
+              --     "lua/?/init.lua",
+              --   },
+              -- },
               -- intelliSense = {
               --   traceLocalSet = true,
               -- },
@@ -69,10 +69,10 @@ local spec = {
               --     -- "${3rd}/luv/library",
               --   },
               -- },
-              -- workspace = {
-              --   checkThirdParty = false,
-              --   --library = vim.api.nvim_get_runtime_file("", true),
-              -- },
+              workspace = {
+                checkThirdParty = false,
+                --library = vim.api.nvim_get_runtime_file("", true),
+              },
               completion = {
                 workspaceWord = true,
                 callSnippet = "Replace",
