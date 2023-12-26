@@ -1,6 +1,8 @@
 {moduleWithSystem, ...}: {
   flake.homeManagerModules.default = moduleWithSystem (
-    perSystem @ {inputs'}: nixos @ {
+    perSystem @ {inputs'}:
+    #nixos @ {
+    {
       config,
       lib,
       pkgs,
