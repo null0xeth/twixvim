@@ -35,8 +35,8 @@ local spec = {
           },
           types = true,
         },
-        lspconfig = true,
-        pathStrict = true,
+        lspconfig = false,
+        pathStrict = false,
       })
     end,
   },
