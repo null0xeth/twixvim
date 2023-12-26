@@ -1,4 +1,3 @@
-require()
 return {
   kind = {
     Array = "",
