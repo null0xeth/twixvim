@@ -116,7 +116,6 @@ local function process_mason(to_ensure)
       end
     end
   end
-
   if mr.refresh then
     mr.refresh(ensure_installed)
   else

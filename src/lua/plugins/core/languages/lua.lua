@@ -50,9 +50,21 @@ local spec = {
           settings = {
             Lua = {
               runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
                 version = "LuaJIT",
+                path = {
+                  "lua/?.lua",
+                  "lua/?/init.lua",
+                },
               },
+              workspace = {
+                checkThirdParty = false,
+                library = {
+                  -- [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                  -- [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
+                  vim.fn.expand("$VIMRUNTIME"),
+                },
+              },
+
               -- runtime = {
               --   version = "LuaJIT",
               --   path = {
@@ -73,11 +85,6 @@ local spec = {
               --     -- "${3rd}/luv/library",
               --   },
               -- },
-              workspace = {
-                library = { vim.env.VIMRUNTIME },
-                checkThirdParty = false,
-                --library = vim.api.nvim_get_runtime_file("", true),
-              },
               completion = {
                 workspaceWord = true,
                 callSnippet = "Replace",
