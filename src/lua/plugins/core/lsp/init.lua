@@ -15,31 +15,31 @@
 -- end
 
 local spec = {
-  -- {
-  --   "folke/neodev.nvim",
-  --   --event = "KindaLazy",
-  --   config = function()
-  --     require("neodev").setup({
-  --       library = {
-  --         enabled = true,
-  --         runtime = true,
-  --         plugins = {
-  --           "nvim-cmp",
-  --           "plenary.nvim",
-  --           "neotest",
-  --           "nvim-dap",
-  --           "nvim-notify",
-  --           "nui.nvim",
-  --           "nvim-lspconfig",
-  --           "nvim-dap-ui",
-  --         },
-  --         types = true,
-  --       },
-  --       lspconfig = true,
-  --       pathStrict = true,
-  --     })
-  --   end,
-  -- },
+  {
+    "folke/neodev.nvim",
+    --event = "KindaLazy",
+    config = function()
+      require("neodev").setup({
+        library = {
+          enabled = true,
+          runtime = true,
+          plugins = {
+            "nvim-cmp",
+            "plenary.nvim",
+            "neotest",
+            "nvim-dap",
+            "nvim-notify",
+            "nui.nvim",
+            "nvim-lspconfig",
+            "nvim-dap-ui",
+          },
+          types = true,
+        },
+        lspconfig = true,
+        pathStrict = true,
+      })
+    end,
+  },
   -- {
   --   "antosha417/nvim-lsp-file-operations",
   --   dependencies = {
@@ -78,8 +78,7 @@ local spec = {
       --     })
       --   end,
       -- },
-      { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "neovim/nvim-lspconfig" } },
-      { "folke/neodev.nvim", opts = {} },
+      { "folke/neodev.nvim" },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
       { "smjonas/inc-rename.nvim" },
