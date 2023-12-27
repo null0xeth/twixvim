@@ -55,6 +55,7 @@ local spec = {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
+    enabled = false,
     event = "KindaLazy",
     config = function()
       require("ibl").setup({

@@ -18,18 +18,5 @@
       config.allowUnfree = true;
       config.hostPlatform = system;
     };
-
-    # _module.args = {
-    #   pkgs = inputs'.nixpkgs.legacyPackages;
-    #   nixpkgs = {
-    #     config = lib.mkForce {
-    #       allowUnfree = true;
-    #     };
-
-    #     hostPlatform = system;
-    #     #overlays = [];
-    #   };
-    # };
-    #formatter = inputs'.alejandra.packages.default;
   };
 }
