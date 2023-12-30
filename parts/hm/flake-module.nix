@@ -33,8 +33,8 @@
             home = {
               packages = [
                 perSystem.inputs'.neovim-flake.packages.default
-                pkgs.vscode-extensions.vadimcn.vscode-lldb
-                pkgs.vscode
+                # pkgs.vscode-extensions.vadimcn.vscode-lldb
+                # pkgs.vscode
               ];
             };
           }
