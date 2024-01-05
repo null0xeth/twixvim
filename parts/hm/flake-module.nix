@@ -17,6 +17,14 @@
               description = "Enable Twixvim IDE";
             };
             settings = {
+              configuration = {
+                enable = mkEnableOption "the ability to override default config";
+                path = mkOption {
+                  type = types.path;
+                  description = "Path to config.lua";
+                  default = ../../config.lua;
+                };
+              };
               development = {
                 enable = mkOption {
                   type = types.bool;
@@ -38,15 +46,34 @@
               ];
             };
           }
-          (mkIf (!cfg.settings.development.enable) {
-            home.file = {
-              ".config/nvim" = {
-                enable = true;
-                source = ../../src;
-                recursive = true;
+          (mkIf (!cfg.settings.development.enable) (mkMerge [
+            (mkIf (!cfg.settings.configuration.enable) {
+              home.file = {
+                ".config/nvim" = {
+                  enable = true;
+                  source = ../../src;
+                  recursive = true;
+                };
+                ".config/nvim/lua/config.lua" = {
+                  enable = true;
+                  source = ../../config.lua;
+                };
               };
-            };
-          })
+            })
+            (mkIf cfg.settings.configuration.enable {
+              home.file = {
+                ".config/nvim" = {
+                  enable = true;
+                  source = ../../src;
+                  recursive = true;
+                };
+                ".config/nvim/lua/config.lua" = {
+                  enable = true;
+                  source = cfg.settings.configuration.path;
+                };
+              };
+            })
+          ]))
         ]);
       }
   );
