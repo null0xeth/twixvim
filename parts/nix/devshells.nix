@@ -27,6 +27,7 @@
           inherit (pkgs.nodePackages) jsonlint;
           inherit
             (pkgs)
+            ripgrep
             nixfmt
             cmake
             lua-language-server
