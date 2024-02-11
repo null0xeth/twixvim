@@ -2,7 +2,7 @@
   imports = [
     inputs.pre-commit-hooks-nix.flakeModule
     ./nix/devshells.nix
-    #./hm/flake-module.nix
+    ./hm/flake-module.nix
   ];
 
   perSystem = {
@@ -18,7 +18,7 @@
       config.allowUnfree = true;
       config.hostPlatform = system;
       overlays = [
-        inputs.neovim-flake.overlay
+        inputs'.neovim-flake.overlay
       ];
     };
   };
