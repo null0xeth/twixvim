@@ -34,7 +34,6 @@ local spec = {
     "pearofducks/ansible-vim",
     ft = "ansible",
     event = "KindaLazy",
-    config = true,
   },
 
   {
