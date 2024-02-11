@@ -8,6 +8,7 @@ return {
         event = { "KindaLazy" },
         pattern = {
           "*/ansible/*.yml",
+          "*/inventory/*.yml",
           "*/tasks/*.yml",
         },
         group = augroup,
