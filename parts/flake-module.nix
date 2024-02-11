@@ -17,6 +17,6 @@
       inherit system;
       config.allowUnfree = true;
       config.hostPlatform = system;
-          };
+    };
   };
 }
