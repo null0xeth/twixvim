@@ -14,8 +14,8 @@
     #   config.allowUnfree = true;
     # };
 
-    packages.twixvim = inputs'.neovim-flake.packages.default;
-    packages.default = self'.packages.twixvim;
+    #packages.twixvim = inputs'.neovim-flake.packages.default;
+    #packages.default = self'.packages.twixvim;
 
     devshells = {
       default = {
