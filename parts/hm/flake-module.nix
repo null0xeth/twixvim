@@ -44,7 +44,8 @@
           {
             home = {
               packages = [
-                inputs.neovim-flake.packages.x86_64-linux.neovim
+                pkgs.neovim
+                #inputs.neovim-flake.packages.x86_64-linux.neovim
                 # pkgs.vscode-extensions.vadimcn.vscode-lldb
                 # pkgs.vscode
               ];
