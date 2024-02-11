@@ -18,7 +18,7 @@
       config.allowUnfree = true;
       config.hostPlatform = system;
       overlays = [
-        inputs'.neovim-flake.overlays.default
+        inputs.neovim-flake.overlays.default
       ];
     };
   };
