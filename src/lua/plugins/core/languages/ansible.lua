@@ -74,10 +74,13 @@ local spec = {
       },
       setup = {
         ansiblels = function(_, opts)
-          local lspcontroller = require("framework.controller.lspController"):new()
+          polish()
+	  local lspcontroller = require("framework.controller.lspController"):new()
           lspcontroller:setup_lsp_servers(_, opts)
         end,
       },
     },
   },
 }
+
+return spec
