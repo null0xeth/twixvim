@@ -2,22 +2,6 @@ return {
   {
     "pearofducks/ansible-vim",
     event = "KindaLazy",
-    config = function()
-      local aucontroller = require("framework.controller.autocmdcontroller"):new()
-      local augroup = aucontroller:add_augroup("ansible_yaml_ft", { clear = true })
-      aucontroller:add_autocmd({
-        event = { "BufReadPre", "BufNewFile" },
-        pattern = {
-          "*/ansible/*.yml",
-          "*/inventory/*.yml",
-          "*/tasks/*.yml",
-        },
-        group = augroup,
-        command_or_callback = function()
-          vim.bo.filetype = "ansible"
-        end,
-      })
-    end,
   },
 
   {
@@ -36,9 +20,7 @@ return {
       servers = {
         ansiblels = {
           filetypes = {
-            "ansible",
             "yaml.ansible",
-            "yaml.ansible_hosts",
           },
           cmd = {
             "ansible-language-server",
@@ -47,8 +29,10 @@ return {
           settings = {
             ansible = {
               validation = {
+                enabled = true,
                 lint = {
-                  enabled = false,
+                  enabled = true,
+                  path = "ansible-lint",
                 },
               },
             },
