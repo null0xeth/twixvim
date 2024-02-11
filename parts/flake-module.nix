@@ -2,7 +2,7 @@
   imports = [
     inputs.pre-commit-hooks-nix.flakeModule
     ./nix/devshells.nix
-    ./hm/flake-module.nix
+    #./hm/flake-module.nix
   ];
 
   perSystem = {
