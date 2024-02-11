@@ -29,7 +29,8 @@
             (pkgs)
             ripgrep
             nixfmt
-            cmake
+            #cmake
+
             ansible-language-server
             ansible-lint
             lua-language-server
