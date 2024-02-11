@@ -42,6 +42,7 @@
 
         config = mkIf cfg.enable (mkMerge [
           {
+            programs.nix-ld.enable = lib.mkDefault false;
             home = {
               packages = [
                 pkgs.neovim
