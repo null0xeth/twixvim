@@ -17,9 +17,6 @@
       inherit system;
       config.allowUnfree = true;
       config.hostPlatform = system;
-      overlays = [
-        inputs.neovim-flake.overlays.default
-      ];
-    };
+          };
   };
 }
