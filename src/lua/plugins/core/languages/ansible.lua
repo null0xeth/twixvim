@@ -6,7 +6,7 @@ return {
       local aucontroller = require("framework.controller.autocmdcontroller"):new()
       local augroup = aucontroller:add_augroup("ansible_yaml_ft", { clear = true })
       aucontroller:add_autocmd({
-        event = { "KindaLazy" },
+        event = { "BufReadPre", "BufNewFile" },
         pattern = {
           "*/ansible/*.yml",
           "*/inventory/*.yml",
