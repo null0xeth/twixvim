@@ -44,7 +44,8 @@
             deadnix
             stylua
             prettierd
-            yamlfix
+            #yamlfix
+
             yamllint
             manix
             gcc
