@@ -30,6 +30,8 @@
             ripgrep
             nixfmt
             cmake
+            ansible-language-server
+            ansible-lint
             lua-language-server
             marksman
             vscode-langservers-extracted
