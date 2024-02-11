@@ -1,4 +1,4 @@
-polish = function()
+local function polish()
   local function yaml_ft(path, bufnr)
     -- get content of buffer as string
     local content = vim.filetype.getlines(bufnr)
@@ -34,7 +34,7 @@ local spec = {
     "pearofducks/ansible-vim",
     ft = "ansible",
     event = "KindaLazy",
-    opts = {},
+    config = true,
   },
 
   {
@@ -75,7 +75,7 @@ local spec = {
       setup = {
         ansiblels = function(_, opts)
           polish()
-	  local lspcontroller = require("framework.controller.lspController"):new()
+          local lspcontroller = require("framework.controller.lspController"):new()
           lspcontroller:setup_lsp_servers(_, opts)
         end,
       },
