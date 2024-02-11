@@ -1,6 +1,7 @@
 return {
   {
     "pearofducks/ansible-vim",
+    event = "KindaLazy",
     config = function()
       local aucontroller = require("framework.controller.autocmdcontroller"):new()
       local augroup = aucontroller:add_augroup("ansible_yaml_ft", { clear = true })
