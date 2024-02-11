@@ -1,4 +1,8 @@
-{moduleWithSystem, ...}: {
+{
+  moduleWithSystem,
+  inputs,
+  ...
+}: {
   flake.homeManagerModules.default = moduleWithSystem (
     perSystem @ {inputs'}: {
       config,
@@ -40,7 +44,7 @@
           {
             home = {
               packages = [
-                perSystem.inputs'.neovim-flake.packages.default
+                perSystem.inputs.neovim-flake.packages.x86_64-linux.neovim
                 # pkgs.vscode-extensions.vadimcn.vscode-lldb
                 # pkgs.vscode
               ];
