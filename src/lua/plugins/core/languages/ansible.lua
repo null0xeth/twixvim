@@ -16,7 +16,7 @@ local spec = {
         },
         group = augroup,
         command_or_callback = function()
-          vim.bo.filetype = "ansible"
+          vim.bo.filetype = "yaml.ansible"
         end,
       })
       autocmdcontroller:add_autocmd({
@@ -56,7 +56,7 @@ local spec = {
           filetypes = {
             "ansible",
             "yaml.ansible",
-            "yaml.anbsible_hosts",
+            "yaml.ansible_hosts",
           },
           cmd = {
             "ansible-language-server",

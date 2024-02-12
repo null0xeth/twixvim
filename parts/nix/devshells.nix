@@ -46,14 +46,11 @@
             deadnix
             stylua
             prettierd
-            #yamlfix
-
+            yamlfix
             yamllint
             manix
-            #gcc
-
-            #gnumake
-
+            gcc
+            gnumake
             helm-ls
             typescript
             taplo
