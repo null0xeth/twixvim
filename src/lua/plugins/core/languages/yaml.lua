@@ -75,6 +75,9 @@ return {
       -- make sure mason installs the server
       servers = {
         yamlls = {
+          filetypes = {
+            "yaml",
+          },
           cmd = {
             "yaml-language-server",
             "--stdio",
