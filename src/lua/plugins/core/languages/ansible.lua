@@ -73,8 +73,17 @@ local spec = {
       },
       setup = {
         ansiblels = function(_, opts)
-          polish()
-          local lspcontroller = require("framework.controller.lspController"):new()
+          local autocmdcontroller = require("framework.controller.autocmdcontroller"):new()
+          local augroup = autocmdcontroller:add_augroup("ansible", { clear = true })
+          autocmdcontroller:add_autocmd({
+            event = { "BufEnter", "BufReadPost", "BufNewFile" },
+            pattern = "yaml",
+            group = augroup,
+            command_or_callback = function()
+              polish()
+            end,
+          })
+          local lspcontroller = require("framework.controller.lspcontroller"):new()
           lspcontroller:setup_lsp_servers(_, opts)
         end,
       },
