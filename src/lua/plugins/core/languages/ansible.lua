@@ -5,6 +5,37 @@ local spec = {
       "neovim/nvim-lspconfig",
     },
     event = "KindaLazy",
+    config = function()
+      local autocmdcontroller = require("framework.controller.autocmdcontroller"):new()
+      local augroup = autocmdcontroller:add_augroup("ansible", { clear = true })
+      autocmdcontroller:add_autocmd({
+        event = { "BufRead", "BufNewFile" },
+        pattern = {
+          "*/ansible/*.yml",
+          "*/tasks/*.yml",
+        },
+        group = augroup,
+        command_or_callback = function()
+          vim.bo.filetype = "ansible"
+        end,
+      })
+      autocmdcontroller:add_autocmd({
+        event = { "BufRead", "BufNewFile" },
+        pattern = {
+          "*/ansible/inventory/*",
+          "*/ansible/hosts-*",
+        },
+        group = augroup,
+        command_or_callback = function()
+          local filepath = vim.fn.expand("%:p")
+          if filepath:match("%.yml$") then
+            vim.bo.filetype = "yaml.ansible_hosts"
+          else
+            vim.bo.filetype = "ansible_hosts"
+          end
+        end,
+      })
+    end,
   },
 
   {
@@ -45,35 +76,6 @@ local spec = {
       },
       setup = {
         ansiblels = function(_, opts)
-          local autocmdcontroller = require("framework.controller.autocmdcontroller"):new()
-          local augroup = autocmdcontroller:add_augroup("ansible", { clear = true })
-          autocmdcontroller:add_autocmd({
-            event = { "BufRead", "BufNewFile" },
-            pattern = {
-              "*/ansible/*.yml",
-              "*/tasks/*.yml",
-            },
-            group = augroup,
-            command_or_callback = function()
-              vim.bo.filetype = "ansible"
-            end,
-          })
-          autocmdcontroller:add_autocmd({
-            event = { "BufRead", "BufNewFile" },
-            pattern = {
-              "*/ansible/inventory/*",
-              "*/ansible/hosts-*",
-            },
-            group = augroup,
-            command_or_callback = function()
-              local filepath = vim.fn.expand("%:p")
-              if filepath:match("%.yml$") then
-                vim.bo.filetype = "yaml.ansible_hosts"
-              else
-                vim.bo.filetype = "ansible_hosts"
-              end
-            end,
-          })
           local lspcontroller = require("framework.controller.lspcontroller"):new()
           lspcontroller:setup_lsp_servers(_, opts)
         end,
