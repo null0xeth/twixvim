@@ -13,7 +13,7 @@
 
     systems.url = "github:nix-systems/default";
 
-    #nil.url = "github:oxalica/nil";
+    nil.url = "github:oxalica/nil";
     devshell.url = "github:numtide/devshell";
     nix2container.url = "github:nlewo/nix2container";
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
