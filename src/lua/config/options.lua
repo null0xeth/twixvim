@@ -132,6 +132,14 @@ local vim_g_options = {
   },
 }
 
+vim.filetype.add({
+  extension = {
+    tf = "terraform",
+    tfvars = "terraform-vars",
+    tfstate = "json",
+  },
+})
+
 opt.shortmess:append("sSIFWT")
 opt.iskeyword:append("-")
 vim.keymap.set("", "<Space>", "<Nop>", { silent = true })
