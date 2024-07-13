@@ -46,6 +46,7 @@
             deadnix
             stylua
             prettierd
+            terraform-ls
             #yamlfix
 
             yamllint
