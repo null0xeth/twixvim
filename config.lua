@@ -20,6 +20,7 @@ local settings = {
 		rust = true,
 		solidity = false,
 		typescript = false,
+		terraform = true,
 		yaml = true,
 	},
 	keymap_categories = {
