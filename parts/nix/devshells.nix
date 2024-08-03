@@ -24,7 +24,7 @@
         devshell = {name = "Neovim Shell";};
 
         packages = inputs.nixpkgs.lib.attrValues {
-          inherit (inputs'.nil.packages) nil;
+          inherit (inputs'.nil.packages) default;
           inherit (pkgs.luajitPackages) jsregexp luacheck;
           inherit (pkgs.nodePackages) jsonlint;
           inherit
