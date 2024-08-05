@@ -13,17 +13,6 @@ return {
     end,
   },
   {
-    "nvim-cmp",
-    dependencies = {
-      { "petertriho/cmp-git", opts = {} },
-    },
-    ---@module 'cmp'
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "git" })
-    end,
-  },
-  {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")

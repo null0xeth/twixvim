@@ -127,6 +127,7 @@ local spec = {
       "hrsh7th/cmp-cmdline",
       "dmitmel/cmp-cmdline-history",
       "hrsh7th/cmp-nvim-lua",
+      "petertriho/cmp-git",
       "hrsh7th/cmp-nvim-lsp-signature-help",
     },
     config = function()
