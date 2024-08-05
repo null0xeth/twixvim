@@ -9,14 +9,29 @@ local spec = {
     end,
   },
   {
-    -- add Terragrunt
-    "stevearc/conform.nvim",
-    opts = function(_, opts)
-      opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft, {
-        terraform = { "terraform_fmt" },
-      })
-    end,
+  "williamboman/mason.nvim",
+  opts = { ensure_installed = { "tflint" } },
+},
+  -- {
+  --   -- add Terragrunt
+  --   "stevearc/conform.nvim",
+  --   opts = function(_, opts)
+  --     opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft, {
+  --       ["terraform"] = { "terraform_fmt" },
+  --     })
+  --   end,
+  -- },
+  {
+  "stevearc/conform.nvim",
+  optional = true,
+  opts = {
+    formatters_by_ft = {
+      terraform = { "terraform_fmt" },
+      tf = { "terraform_fmt" },
+      ["terraform-vars"] = { "terraform_fmt" },
+    },
   },
+},
   {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)
