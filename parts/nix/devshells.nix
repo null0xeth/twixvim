@@ -47,6 +47,10 @@
             stylua
             prettierd
             terraform-ls
+            tflint
+            shfmt
+            shellcheck
+            bash-language-server
             #yamlfix
 
             yamllint

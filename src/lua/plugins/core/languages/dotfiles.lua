@@ -60,11 +60,16 @@ return {
           },
           settings = {},
         },
+        bashls = {},
       },
       setup = {
         dockerls = function(_, opts)
           local lspcontroller = require("framework.controller.lspController"):new()
-          lspcontroller:setup_lsp_servers(_, opts)
+          lspcontroller:setup_lsp_servers(_, opts.dockerls)
+        end,
+        bashls = function(_, opts)
+          local lspcontroller = require("framework.controller.lspController"):new()
+          lspcontroller:setup_lsp_servers(_, opts.bashls)
         end,
       },
     },

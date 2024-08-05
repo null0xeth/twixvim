@@ -9,9 +9,9 @@ local spec = {
     end,
   },
   {
-  "williamboman/mason.nvim",
-  opts = { ensure_installed = { "tflint" } },
-},
+    "williamboman/mason.nvim",
+    opts = { ensure_installed = { "tflint" } },
+  },
   -- {
   --   -- add Terragrunt
   --   "stevearc/conform.nvim",
@@ -22,16 +22,16 @@ local spec = {
   --   end,
   -- },
   {
-  "stevearc/conform.nvim",
-  optional = true,
-  opts = {
-    formatters_by_ft = {
-      terraform = { "terraform_fmt" },
-      tf = { "terraform_fmt" },
-      ["terraform-vars"] = { "terraform_fmt" },
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        terraform = { "terraform_fmt" },
+        tf = { "terraform_fmt" },
+        ["terraform-vars"] = { "terraform_fmt" },
+      },
     },
   },
-},
   {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)
@@ -47,6 +47,7 @@ local spec = {
     opts = {
       -- make sure mason installs the server
       servers = {
+        tflint = {},
         terraformls = {
           filetypes = {
             "terraform",
