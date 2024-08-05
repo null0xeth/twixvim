@@ -19,7 +19,9 @@
     nix2container.inputs.nixpkgs.follows = "nixpkgs";
     mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
     neovim-flake.url = "github:nix-community/neovim-nightly-overlay";
+    /*
     pre-commit-hooks-nix.url = "github:cachix/pre-commit-hooks.nix";
+    */
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
   };
 
