@@ -131,6 +131,7 @@ local spec = {
   {
     "stevearc/conform.nvim",
     event = "KindaLazy",
+    enabled = false,
     cmd = { "ConformInfo" },
     opts = {
       formatters_by_ft = {
@@ -139,7 +140,7 @@ local spec = {
       },
       format_on_save = {
         lsp_fallback = false,
-        async = true,
+        async = false,
         quiet = true,
       },
     },

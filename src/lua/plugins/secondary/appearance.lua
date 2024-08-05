@@ -6,6 +6,14 @@ local spec = {
     event = "CursorMoved",
     opts = true,
   },
+  { -- fixes scrolloff at end of file
+    "LudoPinelli/comment-box.nvim",
+    event = "KindaLazy",
+    config = function()
+      require("comment-box").setup()
+    end,
+  },
+
   {
     "echasnovski/mini.indentscope",
     version = false,

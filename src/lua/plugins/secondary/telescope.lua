@@ -32,6 +32,20 @@ local spec = {
         end,
       },
       {
+        "cappyzawa/telescope-terraform.nvim",
+        config = function()
+          local telescopecontroller = require("framework.controller.telescopecontroller"):new()
+          telescopecontroller:load_extension("terraform")
+        end,
+      },
+      {
+        "ANGkeith/telescope-terraform-doc.nvim",
+        config = function()
+          local telescopecontroller = require("framework.controller.telescopecontroller"):new()
+          telescopecontroller:load_extension("terraform_doc")
+        end,
+      },
+      {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
         config = function()
