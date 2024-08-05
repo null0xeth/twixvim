@@ -37,7 +37,20 @@ local spec = {
       })
     end,
   },
-
+  {
+    "mfussenegger/nvim-ansible",
+    ft = {},
+    keys = {
+      {
+        "<leader>ta",
+        function()
+          require("ansible").run()
+        end,
+        desc = "Ansible Run Playbook/Role",
+        silent = true,
+      },
+    },
+  },
   {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)

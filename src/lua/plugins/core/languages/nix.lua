@@ -4,7 +4,23 @@ return {
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
         "nix",
+        "git_config",
+        "gitcommit",
+        "git_rebase",
+        "gitignore",
+        "gitattributes",
       })
+    end,
+  },
+  {
+    "nvim-cmp",
+    dependencies = {
+      { "petertriho/cmp-git", opts = {} },
+    },
+    ---@module 'cmp'
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      table.insert(opts.sources, { name = "git" })
     end,
   },
   {

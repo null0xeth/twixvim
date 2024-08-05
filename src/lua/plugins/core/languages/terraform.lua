@@ -12,6 +12,10 @@ local spec = {
     "williamboman/mason.nvim",
     opts = { ensure_installed = { "tflint" } },
   },
+  {
+    "williamboman/mason.nvim",
+    opts = { ensure_installed = { "tflint" } },
+  },
   -- {
   --   -- add Terragrunt
   --   "stevearc/conform.nvim",
@@ -21,6 +25,7 @@ local spec = {
   --     })
   --   end,
   -- },
+
   {
     "stevearc/conform.nvim",
     optional = true,
