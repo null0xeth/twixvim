@@ -176,7 +176,7 @@ local spec = {
   },
   {
     "mfussenegger/nvim-lint",
-    enabled = false,
+    enabled = true,
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       linters_by_ft = {

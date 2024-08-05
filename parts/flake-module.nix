@@ -1,6 +1,6 @@
 {inputs, ...}: {
   imports = [
-    inputs.pre-commit-hooks-nix.flakeModule
+    #inputs.pre-commit-hooks-nix.flakeModule
     ./nix/devshells.nix
     ./hm/flake-module.nix
   ];
@@ -9,8 +9,6 @@
     config,
     pkgs,
     system,
-    inputs',
-    lib,
     ...
   }: {
     _module.args.pkgs = import inputs.nixpkgs {
