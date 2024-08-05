@@ -8,6 +8,9 @@ local spec = {
       -- config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
+        setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
+        relculright = true, -- whether to right-align the cursor line number with 'relativenumber' set
+
         --   require("statuscol").setup({
         -- configuration goes here, for example:
         bt_ignore = {
@@ -25,20 +28,21 @@ local spec = {
           "noice",
           "lazy",
         },
-        setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
-        relculright = true, -- whether to right-align the cursor line number with 'relativenumber' set
         segments = {
           {
-            text = { builtin.foldfunc, " " },
+            text = {
+              builtin.foldfunc,
+              " ",
+            },
             click = "v:lua.ScFa",
-            auto = false,
           },
           {
             sign = {
-              namespace = { "diagnostic/signs" }, --"diagnostic" },
+              namespace = { ".*/diagnostic/signs" }, --"diagnostic" },
               maxwidth = 1,
               colwidth = 2,
               auto = true,
+              foldclosed = true,
             },
             click = "v:lua.ScSa",
           },
@@ -47,17 +51,18 @@ local spec = {
               name = { "Dap.*" },
               maxwidth = 1,
               colwidth = 2,
+              auto = true,
             },
-            auto = true,
+            click = "v:lua.ScLa",
           },
           {
             text = { builtin.lnumfunc, " " },
             click = "v:lua.ScLa",
-            condition = { true, builtin.not_empty },
+            --[[             condition = { true, builtin.not_empty }, ]]
           },
           {
             sign = {
-              namespace = { "gitsign.*" },
+              namespace = { "gitsign*" },
               maxwidth = 1,
               colwidth = 1,
               auto = true,
