@@ -68,68 +68,18 @@ local spec = {
     opts = {
       servers = {
         lua_ls = { --function()
-          --return {
-          --cmd = { "/etc/profiles/per-user/null0x/bin/lua-language-server" },
-          --single_file_support = true,
           settings = {
             Lua = {
-              -- runtime = {
-              --   version = "LuaJIT",
-              --   path = {
-              --     "lua/?.lua",
-              --     "lua/?/init.lua",
-              --   },
-              -- },
-              -- workspace = {
-              --   library = vim.api.nvim_get_runtime_file("", true),
-              -- checkThirdParty = false,
-              -- library = {
-              --   -- [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-              --   -- [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
-              --   vim.fn.expand("$VIMRUNTIME"),
-              -- },
-              --},
-
-              -- runtime = {
-              --   version = "LuaJIT",
-              --   path = {
-              --     "lua/?.lua",
-              --     "lua/?/init.lua",
-              --   },
-              -- },
-              -- intelliSense = {
-              --   traceLocalSet = true,
-              -- },
-              -- workspace = {
-              --   checkThirdParty = false,
-              --   library = {
-              --     -- [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-              --     -- [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
-              --     vim.fn.expand("$VIMRUNTIME"),
-              --     -- "${3rd}/luassert/library",
-              --     -- "${3rd}/luv/library",
-              --   },
-              -- },
-              completion = {
-                workspaceWord = true,
-                callSnippet = "Replace",
-                keywordSnippet = "Replace",
-                showWord = "Disable",
-                postfix = ".",
-                displayContext = false,
+              misc = {
+                -- parameters = { "--loglevel=trace" },
+              },
+              -- hover = { expandAlias = false },
+              type = {
+                castNumberToInteger = true,
               },
               diagnostics = {
-                globals = { "vim" },
-                virtual_text = { prefix = "icons" },
-                disable = {
-                  "need-check-nil",
-                  "duplicate-set-field",
-                  "incomplete-signature-doc",
-                  "trailing-space",
-                  "no-unknown",
-                  "param-type-mismatch",
-                  "undefined-field",
-                },
+                disable = { "incomplete-signature-doc", "trailing-space" },
+                -- enable = false,
                 groupSeverity = {
                   strong = "Warning",
                   strict = "Warning",
@@ -150,41 +100,72 @@ local spec = {
                 },
                 unusedLocalExclude = { "_*" },
               },
-              telemetry = { enable = false },
-              hover = {
-                expandAlias = false,
-              },
-              hint = {
-                enable = true,
-                setType = false,
-                paramType = true,
-                paramName = "Disable",
-                semicolon = "Disable",
-                arrayIndex = "Disable",
-              },
-              format = {
-                enable = false,
-                defaultConfig = {
-                  indent_style = "space",
-                  indent_size = "2",
-                  continuation_indent_size = "2",
-                },
-              },
-              window = {
-                progressBar = true,
-                statusBar = true,
-              },
+              --   completion = {
+              --     workspaceWord = true,
+              --     callSnippet = "Replace",
+              --     keywordSnippet = "Replace",
+              --     showWord = "Disable",
+              --     postfix = ".",
+              --     displayContext = false,
+              --   },
+              --   diagnostics = {
+              --     globals = { "vim" },
+              --     virtual_text = { prefix = "icons" },
+              --     disable = {
+              --       "need-check-nil",
+              --       "duplicate-set-field",
+              --       "incomplete-signature-doc",
+              --       "trailing-space",
+              --       "no-unknown",
+              --       "param-type-mismatch",
+              --       "undefined-field",
+              --     },
+              --     groupSeverity = {
+              --       strong = "Warning",
+              --       strict = "Warning",
+              --     },
+              --     groupFileStatus = {
+              --       ["ambiguity"] = "Opened",
+              --       ["await"] = "Opened",
+              --       ["codestyle"] = "None",
+              --       ["duplicate"] = "Opened",
+              --       ["global"] = "Opened",
+              --       ["luadoc"] = "Opened",
+              --       ["redefined"] = "Opened",
+              --       ["strict"] = "Opened",
+              --       ["strong"] = "Opened",
+              --       ["type-check"] = "Opened",
+              --       ["unbalanced"] = "Opened",
+              --       ["unused"] = "Opened",
+              --     },
+              --     unusedLocalExclude = { "_*" },
+              --   },
+              --   telemetry = { enable = false },
+              --   hover = {
+              --     expandAlias = false,
+              --   },
+              --   hint = {
+              --     enable = true,
+              --     setType = false,
+              --     paramType = true,
+              --     paramName = "Disable",
+              --     semicolon = "Disable",
+              --     arrayIndex = "Disable",
+              --   },
+              --   format = {
+              --     enable = false,
+              --     defaultConfig = {
+              --       indent_style = "space",
+              --       indent_size = "2",
+              --       continuation_indent_size = "2",
+              --     },
+              --   },
+              --   window = {
+              --     progressBar = true,
+              --     statusBar = true,
+              --   },
             },
           },
-          -- handlers = {
-          --   -- always go to the first definition
-          --   ["textDocument/definition"] = function(err, result, ...)
-          --     if vim.tbl_islist(result) or type(result) == "table" then
-          --       result = result[1]
-          --     end
-          --     vim.lsp.handlers["textDocument/definition"](err, result, ...)
-          --   end,
-          -- },
         },
         --end,
       },

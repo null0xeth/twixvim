@@ -15,93 +15,10 @@
 -- end
 
 local spec = {
-  -- {
-  --   "folke/neodev.nvim",
-  --   --event = "KindaLazy",
-  --   config = function()
-  --     require("neodev").setup({
-  --       library = {
-  --         enabled = true,
-  --         runtime = true,
-  --         plugins = {
-  --           "nvim-cmp",
-  --           "plenary.nvim",
-  --           "neotest",
-  --           "nvim-dap",
-  --           "nvim-notify",
-  --           "nui.nvim",
-  --           "nvim-lspconfig",
-  --           "nvim-dap-ui",
-  --         },
-  --         types = true,
-  --       },
-  --       lspconfig = true,
-  --       pathStrict = true,
-  --     })
-  --   end,
-  -- },
-  -- {
-  --   "antosha417/nvim-lsp-file-operations",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-neo-tree/neo-tree.nvim",
-  --   },
-  --   config = function()
-  --     require("lsp-file-operations").setup()
-  --   end,
-  -- },
   {
     "neovim/nvim-lspconfig",
     event = "KindaLazy",
     dependencies = {
-      -- {
-      --   "folke/neodev.nvim",
-      --   config = function()
-      --     require("neodev").setup({
-      --       library = {
-      --         enabled = true,
-      --         runtime = false,
-      --         plugins = {
-      --           "nvim-cmp",
-      --           "plenary.nvim",
-      --           "neotest",
-      --           "nvim-dap",
-      --           "nvim-notify",
-      --           "nui.nvim",
-      --           "nvim-lspconfig",
-      --           "nvim-dap-ui",
-      --         },
-      --         types = true,
-      --       },
-      --       lspconfig = true,
-      --       pathStrict = false,
-      --     })
-      --   end,
-      -- },
-      {
-        "folke/neodev.nvim",
-        config = function()
-          require("neodev").setup({
-            library = {
-              enabled = true,
-              runtime = true,
-              plugins = {
-                "nvim-cmp",
-                "plenary.nvim",
-                "neotest",
-                "nvim-dap",
-                "nvim-notify",
-                "nui.nvim",
-                "nvim-lspconfig",
-                "nvim-dap-ui",
-              },
-              types = true,
-            },
-            lspconfig = true,
-            pathStrict = true,
-          })
-        end,
-      },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
       { "smjonas/inc-rename.nvim" },
@@ -136,7 +53,7 @@ local spec = {
     opts = {
       formatters_by_ft = {
         sh = { "shfmt" },
-        ["*"] = { "trim_whitespace" },
+        ["_"] = { "trim_whitespace" },
       },
       format_on_save = {
         lsp_format = "fallback",
