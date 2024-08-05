@@ -141,8 +141,11 @@ local spec = {
       format_on_save = {
         lsp_format = "fallback",
         timeout_ms = 500,
-        async = true,
+        async = false,
         quiet = true,
+      },
+      format_after_save = {
+        lsp_format = "fallback",
       },
     },
   },
