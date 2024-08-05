@@ -28,12 +28,12 @@ return {
         } })
     end,
   },
-  {
-    "mfussenegger/nvim-lint",
-    opts = function(_, opts)
-      opts.linters_by_ft["yaml"] = { "yamllint" }
-    end,
-  },
+  -- {
+  --   "mfussenegger/nvim-lint",
+  --   opts = function(_, opts)
+  --     opts.linters_by_ft["yaml"] = { "yamllint" }
+  --   end,
+  -- },
   {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)

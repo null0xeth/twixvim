@@ -8,6 +8,13 @@ return {
     end,
   },
   {
+    "mfussenegger/nvim-lint",
+    opts = function(_, opts)
+      -- move dis to other langs
+      opts.linters_by_ft["sh"] = { "shellcheck" }
+    end,
+  },
+  {
     "luckasRanarison/tree-sitter-hypr",
     event = "BufRead */hypr/*.conf",
     config = function()

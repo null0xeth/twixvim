@@ -1,6 +1,6 @@
 local instance_cache = {}
 local module_cache = {}
-
+local uv = vim.uv or vim.loop
 ---@package
 ---@param name string
 ---@param cacheKey string
@@ -67,16 +67,31 @@ end
 ---@param self LspController
 function LspController:lint_on_save(_, _)
   local lint = get_module("lint", "lint")
+  local timer = assert(uv.new_timer())
+  local DEBOUNCE_MS = 500
   local autocmdcontroller = get_obj("framework.controller.autocmdcontroller", "autocmdcontroller")
   local augroup = autocmdcontroller:add_augroup("AutoLint", { clear = true })
   autocmdcontroller:add_autocmd({
-    event = { "BufEnter", "BufWritePost" },
+    event = { "BufEnter", "BufWritePost", "TextChanged", "InsertLeave" },
     group = augroup,
     command_or_callback = function()
-      lint.try_lint()
-      vim.diagnostic.enable(0)
+      local bufnr = vim.api.nvim_get_current_buf()
+      timer:stop()
+      timer:start(
+        DEBOUNCE_MS,
+        0,
+        vim.schedule_wrap(function()
+          if vim.api.nvim_buf_is_valid(bufnr) then
+            vim.api.nvim_buf_call(bufnr, function()
+              lint.try_lint(nil, { ignore_errors = true })
+            end)
+          end
+        end)
+      )
     end,
   })
+  lint.try_lint(nil, { ignore_errors = true })
+  vim.diagnostic.enable(0)
 end
 
 ---Combines the `shared` onAttach logic from "baseOnAttach" with custom onAttach logic

@@ -169,7 +169,7 @@ local spec = {
         or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
       opts.sources = vim.list_extend(opts.sources or {}, {
         nls.builtins.diagnostics.actionlint, -- gh actions
-        nls.builtins.diagnostics.shellcheck,
+        --nls.builtins.diagnostics.shellcheck,
         --nls.builtins.formatting.shfmt, -- add actionlint for gh
       })
     end,
