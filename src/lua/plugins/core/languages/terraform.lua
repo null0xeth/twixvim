@@ -9,6 +9,15 @@ local spec = {
     end,
   },
   {
+    -- add Terragrunt
+    "stevearc/conform.nvim",
+    opts = function(_, opts)
+      opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft, {
+        terraform = { "terraform_fmt" },
+      })
+    end,
+  },
+  {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")

@@ -130,8 +130,8 @@ local spec = {
   },
   {
     "stevearc/conform.nvim",
-    event = "KindaLazy",
-    enabled = false,
+    event = "BufReadPre",
+    enabled = true,
     cmd = { "ConformInfo" },
     opts = {
       formatters_by_ft = {
@@ -139,8 +139,9 @@ local spec = {
         ["*"] = { "trim_whitespace" },
       },
       format_on_save = {
-        lsp_fallback = false,
-        async = false,
+        lsp_format = "fallback",
+        timeout_ms = 500,
+        async = true,
         quiet = true,
       },
     },
