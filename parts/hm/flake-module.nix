@@ -46,6 +46,7 @@
               packages = [
                 #pkgs.neovim
                 inputs'.neovim-flake.packages.default
+                pkgs.stylua
                 # pkgs.vscode-extensions.vadimcn.vscode-lldb
                 # pkgs.vscode
               ];
