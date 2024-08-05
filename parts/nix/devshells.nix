@@ -10,6 +10,9 @@
     # packages.default = self'.packages.twixvim;
 
     devshells.default = {
+      devshell = {
+        name = "Neovim Devshell";
+      };
       env = [];
       packages = inputs.nixpkgs.lib.attrValues {
         inherit (inputs'.nil.packages) default;
