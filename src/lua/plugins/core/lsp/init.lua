@@ -135,7 +135,7 @@ local spec = {
     cmd = { "ConformInfo" },
     opts = {
       formatters_by_ft = {
-        bash = { "shfmt" },
+        sh = { "shfmt" },
         ["*"] = { "trim_whitespace" },
       },
       format_on_save = {
@@ -169,7 +169,8 @@ local spec = {
         or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
       opts.sources = vim.list_extend(opts.sources or {}, {
         nls.builtins.diagnostics.actionlint, -- gh actions
-        nls.builtins.formatting.shfmt, -- add actionlint for gh
+        nls.builtins.diagnostics.shellcheck,
+        --nls.builtins.formatting.shfmt, -- add actionlint for gh
       })
     end,
   },

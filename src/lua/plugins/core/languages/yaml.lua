@@ -21,7 +21,11 @@ return {
   {
     "stevearc/conform.nvim",
     opts = function(_, opts)
-      opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft, { yaml = { "yamlfix" } })
+      opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft, { yaml = { "prettierd" } })
+      opts.formatters =
+        vim.tbl_deep_extend("force", opts.formatters, { prettierd = {
+          range_args = false,
+        } })
     end,
   },
   {
