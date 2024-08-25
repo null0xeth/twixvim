@@ -27,8 +27,24 @@
       env = [];
       packages = with pkgs;
         [
+          luajit
           luajitPackages.jsregexp
           luajitPackages.luacheck
+          python312Packages.pip
+          ruby
+          php84
+          nodejs_22
+          zulu17
+          julia_19-bin
+          hadolint
+          checkmake
+          gitlint
+          pgformatter
+          tfsec
+          hclfmt
+          yamlfix
+
+          php84Packages.composer
           nodePackages.jsonlint
           rust-bin.stable.latest.default
           ripgrep
@@ -53,7 +69,6 @@
           shfmt
           shellcheck
           bash-language-server
-          #yamlfix
 
           yamllint
           manix
