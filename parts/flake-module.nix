@@ -9,6 +9,7 @@
     config,
     pkgs,
     system,
+    inputs',
     ...
   }: {
     _module.args.pkgs = import inputs.nixpkgs {
@@ -16,7 +17,7 @@
       config.allowUnfree = true;
       config.hostPlatform = system;
       overlays = [
-        inputs.rust-overlay.overlays.default
+        inputs'.rust-overlay.overlays.default
       ];
     };
   };
