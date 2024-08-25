@@ -64,7 +64,7 @@
           taplo
           vscode
         ]
-        ++ inputs'.nil.packages.default;
+        ++ [inputs'.nil.packages.default];
     };
   };
 }
