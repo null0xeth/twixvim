@@ -32,6 +32,7 @@ local spec = {
   {
     -- Looks for .nvim/deployment.lua in root of pproject
     "coffebar/transfer.nvim",
+    enabled = false,
     event = "KindaLazy",
     cmd = { "TransferInit", "DiffRemote", "TransferUpload", "TransferDownload", "TransferDirDiff", "TransferRepeat" },
     config = function()

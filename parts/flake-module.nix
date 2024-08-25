@@ -43,7 +43,7 @@
           tfsec
           hclfmt
           yamlfix
-
+          lua51Packages.lua
           php84Packages.composer
           nodePackages.jsonlint
           rust-bin.stable.latest.default
