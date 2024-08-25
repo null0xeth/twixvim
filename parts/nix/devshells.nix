@@ -19,7 +19,7 @@
         #inherit (config.packages.modified_rust) default;
         inherit (pkgs.luajitPackages) jsregexp luacheck;
         inherit (pkgs.nodePackages) jsonlint;
-        #inherit (pkgs.rust-bin.stable.latest) default;
+        inherit (pkgs.rust-bin.stable.latest) default;
         inherit
           (pkgs)
           ripgrep
