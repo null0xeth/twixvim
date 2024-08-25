@@ -199,6 +199,7 @@ local spec = {
     config = function()
       local reactive = require('reactive')
       reactive.setup {
+        load = { 'catppuccin-mocha-cursor', 'catppuccin-mocha-cursorline' },
         builtin = {
           cursorline = true,
           cursor = true,

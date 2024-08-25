@@ -101,7 +101,6 @@ local spec = {
         overseer = true,
         pounce = false,
         rainbow_delimiters = false,
-        reactive = true,
         render_markdown = false,
         symbols_outline = true, --symbols-outline.nvim <- install dis
         telekasten = false,
