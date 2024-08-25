@@ -1,6 +1,6 @@
 {inputs, ...}: {
   imports = [
-    inputs.devshell.flakeModulinputs.devshell.flakeModulee
+    inputs.devshell.flakeModule
     ./hm/flake-module.nix
   ];
 
