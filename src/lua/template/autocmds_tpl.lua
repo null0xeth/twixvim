@@ -47,21 +47,6 @@ vaapi.nvim_set_hl(0, "TerminalCursorShape", { underline = true })
 local is_neo = vim.bo.filetype == "neo-tree"
 local is_dashh = vim.bo.filetype == "dashboard"
 
-vim.filetype.add({
-  pattern = {
-    [".*"] = {
-      function(path, buf)
-        return vim.bo[buf]
-            and vim.bo[buf].filetype ~= "bigfile"
-            and path
-            and vim.fn.getfsize(path) > vim.g.bigfile_size
-            and "bigfile"
-          or nil
-      end,
-    },
-  },
-})
-
 local cmds = {
   {
     event = "FileType",

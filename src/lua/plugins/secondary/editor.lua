@@ -9,6 +9,78 @@ local spec = {
     end,
   },
   {
+    "numToStr/FTerm.nvim",
+    event = "KindaLazy",
+    keys = {
+      {
+        "<c-/>",
+        function()
+          require("FTerm").toggle()
+        end,
+      },
+    },
+    config = function()
+      require("FTerm").setup({
+        border = "double",
+        dimensions = {
+          height = 0.9,
+          width = 0.9,
+        },
+      })
+    end,
+  },
+  {
+    -- Looks for .nvim/rsync.toml file in root of project
+    "OscarCreator/rsync.nvim",
+    event = "KindaLazy",
+    build = "make",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      require("rsync").setup()
+    end,
+  },
+  {
+    -- Looks for .nvim/deployment.lua in root of pproject
+    "coffebar/transfer.nvim",
+    event = "KindaLazy",
+    cmd = { "TransferInit", "DiffRemote", "TransferUpload", "TransferDownload", "TransferDirDiff", "TransferRepeat" },
+    config = function()
+      require("which-key").add({
+        { "<leader>u", group = "Upload / Download", icon = "" },
+        {
+          "<leader>ud",
+          "<cmd>TransferDownload<cr>",
+          desc = "Download from remote server (scp)",
+          icon = { color = "green", icon = "󰇚" },
+        },
+        {
+          "<leader>uf",
+          "<cmd>DiffRemote<cr>",
+          desc = "Diff file with remote server (scp)",
+          icon = { color = "green", icon = "" },
+        },
+        {
+          "<leader>ui",
+          "<cmd>TransferInit<cr>",
+          desc = "Init/Edit Deployment config",
+          icon = { color = "green", icon = "" },
+        },
+        {
+          "<leader>ur",
+          "<cmd>TransferRepeat<cr>",
+          desc = "Repeat transfer command",
+          icon = { color = "green", icon = "󰑖" },
+        },
+        {
+          "<leader>uu",
+          "<cmd>TransferUpload<cr>",
+          desc = "Upload to remote server (scp)",
+          icon = { color = "green", icon = "󰕒" },
+        },
+      })
+    end,
+  },
+  {
     "gbprod/substitute.nvim",
     opts = {
       -- your configuration comes here
