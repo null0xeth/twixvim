@@ -10,7 +10,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     systems.url = "github:nix-systems/default";
 
     nil.url = "github:oxalica/nil";
@@ -28,6 +31,8 @@
   outputs = inputs @ {
     flake-parts,
     systems,
+    rust-overlay,
+    nixpkgs,
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {

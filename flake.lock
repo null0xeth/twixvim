@@ -417,6 +417,7 @@
         "neovim-flake": "neovim-flake",
         "nil": "nil",
         "nixpkgs": "nixpkgs_5",
+        "rust-overlay": "rust-overlay_2",
         "systems": "systems_2"
       }
     },
@@ -454,6 +455,26 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "rev": "095702e63a40e86f339d11864da9dc965b70a01e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_2": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1724552650,
+        "narHash": "sha256-u1xzgrdRTL0DQhjXMgmEvl75IrL8zGf0RS34IQJXxeU=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "19fda552b69513df7b6aa5fcfd1412c0221467b1",
         "type": "github"
       },
       "original": {
