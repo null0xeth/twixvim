@@ -34,25 +34,12 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      local function add(lang)
-        if type(opts.ensure_installed) == "table" then
-          table.insert(opts.ensure_installed, lang)
-        end
-      end
-
-      vim.filetype.add({
-        extension = { rasi = "rasi" },
-        pattern = {
-          [".*/waybar/config"] = "jsonc",
-          [".*/mako/config"] = "dosini",
-          [".*/kitty/*.conf"] = "bash",
-        },
-      })
-
-      add("git_config")
-      add("rasi")
-    end,
+    opts = {
+      ensure_installed = {
+        "git_config",
+        "rasi",
+      },
+    },
   },
   {
     "nvimtools/none-ls.nvim",
