@@ -30,16 +30,6 @@ local spec = {
     end,
   },
   {
-    -- Looks for .nvim/rsync.toml file in root of project
-    "OscarCreator/rsync.nvim",
-    event = "KindaLazy",
-    build = "make",
-    dependencies = "nvim-lua/plenary.nvim",
-    config = function()
-      require("rsync").setup()
-    end,
-  },
-  {
     -- Looks for .nvim/deployment.lua in root of pproject
     "coffebar/transfer.nvim",
     event = "KindaLazy",

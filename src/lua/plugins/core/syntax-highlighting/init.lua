@@ -195,6 +195,7 @@ local spec = {
   },
   {
     'rasulomaroff/reactive.nvim',
+    enabled = false,
     event = "KindaLazy",
     config = function()
       local reactive = require('reactive')
