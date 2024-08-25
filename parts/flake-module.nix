@@ -27,9 +27,11 @@
       env = [];
       packages = with pkgs;
         [
-          luajit
-          luajitPackages.jsregexp
-          luajitPackages.luacheck
+          #luajit
+          #luajitPackages.jsregexp
+          lua51Packages.jsregexp
+          #luajitPackages.luacheck
+          lua51Packages.luacheck
           python312Packages.pip
           ruby
           php84
