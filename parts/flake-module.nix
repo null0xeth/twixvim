@@ -1,7 +1,6 @@
 {inputs, ...}: {
   imports = [
-    #inputs.pre-commit-hooks-nix.flakeModule
-    ./nix/devshells.nix
+    inputs.devshell.flakeModulinputs.devshell.flakeModulee
     ./hm/flake-module.nix
   ];
 
@@ -19,6 +18,53 @@
       overlays = [
         inputs.rust-overlay.overlays.default
       ];
+    };
+
+    devshells.default = {
+      devshell = {
+        name = "Neovim Devshell";
+      };
+      env = [];
+      packages = with pkgs;
+        [
+          luajitPackages.jsregexp
+          luajitPackages.luacheck
+          nodePackages.jsonlint
+          rust-bin.stable.latest.default
+          ripgrep
+          nixfmt
+          cmake
+          ansible-language-server
+          ansible-lint
+          lua-language-server
+          marksman
+          vscode-langservers-extracted
+          actionlint
+          yaml-language-server
+          alejandra
+          nixpkgs-fmt
+          statix
+          vulnix
+          deadnix
+          stylua
+          prettierd
+          terraform-ls
+          tflint
+          shfmt
+          shellcheck
+          bash-language-server
+          #yamlfix
+
+          yamllint
+          manix
+          gcc
+          gnumake
+          helm-ls
+          typescript
+          taplo
+          vscode
+        ]
+        ++ inputs'.nil.packages.default;
     };
   };
 }
