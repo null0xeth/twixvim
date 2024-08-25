@@ -87,21 +87,89 @@ local spec = {
   {
     "stevearc/overseer.nvim",
     -- stylua: ignore
-    keys = {
-      { "<leader>toR", "<cmd>OverseerRunCmd<cr>", desc = "Run Command" },
-      { "<leader>toa", "<cmd>OverseerTaskAction<cr>", desc = "Task Action" },
-      { "<leader>tob", "<cmd>OverseerBuild<cr>", desc = "Build" },
-      { "<leader>toc", "<cmd>OverseerClose<cr>", desc = "Close" },
-      { "<leader>tod", "<cmd>OverseerDeleteBundle<cr>", desc = "Delete Bundle" },
-      { "<leader>tol", "<cmd>OverseerLoadBundle<cr>", desc = "Load Bundle" },
-      { "<leader>too", "<cmd>OverseerOpen<cr>", desc = "Open" },
-      { "<leader>toq", "<cmd>OverseerQuickAction<cr>", desc = "Quick Action" },
-      { "<leader>tor", "<cmd>OverseerRun<cr>", desc = "Run" },
-      { "<leader>tos", "<cmd>OverseerSaveBundle<cr>", desc = "Save Bundle" },
-      { "<leader>tot", "<cmd>OverseerToggle<cr>", desc = "Toggle" },
+    cmd = {
+      "OverseerOpen",
+      "OverseerClose",
+      "OverseerToggle",
+      "OverseerSaveBundle",
+      "OverseerLoadBundle",
+      "OverseerDeleteBundle",
+      "OverseerRunCmd",
+      "OverseerRun",
+      "OverseerInfo",
+      "OverseerBuild",
+      "OverseerQuickAction",
+      "OverseerTaskAction",
+      "OverseerClearCache",
     },
+    keys = {
+      { "<leader>ow", "<cmd>OverseerToggle<cr>",      desc = "Task list" },
+      { "<leader>oo", "<cmd>OverseerRun<cr>",         desc = "Run task" },
+      { "<leader>oq", "<cmd>OverseerQuickAction<cr>", desc = "Action recent task" },
+      { "<leader>oi", "<cmd>OverseerInfo<cr>",        desc = "Overseer Info" },
+      { "<leader>ob", "<cmd>OverseerBuild<cr>",       desc = "Task builder" },
+      { "<leader>ot", "<cmd>OverseerTaskAction<cr>",  desc = "Task action" },
+      { "<leader>oc", "<cmd>OverseerClearCache<cr>",  desc = "Clear cache" },
+    },
+    opts = {
+      dap = false,
+      task_list = {
+        bindings = {
+          ["<C-h>"] = false,
+          ["<C-j>"] = false,
+          ["<C-k>"] = false,
+          ["<C-l>"] = false,
+        },
+      },
+      form = {
+        win_opts = {
+          winblend = 0,
+        },
+      },
+      confirm = {
+        win_opts = {
+          winblend = 0,
+        },
+      },
+      task_win = {
+        win_opts = {
+          winblend = 0,
+        },
+      },
+    }
     config = true,
   },
+   {
+    "folke/edgy.nvim",
+    optional = true,
+    opts = function(_, opts)
+      opts.right = opts.right or {}
+      table.insert(opts.right, {
+        title = "Overseer",
+        ft = "OverseerList",
+        open = function()
+          require("overseer").open()
+        end,
+      })
+    end,
+  },
+  {
+    "nvim-neotest/neotest",
+    optional = true,
+    opts = function(_, opts)
+      opts = opts or {}
+      opts.consumers = opts.consumers or {}
+      opts.consumers.overseer = require("neotest.consumers.overseer")
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap",
+    optional = true,
+    opts = function()
+      require("overseer").enable_dap()
+    end,
+  },
 }
+
 
 return spec

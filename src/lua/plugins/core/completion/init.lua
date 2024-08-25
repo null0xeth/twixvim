@@ -129,6 +129,7 @@ local spec = {
       "hrsh7th/cmp-nvim-lua",
       "petertriho/cmp-git",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      "SergioRibera/cmp-dotenv",
     },
     config = function()
       local completion_controller = require("framework.controller.completioncontroller"):new()

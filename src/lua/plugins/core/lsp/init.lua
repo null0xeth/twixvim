@@ -77,9 +77,43 @@ local spec = {
     end,
   },
   {
+    "zeioth/none-ls-autoload.nvim",
+    event = "BufEnter",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "zeioth/none-ls-external-sources.nvim", -- To install a external sources library.
+    },
+    opts_extend = { "external_sources" },
+    opts = {
+      external_sources = {
+        -- diagnostics
+        "none-ls-external-sources.diagnostics.cpplint",
+        "none-ls-external-sources.diagnostics.eslint_d",
+        "none-ls-external-sources.diagnostics.luacheck",
+        "none-ls-external-sources.diagnostics.shellcheck",
+        "none-ls-external-sources.diagnostics.yamllint",
+        -- formatting
+        "none-ls-external-sources.formatting.beautysh",
+        "none-ls-external-sources.formatting.easy-coding-standard",
+        "none-ls-external-sources.formatting.eslint_d",
+        "none-ls-external-sources.formatting.jq",
+        "none-ls-external-sources.formatting.latexindent",
+        "none-ls-external-sources.formatting.standardrb",
+        "none-ls-external-sources.formatting.yq",
+
+        -- code actions
+        "none-ls-external-sources.code_actions.eslint",
+        "none-ls-external-sources.code_actions.eslint_d",
+        "none-ls-external-sources.code_actions.shellcheck",
+      },
+    },
+  },
+
+  {
     "nvimtools/none-ls.nvim",
     event = "KindaLazy",
     dependencies = { "mason.nvim" },
+    opts_extend = { "sources" },
     opts = function(_, opts)
       local nls = require("null-ls")
       opts.root_dir = opts.root_dir

@@ -40,6 +40,8 @@ return {
       local nls = require("null-ls")
       opts.sources = vim.list_extend(opts.sources or {}, {
         nls.builtins.diagnostics.yamllint,
+        nls.builtins.formatting.yamlfix, --yaml
+        nls.builtins.formatting.yamlfmt, --yaml
       })
     end,
   },

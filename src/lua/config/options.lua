@@ -6,7 +6,7 @@ local vim_opt_options = {
     --formatexpr = 'v:lua.require("conform").formatexpr()',
     ttyfast = true,
     breakindent = true,
-    clipboard = "unnamedplus",
+    clipboard = vim.env.SSH_TTY and "" or "unnamedplus",
     joinspaces = false,
     scrollback = 100000,
     shell = "/run/current-system/sw/bin/bash",
@@ -104,6 +104,7 @@ local vim_opt_options = {
     foldlevel = 99, -- set high foldlevel for nvim-ufo
     foldlevelstart = 99, -- start with all code unfolded
     foldmethod = "expr",
+    smoothscroll = true,
     foldexpr = "v:lua.vim.treesitter.foldexpr()",
     foldtext = "v:lua.vim.treesitter.foldtext()",
   },
@@ -137,10 +138,13 @@ vim.filetype.add({
     tf = "terraform",
     tfvars = "terraform-vars",
     tfstate = "json",
+    hcl = "terraform",
+    tm = "terraform",
   },
 })
 
-opt.shortmess:append("sSIFWT")
+--opt.shortmess:append("sSIFWT")
+opt.shortmess:append({ W = true, I = true, c = true, C = true })
 opt.iskeyword:append("-")
 vim.keymap.set("", "<Space>", "<Nop>", { silent = true })
 

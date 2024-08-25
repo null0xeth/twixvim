@@ -3,6 +3,7 @@ local spec = {
     "haringsrob/nvim_context_vt",
     event = "KindaLazy",
     dependencies = "nvim-treesitter/nvim-treesitter",
+
     opts = {
       prefix = " 󱞷",
       highlight = "NonText",
@@ -54,6 +55,7 @@ local spec = {
       },
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+    opts_extend = { "ensure_installed" }
     opts = {
       sync_install = false,
       auto_install = true,
@@ -61,10 +63,12 @@ local spec = {
         "bash",
         "comment",
         "dockerfile",
+        "diff",
         "dap_repl",
         "html",
         "markdown",
         "markdown_inline",
+        "printf",
         "org",
         "query",
         "regex",
@@ -187,6 +191,20 @@ local spec = {
       require("treesj").setup({
         use_default_keymaps = false,
       })
+    end,
+  },
+  {
+    'rasulomaroff/reactive.nvim',
+    event = "KindaLazy",
+    config = function()
+      local reactive = require('reactive')
+      reactive.setup {
+        builtin = {
+          cursorline = true,
+          cursor = true,
+          modemsg = true,
+        },
+      }
     end,
   },
   {

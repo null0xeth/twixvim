@@ -38,6 +38,9 @@ local spec = {
       { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, long_opts,  desc = "Scroll backward", },
     },
     config = function()
+      if vim.o.filetype == "lazy" then
+        vim.cmd([[messages clear]])
+      end
       local supportlibcontroller = require("framework.controller.supportlibcontroller"):new()
       supportlibcontroller:noice_setup()
     end,

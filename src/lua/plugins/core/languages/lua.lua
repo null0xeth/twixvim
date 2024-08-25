@@ -11,9 +11,6 @@ local spec = {
   },
   {
     "folke/lazydev.nvim",
-    dependencies = {
-      "Bilal2453/luvit-meta",
-    },
     ft = "lua", -- only load on lua files
     cmd = "LazyDev",
     opts = {
@@ -21,9 +18,12 @@ local spec = {
         -- See the configuration section for more details
         -- Load luvit types when the `vim.uv` word is found
         { path = "luvit-meta/library", words = { "vim%.uv", "vim%.loop" } },
+        { path = "lazy.nvim", words = { "LazyVim" } },
       },
     },
   },
+  -- Manage libuv types with lazy. Plugin will never be loaded
+  { "Bilal2453/luvit-meta", lazy = true },
   { -- optional completion source for require statements and module annotations
     "hrsh7th/nvim-cmp",
     opts = function(_, opts)
@@ -34,15 +34,6 @@ local spec = {
       })
     end,
   },
-  -- {
-  --   "nvimtools/none-ls.nvim",
-  --   opts = function(_, opts)
-  --     local nls = require("null-ls")
-  --     opts.sources = vim.list_extend(opts.sources or {}, {
-  --       nls.builtins.diagnostics.luacheck,
-  --     })
-  --   end,
-  -- },
 
   {
     "stevearc/conform.nvim",

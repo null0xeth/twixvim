@@ -34,6 +34,18 @@ return {
     end,
   },
   {
+    "nvimtools/none-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      opts.sources = vim.list_extend(opts.sources or {}, {
+        nls.builtins.diagnostics.cppcheck,
+        nls.builtins.diagnostics.cmake_lint,
+        nls.builtins.formatting.clang_format,
+        nls.builtins.formatting.cmake_format,
+      })
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     --dependencies = { "p00f/clangd_extensions.nvim" },
     opts = {

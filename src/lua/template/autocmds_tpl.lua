@@ -47,6 +47,21 @@ vaapi.nvim_set_hl(0, "TerminalCursorShape", { underline = true })
 local is_neo = vim.bo.filetype == "neo-tree"
 local is_dashh = vim.bo.filetype == "dashboard"
 
+vim.filetype.add({
+  pattern = {
+    [".*"] = {
+      function(path, buf)
+        return vim.bo[buf]
+            and vim.bo[buf].filetype ~= "bigfile"
+            and path
+            and vim.fn.getfsize(path) > vim.g.bigfile_size
+            and "bigfile"
+          or nil
+      end,
+    },
+  },
+})
+
 local cmds = {
   {
     event = "FileType",
@@ -101,35 +116,87 @@ local cmds = {
       highlight.on_yank()
     end,
   },
-  { event = "FocusGained", command_or_callback = "checktime" },
+  -- Auto resize splits if window got resized
+  {
+    event = "VimResized",
+    group = define_augroup("resize_splits", { clear = true }),
+    command_or_callback = function()
+      local current_tab = vim.fn.tabpagenr()
+      vim.cmd("tabdo wincmd =")
+      vim.cmd("tabnext " .. current_tab)
+    end,
+  },
+  {
+    event = { "FocusGained", "TermClose", "TermLeave" },
+    group = define_augroup("checktime", { clear = true }),
+    command_or_callback = function()
+      if vim.o.buftype ~= "nofile" then
+        vim.cmd("checktime")
+      end
+    end,
+  },
+  -- Big file support
+  {
+    event = "FileType",
+    pattern = "bigfile",
+    group = define_augroup("bigfile", { clear = true }),
+    command_or_callback = function(event)
+      vim.b.minianimate_disable = true
+      vim.schedule(function()
+        vim.bo[ev.buf].syntax = vim.filetype.match({ buf = ev.buf }) or ""
+      end)
+    end,
+  },
+  -- go to last loc when opening a buffer
+  {
+    event = "BufReadPost",
+    pattern = "*",
+    group = define_augroup("last_loc", { clear = true }),
+    command_or_callback = function(event)
+      local exclude = { "gitcommit" }
+      local buf = event.buf
+      if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].my_last_loc then
+        return
+      end
+      vim.b[buf].my_last_loc = true
+      local mark = vim.api.nvim_buf_get_mark(buf, '"')
+      local lcount = vim.api.nvim_buf_line_count(buf)
+      if mark[1] > 0 and mark[1] <= lcount then
+        pcall(vim.api.nvim_win_set_cursor, 0, mark)
+      end
+    end,
+  },
   {
     event = "FileType",
     pattern = {
       "OverseerForm",
       "OverseerList",
       "checkhealth",
-      "floggraph",
-      "fugitive",
-      "git",
-      "help",
-      "lspinfo",
       "man",
-      "neotest-output",
-      "neotest-summary",
-      "qf",
-      "query",
-      "spectre_panel",
       "startuptime",
       "toggleterm",
       "tsplayground",
       "vim",
-      "neoai-input",
-      "neoai-output",
+      "PlenaryTestPopup",
+      "grug-far",
+      "help",
+      "lspinfo",
       "notify",
+      "qf",
+      "spectre_panel",
+      "startuptime",
+      "tsplayground",
+      "neotest-output",
+      "checkhealth",
+      "neotest-summary",
+      "neotest-output-panel",
+      "dbout",
+      "gitsigns.blame",
     },
     command_or_callback = function(event)
+      vim.bo[event.buf].buflisted = false
       local keymapcontroller = get_obj("framework.controller.keymapcontroller", "keymapcontroller")
-      bo[event.buf].buflisted = false
+
       keymapcontroller:register_keymap("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
     end,
   },
@@ -170,16 +237,16 @@ local cmds = {
     end,
   },
   --> Show diagnostics in float window.
-  -- {
-  --   event = "CursorHold",
-  --   command_or_callback = function()
-  --     local statecontroller = get_obj("framework.controller.statecontroller", "statecontroller")
-  --     local showDiagnostics = statecontroller:is_diagnostics_active()
-  --     if showDiagnostics then
-  --       schedule(diagnostic.open_float)
-  --     end
-  --   end,
-  -- },
+  {
+    event = "CursorHold",
+    command_or_callback = function()
+      local statecontroller = get_obj("framework.controller.statecontroller", "statecontroller")
+      local showDiagnostics = statecontroller:is_diagnostics_active()
+      if showDiagnostics then
+        schedule(diagnostic.open_float)
+      end
+    end,
+  },
   --> Show bufferline when >= 2 buffers open.
   {
     group = define_augroup("ToggleBufferline", { clear = true }),

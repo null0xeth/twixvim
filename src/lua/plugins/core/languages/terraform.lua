@@ -33,6 +33,8 @@ local spec = {
       formatters_by_ft = {
         terraform = { "terraform_fmt" },
         tf = { "terraform_fmt" },
+        hcl = { "terraform_fmt" },
+        tm = { "terraform_fmt" },
         ["terraform-vars"] = { "terraform_fmt" },
       },
     },
@@ -42,8 +44,12 @@ local spec = {
     opts = function(_, opts)
       local nls = require("null-ls")
       opts.sources = vim.list_extend(opts.sources or {}, {
-        nls.builtins.formatting.terraform_fmt,
         nls.builtins.diagnostics.terraform_validate,
+        nls.builtins.diagnostics.terragrunt_validate,
+        nls.builtins.formatting.terraform_fmt,
+        nls.builtins.formatting.terragrunt_fmt,
+        nls.builtins.diagnostics.tfsec,
+        nls.builtins.formatting.hclfmt, --hcl
       })
     end,
   },

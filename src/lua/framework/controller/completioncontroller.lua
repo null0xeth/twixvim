@@ -40,6 +40,7 @@ local function fetch_cmp_sources()
   return {
     { name = "path", priority_weight = 110 },
     { name = "crates", priority_weight = 110 },
+    { name = "dotenv", priority_weight = 90, max_item_count = 5 },
     {
       name = "nvim_lsp",
       max_item_count = 20,
@@ -128,6 +129,7 @@ local function fetch_cmp_formatting()
         maxwidth = 60,
         menu = {
           buffer = "[BUF]",
+          dotenv = "[ENV]",
           nvim_lsp = "[LSP]",
           nvim_lua = "[NLUA]",
           luasnip = "[SNIP]",

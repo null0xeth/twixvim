@@ -2,6 +2,204 @@ local config = require("config")
 
 local spec = {
   {
+    "altermo/iedit.nvim",
+    event = "KindaLazy",
+    config = function()
+      require("iedit").setup()
+    end,
+  },
+  {
+    "gbprod/substitute.nvim",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      on_substitute = nil,
+      yank_substituted_text = true,
+      preserve_cursor_position = true,
+      modifiers = nil,
+      highlight_substituted_text = {
+        enabled = true,
+        timer = 500,
+      },
+      range = {
+        prefix = "s",
+        prompt_current_text = false,
+        confirm = false,
+        complete_word = false,
+        subject = nil,
+        range = nil,
+        suffix = "",
+        auto_apply = false,
+        cursor_position = "end",
+      },
+      exchange = {
+        motion = false,
+        use_esc_to_cancel = true,
+        preserve_cursor_position = false,
+      },
+    },
+  },
+  {
+    "s1n7ax/nvim-comment-frame",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    keys = {
+      {
+        "<leader>cbs",
+        function()
+          require("nvim-comment-frame").add_comment()
+        end,
+        desc = "Add single-line commentbox",
+        mode = { "n" },
+      },
+      {
+        "<leader>cbm",
+        function()
+          require("nvim-comment-frame").add_multiline_comment()
+        end,
+        desc = "Add multi-line commentbox",
+        mode = { "n" },
+      },
+    },
+    config = function()
+      require("nvim-comment-frame").setup({
+
+        -- if true, <leader>cf keymap will be disabled
+        disable_default_keymap = false,
+
+        -- adds custom keymap
+        keymap = "<leader>cc",
+        multiline_keymap = "<leader>cm",
+
+        -- start the comment with this string
+        start_str = "//",
+
+        -- end the comment line with this string
+        end_str = "//",
+
+        -- fill the comment frame border with this character
+        fill_char = "-",
+
+        -- width of the comment frame
+        frame_width = 70,
+
+        -- wrap the line after 'n' characters
+        line_wrap_len = 50,
+
+        -- automatically indent the comment frame based on the line
+        auto_indent = true,
+
+        -- add comment above the current line
+        add_comment_above = true,
+
+        -- configurations for individual language goes here
+        languages = {
+          lua = {
+            -- start the comment with this string
+            start_str = "--[[",
+
+            -- end the comment line with this string
+            end_str = "]]--",
+
+            -- fill the comment frame border with this character
+            fill_char = "*",
+
+            -- width of the comment frame
+            frame_width = 100,
+
+            -- wrap the line after 'n' characters
+            line_wrap_len = 70,
+
+            -- automatically indent the comment frame based on the line
+            auto_indent = true,
+
+            -- add comment above the current line
+            add_comment_above = false,
+          },
+        },
+      })
+    end,
+  },
+  {
+    "ray-x/sad.nvim",
+    event = "KindaLazy",
+    dependencies = { "ray-x/guihua.lua" },
+    config = function()
+      require("sad").setup({
+        debug = false,
+        diff = "diff-so-fancy",
+        ls_file = "fd",
+        exact = false,
+        vsplit = true,
+      })
+    end,
+  },
+  {
+    "chrisgrieser/nvim-rip-substitute",
+    cmd = "RipSubstitute",
+    keys = {
+      {
+        "<leader>fs",
+        function()
+          require("rip-substitute").sub()
+        end,
+        mode = { "n", "x" },
+        desc = " rip substitute",
+      },
+    },
+    config = function()
+      require("rip-substitute").setup({
+        popupWin = {
+          title = " rip-substitute",
+          border = "single",
+          matchCountHlGroup = "Keyword",
+          noMatchHlGroup = "ErrorMsg",
+          hideSearchReplaceLabels = false,
+          ---@type "top"|"bottom"
+          position = "bottom",
+        },
+        prefill = {
+          ---@type "cursorWord"| false
+          normal = "cursorWord",
+          ---@type "selectionFirstLine"| false does not work with ex-command (see README).
+          visual = "selectionFirstLine",
+          startInReplaceLineIfPrefill = false,
+        },
+        keymaps = { -- normal & visual mode, if not stated otherwise
+          abort = "q",
+          confirm = "<CR>",
+          insertModeConfirm = "<C-CR>",
+          prevSubst = "<Up>",
+          nextSubst = "<Down>",
+          toggleFixedStrings = "<C-f>", -- ripgrep's `--fixed-strings`
+          toggleIgnoreCase = "<C-c>", -- ripgrep's `--ignore-case`
+          openAtRegex101 = "R",
+        },
+        incrementalPreview = {
+          matchHlGroup = "IncSearch",
+          rangeBackdrop = {
+            enabled = true,
+            blend = 50, -- between 0 and 100
+          },
+        },
+        regexOptions = {
+          startWithFixedStringsOn = false,
+          startWithIgnoreCase = false,
+          -- pcre2 enables lookarounds and backreferences, but performs slower
+          pcre2 = true,
+          -- disable if you use named capture groups (see README for details)
+          autoBraceSimpleCaptureGroups = true,
+        },
+        editingBehavior = {
+          -- When typing `()` in the `search` line, automatically adds `$n` to the
+          -- `replace` line.
+          autoCaptureGroups = false,
+        },
+        notificationOnSuccess = true,
+      })
+    end,
+  },
+  {
     "akinsho/toggleterm.nvim",
     cmd = { "ToggleTerm", "TermExec" },
     keys = {
@@ -55,59 +253,82 @@ local spec = {
       },
     },
   },
+  -- search/replace in multiple files
   {
-    "cshuaimin/ssr.nvim",
-    enabled = false,
-    opts = {
-      border = "rounded",
-      min_width = 50,
-      min_height = 5,
-      max_width = 120,
-      max_height = 25,
-      keymaps = {
-        close = "q",
-        next_match = "n",
-        prev_match = "N",
-        replace_confirm = "<cr>",
-        replace_all = "<leader><cr>",
-      },
-    },
+    "MagicDuck/grug-far.nvim",
+    opts = { headerMaxWidth = 80 },
+    cmd = "GrugFar",
     keys = {
       {
-        "<leader>srr",
+        "<leader>sr",
         function()
-          require("ssr").open()
+          local grug = require("grug-far")
+          local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+          grug.grug_far({
+            transient = true,
+            prefills = {
+              filesFilter = ext and ext ~= "" and "*." .. ext or nil,
+            },
+          })
         end,
-        mode = { "n", "x" },
-        desc = "Search and Replace (SSR)",
+        mode = { "n", "v" },
+        desc = "Search and Replace",
       },
     },
   },
-  { -- refactoring utilities
-    "ThePrimeagen/refactoring.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
-    opts = true,
-    keys = {
-			-- stylua: ignore start
-			{"<leader>ri", function() require("refactoring").refactor("Inline Variable") end,  desc = "󱗘 Inline Var (Refactoring)" },
-			{"<leader>re", function() require("refactoring").refactor("Extract Variable") end, desc = "󱗘 Extract Var (Refactoring)" },
-			{"<leader>ru", function() require("refactoring").refactor("Extract Function") end, desc = "󱗘 Extract Func (Refactoring)" },
-      -- stylua: ignore end
-    },
-  },
-  {
-    "nvim-pack/nvim-spectre",
-    build = false,
-    cmd = "Spectre",
-    opts = { open_cmd = "noswapfile vnew" },
-    -- stylua: ignore
-    keys = {
-      { "<leader>sst", function() require("spectre").toggle() end, desc = "Toggle (Spectre)" },
-      { '<leader>ssw', function() require("spectre").open_visual({select_word=true}) end, desc = "Search Current Word (Spectre)" },
-      { '<leader>ssv', function() require("spectre").open_visual() end, desc = "Open Visual Panel (Spectre)" },
-      { '<leader>ssv', function() require("spectre").open_file_search({select_word=true}) end, desc = "Search in File (Spectre)" },
-    },
-  },
+  -- {
+  --   "cshuaimin/ssr.nvim",
+  --   enabled = false,
+  --   opts = {
+  --     border = "rounded",
+  --     min_width = 50,
+  --     min_height = 5,
+  --     max_width = 120,
+  --     max_height = 25,
+  --     keymaps = {
+  --       close = "q",
+  --       next_match = "n",
+  --       prev_match = "N",
+  --       replace_confirm = "<cr>",
+  --       replace_all = "<leader><cr>",
+  --     },
+  --   },
+  --   keys = {
+  --     {
+  --       "<leader>srr",
+  --       function()
+  --         require("ssr").open()
+  --       end,
+  --       mode = { "n", "x" },
+  --       desc = "Search and Replace (SSR)",
+  --     },
+  --   },
+  -- },
+  -- { -- refactoring utilities
+  --   "ThePrimeagen/refactoring.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+  --   opts = true,
+  --   keys = {
+  -- 	-- stylua: ignore start
+  -- 	{"<leader>ri", function() require("refactoring").refactor("Inline Variable") end,  desc = "󱗘 Inline Var (Refactoring)" },
+  -- 	{"<leader>re", function() require("refactoring").refactor("Extract Variable") end, desc = "󱗘 Extract Var (Refactoring)" },
+  -- 	{"<leader>ru", function() require("refactoring").refactor("Extract Function") end, desc = "󱗘 Extract Func (Refactoring)" },
+  --     -- stylua: ignore end
+  --   },
+  -- },
+  -- {
+  --   "nvim-pack/nvim-spectre",
+  --   build = false,
+  --   cmd = "Spectre",
+  --   opts = { open_cmd = "noswapfile vnew" },
+  --   -- stylua: ignore
+  --   keys = {
+  --     { "<leader>sst", function() require("spectre").toggle() end, desc = "Toggle (Spectre)" },
+  --     { '<leader>ssw', function() require("spectre").open_visual({select_word=true}) end, desc = "Search Current Word (Spectre)" },
+  --     { '<leader>ssv', function() require("spectre").open_visual() end, desc = "Open Visual Panel (Spectre)" },
+  --     { '<leader>ssv', function() require("spectre").open_file_search({select_word=true}) end, desc = "Search in File (Spectre)" },
+  --   },
+  -- },
   {
     "chrisgrieser/nvim-origami",
     event = "KindaLazy",
@@ -155,7 +376,9 @@ local spec = {
   {
     "folke/which-key.nvim",
     event = "KindaLazy",
+    opts_extend = { "spec" },
     opts = {
+      defaults = {},
       setup = {
         triggers_blacklist = { i = { "<C-G>" } },
         plugins = {

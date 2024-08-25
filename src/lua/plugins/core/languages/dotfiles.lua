@@ -60,6 +60,16 @@ return {
       local nls = require("null-ls")
       opts.sources = vim.list_extend(opts.sources or {}, {
         nls.builtins.diagnostics.hadolint, -- dockerfile
+        nls.builtins.diagnostics.actionlint, --github actions
+        nls.builtins.diagnostics.checkmake, --check makefiles
+        nls.builtins.diagnostics.gitlint, --git
+        nls.builtins.diagnostics.zsh, --zsh
+
+        -- move
+        nls.builtins.formatting.packer, --hcp packer
+        nls.builtins.formatting.prettierd, --prettierd
+        nls.builtins.formatting.pg_format, --pgsql
+        nls.builtins.formatting.shfmt, --bash
       })
     end,
   },
