@@ -15,6 +15,9 @@
       inherit system;
       config.allowUnfree = true;
       config.hostPlatform = system;
+      overlays = [
+        inputs.rust-overlay.overlays.default
+      ];
     };
   };
 }

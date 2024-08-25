@@ -2,20 +2,12 @@
   imports = [inputs.devshell.flakeModule];
 
   perSystem = {
-    config,
-    system,
     pkgs,
     inputs',
     ...
   }: {
     # packages.default = inputs'.neovim-flake.packages.default;
     # packages.default = self'.packages.twixvim;
-    _module.args.pkgs = import inputs.nixpkgs {
-      inherit system;
-      overlays = [
-        inputs.rust-overlay.overlays.default
-      ];
-    };
 
     devshells.default = {
       devshell = {
