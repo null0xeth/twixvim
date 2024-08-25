@@ -55,9 +55,9 @@ local spec = {
       },
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    opts_extend = { "ensure_installed" }
+    opts_extend = { "ensure_installed" },
     opts = {
-      sync_install = false,
+      sync_install = true,
       auto_install = true,
       ensure_installed = {
         "bash",
@@ -81,10 +81,10 @@ local spec = {
         enable = true,
       },
       indent = { enable = true },
-      -- context_commentstring = {
-      --   enable = true,
-      --   enable_autocmd = false,
-      -- },
+      context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
+      },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -194,19 +194,19 @@ local spec = {
     end,
   },
   {
-    'rasulomaroff/reactive.nvim',
+    "rasulomaroff/reactive.nvim",
     enabled = false,
     event = "KindaLazy",
     config = function()
-      local reactive = require('reactive')
-      reactive.setup {
-        load = { 'catppuccin-mocha-cursor', 'catppuccin-mocha-cursorline' },
+      local reactive = require("reactive")
+      reactive.setup({
+        load = { "catppuccin-mocha-cursor", "catppuccin-mocha-cursorline" },
         builtin = {
           cursorline = true,
           cursor = true,
           modemsg = true,
         },
-      }
+      })
     end,
   },
   {
