@@ -27,11 +27,10 @@
       env = [];
       packages = with pkgs;
         [
-          #luajit
-          #luajitPackages.jsregexp
-          lua51Packages.jsregexp
-          #luajitPackages.luacheck
-          lua51Packages.luacheck
+          localstack
+          luajit
+          luajitPackages.jsregexp
+          luajitPackages.luacheck
           python312Packages.pip
           ruby
           php84
@@ -45,7 +44,6 @@
           tfsec
           hclfmt
           yamlfix
-          lua51Packages.lua
           php84Packages.composer
           nodePackages.jsonlint
           rust-bin.stable.latest.default
