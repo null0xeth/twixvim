@@ -56,7 +56,7 @@
               home.file = {
                 ".config/nvim" = {
                   enable = true;
-                  source = ../../src;
+                  source = ../../neovim;
                   recursive = true;
                 };
                 ".config/nvim/lua/config.lua" = {
@@ -69,7 +69,7 @@
               home.file = {
                 ".config/nvim" = {
                   enable = true;
-                  source = ../../src;
+                  source = ../../neovim;
                   recursive = true;
                 };
                 ".config/nvim/lua/config.lua" = {
