@@ -19,7 +19,7 @@
     nil.url = "github:oxalica/nil";
     devshell.url = "github:numtide/devshell";
     neovim-flake.url = "github:nix-community/neovim-nightly-overlay";
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+    alejandra.url = "github:kamadorueda/alejandra";
   };
 
   outputs = inputs @ {

@@ -27,7 +27,6 @@
       env = [];
       packages = with pkgs;
         [
-          localstack
           luajit
           luajitPackages.jsregexp
           luajitPackages.luacheck
