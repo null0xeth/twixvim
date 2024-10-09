@@ -32,7 +32,7 @@
           luajitPackages.luacheck
           python312Packages.pip
           ruby
-          php84
+            #php84
           nodejs_22
           zulu17
           julia_19-bin
@@ -43,7 +43,7 @@
           tfsec
           hclfmt
           yamlfix
-          php84Packages.composer
+            #php84Packages.composer
           nodePackages.jsonlint
           rust-bin.stable.latest.default
           ripgrep
