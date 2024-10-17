@@ -32,8 +32,8 @@
           luajitPackages.luacheck
           python312Packages.pip
           ruby
-            #php84
-          nodejs_22
+          #php84
+          #nodejs_22
           zulu17
           julia_19-bin
           hadolint
@@ -43,7 +43,7 @@
           tfsec
           hclfmt
           yamlfix
-            #php84Packages.composer
+          #php84Packages.composer
           nodePackages.jsonlint
           rust-bin.stable.latest.default
           ripgrep
@@ -77,6 +77,9 @@
           typescript
           taplo
           vscode
+          docker-compose-language-service
+          dockerfile-language-server-nodejs
+          gitlab-ci-ls
         ]
         ++ [inputs'.nil.packages.default];
     };
