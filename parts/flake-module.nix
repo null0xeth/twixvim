@@ -27,7 +27,7 @@
       env = [];
       packages = with pkgs;
         [
-          luajit
+          luajit_openresty
           luajitPackages.jsregexp
           luajitPackages.luacheck
           python312Packages.pip
