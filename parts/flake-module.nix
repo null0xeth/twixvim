@@ -31,9 +31,7 @@
           luajitPackages.jsregexp
           luajitPackages.luacheck
           python312Packages.pip
-          ruby
-          #php84
-          #nodejs_22
+
           zulu17
           julia_19-bin
           hadolint
