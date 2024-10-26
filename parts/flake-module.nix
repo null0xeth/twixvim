@@ -78,6 +78,11 @@
           docker-compose-language-service
           dockerfile-language-server-nodejs
           gitlab-ci-ls
+          ruby-lsp
+          rubyPackages_3_4.solargraph
+          rubocop
+          rubyPackages.standard
+          rubyPackages.erb-formatter
         ]
         ++ [inputs'.nil.packages.default];
     };
