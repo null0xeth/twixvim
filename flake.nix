@@ -75,7 +75,7 @@
           ];
         };
 
-        devshells.default = {
+        devShells.default = {
           devshell = {
             name = "Neovim Devshell";
           };
