@@ -79,7 +79,6 @@
           devshell = {
             name = "Neovim Devshell";
 
-            env = [];
             packages = with pkgs;
               [
                 luajit_openresty
