@@ -13,12 +13,6 @@
       url = "github:hercules-ci/flake-parts";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
-    agenix.url = "github:ryantm/agenix";
-
-    agenix-rekey = {
-      url = "github:oddlama/agenix-rekey";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,7 +53,7 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         #./parts/flake-module.nix
-        inputs.agenix-rekey.flakeModule
+        #inputs.agenix-rekey.flakeModule
         inputs.devshell.flakeModule
         ./parts/hm/flake-module.nix
       ];
