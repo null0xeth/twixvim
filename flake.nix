@@ -46,7 +46,7 @@
   outputs = inputs @ {
     flake-parts,
     systems,
-    rust-overlay,
+    #rust-overlay,
     nixpkgs,
     ...
   }:
