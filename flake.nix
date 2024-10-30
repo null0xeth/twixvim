@@ -92,7 +92,6 @@
                 luajitPackages.jsregexp
                 luajitPackages.luacheck
                 python312Packages.pip
-                config.agenix-rekey.package
 
                 zulu17
                 julia_19-bin
