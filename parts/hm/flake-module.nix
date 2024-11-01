@@ -44,10 +44,7 @@
           {
             home = {
               packages = [
-                #pkgs.neovim
                 inputs'.neovim-flake.packages.default
-                # pkgs.vscode-extensions.vadimcn.vscode-lldb
-                # pkgs.vscode
               ];
             };
           }
