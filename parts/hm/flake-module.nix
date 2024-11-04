@@ -3,7 +3,7 @@
   ...
 }: {
   flake.homeManagerModules.default = moduleWithSystem (
-    perSystem @ { nixpkgs, inputs' }: {
+    perSystem @ { nixpkgs, inputs', inputs }: {
       config,
       lib,
       pkgs,
@@ -41,9 +41,11 @@
 
         config = mkIf config.modules.twixvim.enable (mkMerge [
           {
+	    nixpkgs.overlays = [inputs.neovim-flake.overlays.default];
             home = {
               packages = [
-                inputs'.neovim-flake.packages.default
+                pkgs.neovim
+		#inputs'.neovim-flake.packages.default
               ];
             };
           }
