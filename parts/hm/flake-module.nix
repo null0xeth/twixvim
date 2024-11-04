@@ -3,9 +3,8 @@
   ...
 }: {
   flake.homeManagerModules.default = moduleWithSystem (
-    perSystem @ { nixpkgs }: {
+    perSystem @ { nixpkgs, inputs' }: {
       config,
-      inputs',
       lib,
       pkgs,
       ...
@@ -40,11 +39,7 @@
           };
         };
 
-        config = 
-	  let
-	    cfg = config.modules.twixvim;
-	 in 
-	 mkIf cfg.enable (mkMerge [
+        config = mkIf config.modules.twixvim.enable (mkMerge [
           {
             home = {
               packages = [
@@ -52,8 +47,8 @@
               ];
             };
           }
-          (mkIf (!cfg.settings.development.enable) (mkMerge [
-            (mkIf (!cfg.settings.configuration.enable) {
+          (mkIf (!config.modules.twixvim.settings.development.enable) (mkMerge [
+            (mkIf (!config.modules.twixvim.settings.configuration.enable) {
               home.file = {
                 ".config/nvim" = {
                   enable = true;
@@ -66,7 +61,7 @@
                 };
               };
             })
-            (mkIf cfg.settings.configuration.enable {
+            (mkIf config.modules.twixvim.settings.configuration.enable {
               home.file = {
                 ".config/nvim" = {
                   enable = true;
@@ -75,7 +70,7 @@
                 };
                 ".config/nvim/lua/config.lua" = {
                   enable = true;
-                  source = cfg.settings.configuration.path;
+                  source = config.modules.twixvim.settings.configuration.path;
                 };
               };
             })
