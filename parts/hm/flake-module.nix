@@ -9,10 +9,10 @@
       pkgs,
       ...
     }:
-    with lib;
-      #with lib; let
-      #  cfg = config.modules.twixvim;
-      #in 
+    #with lib;
+      with lib; let
+       cfg = config.modules.twixvim;
+      in 
       {
         options = {
           modules.twixvim = {
@@ -41,7 +41,7 @@
           };
         };
 
-        config = mkIf config.enable (mkMerge [
+        config = mkIf cfg.enable (mkMerge [
           {
             home = {
               packages = [
