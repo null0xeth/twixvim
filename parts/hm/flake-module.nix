@@ -3,7 +3,7 @@
   ...
 }: {
   flake.homeManagerModules.default = moduleWithSystem (
-    perSystem @ { config }: {
+    perSystem @ { config, nixpkgs }: {
       inputs',
       lib,
       pkgs,
