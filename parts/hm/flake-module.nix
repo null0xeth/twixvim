@@ -3,11 +3,10 @@
   ...
 }: {
   flake.homeManagerModules.default = moduleWithSystem (
-    perSystem @ { ... }: {
+    perSystem @ { inputs' }: {
       config,
       lib,
       pkgs,
-      inputs',
       ...
     }:
       with lib; let
