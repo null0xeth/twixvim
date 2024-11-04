@@ -9,6 +9,7 @@
       pkgs,
       ...
     }:
+    with lib;
       #with lib; let
       #  cfg = config.modules.twixvim;
       #in 
