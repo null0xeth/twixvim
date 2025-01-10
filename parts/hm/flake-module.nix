@@ -1,17 +1,16 @@
-{
-  moduleWithSystem,
-  ...
-}: {
+{moduleWithSystem, ...}: {
   flake.homeManagerModules.default = moduleWithSystem (
-    perSystem @ { nixpkgs, inputs', inputs }: {
+    perSystem @ {
+      nixpkgs,
+      inputs,
+    }: {
       config,
       lib,
       pkgs,
       ...
     }:
     #with lib;
-      with lib; 
-      {
+      with lib; {
         options = {
           modules.twixvim = {
             enable = mkOption {
@@ -41,11 +40,11 @@
 
         config = mkIf config.modules.twixvim.enable (mkMerge [
           {
-	    nixpkgs.overlays = [inputs.neovim-flake.overlays.default];
+            nixpkgs.overlays = [inputs.neovim-flake.overlays.default];
             home = {
               packages = [
                 pkgs.neovim
-		#inputs'.neovim-flake.packages.default
+                #inputs'.neovim-flake.packages.default
               ];
             };
           }
@@ -78,5 +77,6 @@
             })
           ]))
         ]);
-      });
+      }
+  );
 }
