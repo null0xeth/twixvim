@@ -38,20 +38,20 @@
       imports = [
         ./parts/hm/flake-module.nix
       ];
+#
+#      systems = import systems;
 
-      systems = import systems;
-
-      perSystem = {
-        config,
-        system,
-        pkgs,
-        ...
-      }: {
-        _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-          config.hostPlatform = system;
-        };
-      };
+    #  perSystem = {
+    #    config,
+    #    system,
+    #    pkgs,
+    #    ...
+    #  }: {
+    #    _module.args.pkgs = import inputs.nixpkgs {
+    #      inherit system;
+    #      config.allowUnfree = true;
+    #      config.hostPlatform = system;
+    #    };
+    #  };
     };
 }
