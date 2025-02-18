@@ -38,8 +38,8 @@
       imports = [
         ./parts/hm/flake-module.nix
       ];
-#
-#      systems = import systems;
+
+      systems = import systems;
 
     #  perSystem = {
     #    config,
