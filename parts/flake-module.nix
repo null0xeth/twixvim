@@ -4,21 +4,21 @@
     ./hm/flake-module.nix
   ];
 
-  perSystem = {
-    config,
-    pkgs,
-    system,
-    inputs',
-    ...
-  }: {
-    _module.args.pkgs = import inputs.nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-      config.hostPlatform = system;
-      overlays = [
-        inputs.rust-overlay.overlays.default
-      ];
-    };
+ # perSystem = {
+  #  config,
+ #   pkgs,
+#    system,
+#    inputs',
+#    ...
+#  }: {
+#    _module.args.pkgs = import inputs.nixpkgs {
+#      inherit system;
+#      config.allowUnfree = true;
+#      config.hostPlatform = system;
+#      overlays = [
+#        inputs.rust-overlay.overlays.default
+#      ];
+#    };
 
     # devshells.default = {
     #   devshell = {
@@ -86,5 +86,5 @@
     #     ]
     #     ++ [inputs'.nil.packages.default];
     # };
-  };
+ # };
 }
